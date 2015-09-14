@@ -1,0 +1,447 @@
+
+user backtrace:
+<no user backtrace at module("scsi_mod").function("scsi_request_fn@/build/linux-ELRFVQ/linux-3.16.7-ckt11/drivers/scsi/scsi_lib.c:1496").call>
+
+kernel backtrace:
+ 0xffffffffa0022880 : scsi_request_fn+0x0/0x500 [scsi_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffffffff81284472 : blk_execute_rq_nowait+0xa2/0x140 [kernel] (inexact)
+ 0xffffffff81284587 : blk_execute_rq+0x77/0x130 [kernel] (inexact)
+ 0xffffffff81276dd4 : bio_phys_segments+0x14/0x20 [kernel] (inexact)
+ 0xffffffff81284320 : blk_rq_map_kern+0xb0/0x140 [kernel] (inexact)
+ 0xffffffff8127f3e6 : blk_get_request+0x76/0xe0 [kernel] (inexact)
+ 0xffffffffa0020c82 : scsi_execute+0xd2/0x150 [scsi_mod] (inexact)
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel] (inexact)
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel] (inexact)
+ 0xffffffff8109bd26 : set_next_entity+0x56/0x70 [kernel] (inexact)
+ 0xffffffffa0073054 : cdrom_check_events+0x14/0x30 [cdrom] (inexact)
+ 0xffffffff8128df8d : disk_check_events+0x4d/0x140 [kernel] (inexact)
+ 0xffffffff81081662 : process_one_work+0x172/0x420 [kernel] (inexact)
+ 0xffffffff81081cf3 : worker_thread+0x113/0x4f0 [kernel] (inexact)
+ 0xffffffff8150d8c1 : __schedule+0x2b1/0x710 [kernel] (inexact)
+ 0xffffffff81081be0 : worker_thread+0x0/0x4f0 [kernel] (inexact)
+ 0xffffffff81087f7d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff81087ec0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff815114d8 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+     0 kworker/0:1(28):->scsi_request_fn q=0xffff8800370de7c8
+   825 kworker/0:1(28): ->scsi_request_fn q=0xffff8800370de7c8
+  1149 kworker/0:1(28):  ->scsi_prep_fn q=0xffff8800370de7c8 req=0xffff8800bb67fa20
+  1486 kworker/0:1(28):   ->scsi_get_command dev=0xffff8800370e0800 gfp_mask=0x20
+  1759 kworker/0:1(28):    ->__scsi_get_command shost=0xffff8801384a2000 gfp_mask=0x20
+  1797 kworker/0:1(28):     ->scsi_host_alloc_command shost=0xffff8801384a2000 gfp_mask=0x20
+  2281 kworker/0:1(28):     <-scsi_host_alloc_command return=0xffff8801384a41c0
+  2377 kworker/0:1(28):    <-__scsi_get_command return=0xffff8801384a41c0
+  2390 kworker/0:1(28):   <-scsi_get_command return=0xffff8801384a41c0
+  2624 kworker/0:1(28):   ->scsi_setup_blk_pc_cmnd sdev=0xffff8800370e0800 req=0xffff8800bb67fa20
+  2887 kworker/0:1(28):    ->scsi_init_io cmd=0xffff8801384a41c0 gfp_mask=0x20
+  3195 kworker/0:1(28):     ->scsi_init_sgtable req=0xffff8800bb67fa20 sdb=0xffff8801384a4298 gfp_mask=0x20
+  3512 kworker/0:1(28):      ->scsi_alloc_sgtable sdb=0xffff8801384a4298 nents=0x2 gfp_mask=0x20
+  3778 kworker/0:1(28):       ->scsi_sg_alloc nents=0x2 gfp_mask=0x20
+  3821 kworker/0:1(28):       <-scsi_sg_alloc return=0xffff880139056000
+  3996 kworker/0:1(28):      <-scsi_alloc_sgtable return=0x0
+  4039 kworker/0:1(28):     <-scsi_init_sgtable return=0x0
+  4048 kworker/0:1(28):    <-scsi_init_io return=0x0
+  4053 kworker/0:1(28):   <-scsi_setup_blk_pc_cmnd return=0x0
+  4058 kworker/0:1(28):  <-scsi_prep_fn return=0x0
+  4355 kworker/0:1(28):  ->scsi_init_cmd_errh cmd=0xffff8801384a41c0
+  4520 kworker/0:1(28):  <-scsi_init_cmd_errh 
+  4555 kworker/0:1(28):  ->scsi_dispatch_cmd cmd=0xffff8801384a41c0
+  4736 kworker/0:1(28):   ->scsi_log_send cmd=0xffff8801384a41c0
+  4762 kworker/0:1(28):   <-scsi_log_send 
+  4903 kworker/0:1(28):  <-scsi_dispatch_cmd return=0x0
+  4915 kworker/0:1(28): <-scsi_request_fn 
+  4985 kworker/0:1(28):<-scsi_request_fn 
+---------------------------------------------------------
+
+user backtrace:
+<no user backtrace at module("scsi_mod").function("scsi_request_fn@/build/linux-ELRFVQ/linux-3.16.7-ckt11/drivers/scsi/scsi_lib.c:1496").call>
+
+kernel backtrace:
+ 0xffffffffa0022880 : scsi_request_fn+0x0/0x500 [scsi_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff8800370de7c8
+     0 swapper/0(0):->scsi_request_fn q=0xffff8800370de7c8
+     9 swapper/0(0):<-scsi_request_fn 
+---------------------------------------------------------
+
+user backtrace:
+<no user backtrace at module("scsi_mod").function("scsi_request_fn@/build/linux-ELRFVQ/linux-3.16.7-ckt11/drivers/scsi/scsi_lib.c:1496").call>
+
+kernel backtrace:
+ 0xffffffffa0022880 : scsi_request_fn+0x0/0x500 [scsi_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffffffff81284472 : blk_execute_rq_nowait+0xa2/0x140 [kernel] (inexact)
+ 0xffffffff81284587 : blk_execute_rq+0x77/0x130 [kernel] (inexact)
+ 0xffffffff81276dd4 : bio_phys_segments+0x14/0x20 [kernel] (inexact)
+ 0xffffffff81284320 : blk_rq_map_kern+0xb0/0x140 [kernel] (inexact)
+ 0xffffffff8127f3e6 : blk_get_request+0x76/0xe0 [kernel] (inexact)
+ 0xffffffffa0020c82 : scsi_execute+0xd2/0x150 [scsi_mod] (inexact)
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel] (inexact)
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel] (inexact)
+ 0xffffffffa0073054 : cdrom_check_events+0x14/0x30 [cdrom] (inexact)
+ 0xffffffff8128df8d : disk_check_events+0x4d/0x140 [kernel] (inexact)
+ 0xffffffff81081662 : process_one_work+0x172/0x420 [kernel] (inexact)
+ 0xffffffff81081cf3 : worker_thread+0x113/0x4f0 [kernel] (inexact)
+ 0xffffffff8150d8c1 : __schedule+0x2b1/0x710 [kernel] (inexact)
+ 0xffffffff81081be0 : worker_thread+0x0/0x4f0 [kernel] (inexact)
+ 0xffffffff81087f7d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff81087ec0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff815114d8 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087ec0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 kworker/0:1(28):->scsi_request_fn q=0xffff8800370de7c8
+    22 kworker/0:1(28): ->scsi_request_fn q=0xffff8800370de7c8
+    30 kworker/0:1(28):  ->scsi_prep_fn q=0xffff8800370de7c8 req=0xffff8800bb67fa20
+    39 kworker/0:1(28):   ->scsi_get_command dev=0xffff8800370e0800 gfp_mask=0x20
+    47 kworker/0:1(28):    ->__scsi_get_command shost=0xffff8801384a2000 gfp_mask=0x20
+    53 kworker/0:1(28):     ->scsi_host_alloc_command shost=0xffff8801384a2000 gfp_mask=0x20
+    61 kworker/0:1(28):     <-scsi_host_alloc_command return=0xffff8801384a41c0
+    67 kworker/0:1(28):    <-__scsi_get_command return=0xffff8801384a41c0
+    72 kworker/0:1(28):   <-scsi_get_command return=0xffff8801384a41c0
+    81 kworker/0:1(28):   ->scsi_setup_blk_pc_cmnd sdev=0xffff8800370e0800 req=0xffff8800bb67fa20
+    88 kworker/0:1(28):    ->scsi_init_io cmd=0xffff8801384a41c0 gfp_mask=0x20
+    97 kworker/0:1(28):     ->scsi_init_sgtable req=0xffff8800bb67fa20 sdb=0xffff8801384a4298 gfp_mask=0x20
+   104 kworker/0:1(28):      ->scsi_alloc_sgtable sdb=0xffff8801384a4298 nents=0x2 gfp_mask=0x20
+   111 kworker/0:1(28):       ->scsi_sg_alloc nents=0x2 gfp_mask=0x20
+   116 kworker/0:1(28):       <-scsi_sg_alloc return=0xffff880139056000
+   121 kworker/0:1(28):      <-scsi_alloc_sgtable return=0x0
+   126 kworker/0:1(28):     <-scsi_init_sgtable return=0x0
+   131 kworker/0:1(28):    <-scsi_init_io return=0x0
+   135 kworker/0:1(28):   <-scsi_setup_blk_pc_cmnd return=0x0
+   742 kworker/0:1(28):  <-scsi_prep_fn return=0x0
+   754 kworker/0:1(28):  ->scsi_init_cmd_errh cmd=0xffff8801384a41c0
+   760 kworker/0:1(28):  <-scsi_init_cmd_errh 
+   765 kworker/0:1(28):  ->scsi_dispatch_cmd cmd=0xffff8801384a41c0
+   772 kworker/0:1(28):   ->scsi_log_send cmd=0xffff8801384a41c0
+   777 kworker/0:1(28):   <-scsi_log_send 
+   827 kworker/0:1(28):  <-scsi_dispatch_cmd return=0x0
+   832 kworker/0:1(28): <-scsi_request_fn 
+   836 kworker/0:1(28):<-scsi_request_fn 
+---------------------------------------------------------
+
+user backtrace:
+<no user backtrace at module("scsi_mod").function("scsi_request_fn@/build/linux-ELRFVQ/linux-3.16.7-ckt11/drivers/scsi/scsi_lib.c:1496").call>
+
+kernel backtrace:
+ 0xffffffffa0022880 : scsi_request_fn+0x0/0x500 [scsi_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff8800370de7c8
+     0 swapper/0(0):->scsi_request_fn q=0xffff8800370de7c8
+   361 swapper/0(0):<-scsi_request_fn 
+---------------------------------------------------------
+
+user backtrace:
+<no user backtrace at module("scsi_mod").function("scsi_request_fn@/build/linux-ELRFVQ/linux-3.16.7-ckt11/drivers/scsi/scsi_lib.c:1496").call>
+
+kernel backtrace:
+ 0xffffffffa0022880 : scsi_request_fn+0x0/0x500 [scsi_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffffffff81284472 : blk_execute_rq_nowait+0xa2/0x140 [kernel] (inexact)
+ 0xffffffff81284587 : blk_execute_rq+0x77/0x130 [kernel] (inexact)
+ 0xffffffff81276dd4 : bio_phys_segments+0x14/0x20 [kernel] (inexact)
+ 0xffffffff81284320 : blk_rq_map_kern+0xb0/0x140 [kernel] (inexact)
+ 0xffffffff8127f3e6 : blk_get_request+0x76/0xe0 [kernel] (inexact)
+ 0xffffffffa0020c82 : scsi_execute+0xd2/0x150 [scsi_mod] (inexact)
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel] (inexact)
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel] (inexact)
+ 0xffffffffa0073054 : cdrom_check_events+0x14/0x30 [cdrom] (inexact)
+ 0xffffffff8128df8d : disk_check_events+0x4d/0x140 [kernel] (inexact)
+ 0xffffffff81081662 : process_one_work+0x172/0x420 [kernel] (inexact)
+ 0xffffffff81081cf3 : worker_thread+0x113/0x4f0 [kernel] (inexact)
+ 0xffffffff8150d8c1 : __schedule+0x2b1/0x710 [kernel] (inexact)
+ 0xffffffff81081be0 : worker_thread+0x0/0x4f0 [kernel] (inexact)
+ 0xffffffff81087f7d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff81087ec0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff815114d8 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087ec0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 kworker/0:1(28):->scsi_request_fn q=0xffff8800370de7c8
+    18 kworker/0:1(28): ->scsi_request_fn q=0xffff8800370de7c8
+    26 kworker/0:1(28):  ->scsi_prep_fn q=0xffff8800370de7c8 req=0xffff8800bb67fa20
+    34 kworker/0:1(28):   ->scsi_get_command dev=0xffff8800370e0800 gfp_mask=0x20
+    41 kworker/0:1(28):    ->__scsi_get_command shost=0xffff8801384a2000 gfp_mask=0x20
+    47 kworker/0:1(28):     ->scsi_host_alloc_command shost=0xffff8801384a2000 gfp_mask=0x20
+    55 kworker/0:1(28):     <-scsi_host_alloc_command return=0xffff8801384a41c0
+    61 kworker/0:1(28):    <-__scsi_get_command return=0xffff8801384a41c0
+    67 kworker/0:1(28):   <-scsi_get_command return=0xffff8801384a41c0
+    74 kworker/0:1(28):   ->scsi_setup_blk_pc_cmnd sdev=0xffff8800370e0800 req=0xffff8800bb67fa20
+    81 kworker/0:1(28):    ->scsi_init_io cmd=0xffff8801384a41c0 gfp_mask=0x20
+    90 kworker/0:1(28):     ->scsi_init_sgtable req=0xffff8800bb67fa20 sdb=0xffff8801384a4298 gfp_mask=0x20
+    98 kworker/0:1(28):      ->scsi_alloc_sgtable sdb=0xffff8801384a4298 nents=0x2 gfp_mask=0x20
+   104 kworker/0:1(28):       ->scsi_sg_alloc nents=0x2 gfp_mask=0x20
+   109 kworker/0:1(28):       <-scsi_sg_alloc return=0xffff880139056000
+   114 kworker/0:1(28):      <-scsi_alloc_sgtable return=0x0
+   120 kworker/0:1(28):     <-scsi_init_sgtable return=0x0
+   124 kworker/0:1(28):    <-scsi_init_io return=0x0
+   128 kworker/0:1(28):   <-scsi_setup_blk_pc_cmnd return=0x0
+   132 kworker/0:1(28):  <-scsi_prep_fn return=0x0
+   140 kworker/0:1(28):  ->scsi_init_cmd_errh cmd=0xffff8801384a41c0
+   146 kworker/0:1(28):  <-scsi_init_cmd_errh 
+   151 kworker/0:1(28):  ->scsi_dispatch_cmd cmd=0xffff8801384a41c0
+   157 kworker/0:1(28):   ->scsi_log_send cmd=0xffff8801384a41c0
+   162 kworker/0:1(28):   <-scsi_log_send 
+   211 kworker/0:1(28):  <-scsi_dispatch_cmd return=0x0
+   216 kworker/0:1(28): <-scsi_request_fn 
+   219 kworker/0:1(28):<-scsi_request_fn 
+---------------------------------------------------------
+
+user backtrace:
+<no user backtrace at module("scsi_mod").function("scsi_request_fn@/build/linux-ELRFVQ/linux-3.16.7-ckt11/drivers/scsi/scsi_lib.c:1496").call>
+
+kernel backtrace:
+ 0xffffffffa0022880 : scsi_request_fn+0x0/0x500 [scsi_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff8800370de7c8
+     0 swapper/0(0):->scsi_request_fn q=0xffff8800370de7c8
+     7 swapper/0(0):<-scsi_request_fn 
+---------------------------------------------------------
+
+user backtrace:
+<no user backtrace at module("scsi_mod").function("scsi_request_fn@/build/linux-ELRFVQ/linux-3.16.7-ckt11/drivers/scsi/scsi_lib.c:1496").call>
+
+kernel backtrace:
+ 0xffffffffa0022880 : scsi_request_fn+0x0/0x500 [scsi_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff8800364004e0
+ 0xffffffff812a6204 : cfq_insert_request+0x2f4/0x560 [kernel] (inexact)
+ 0xffffffff8127ba1a : part_round_stats+0x3a/0x50 [kernel] (inexact)
+ 0xffffffff8128103b : blk_queue_bio+0x31b/0x360 [kernel] (inexact)
+ 0xffffffff8127c8c0 : generic_make_request+0xb0/0x100 [kernel] (inexact)
+ 0xffffffff8127c981 : submit_bio+0x71/0x150 [kernel] (inexact)
+ 0xffffffff812780a8 : bio_alloc_bioset+0x198/0x290 [kernel] (inexact)
+ 0xffffffff811d7bfa : _submit_bh+0x12a/0x1f0 [kernel] (inexact)
+ 0xffffffffa01bbd8d : journal_submit_commit_record.isra.13+0x1ad/0x1d0 [jbd2] (inexact)
+ 0xffffffffa01bcfce : jbd2_journal_commit_transaction+0x121e/0x1950 [jbd2] (inexact)
+ 0xffffffff8101baf5 : sched_clock+0x5/0x10 [kernel] (inexact)
+ 0xffffffff810a2803 : pick_next_task_fair+0x3e3/0x820 [kernel] (inexact)
+ 0xffffffffa01c0bc2 : kjournald2+0xb2/0x240 [jbd2] (inexact)
+ 0xffffffff810a7a40 : autoremove_wake_function+0x0/0x30 [kernel] (inexact)
+ 0xffffffffa01c0b10 : kjournald2+0x0/0x240 [jbd2] (inexact)
+ 0xffffffff81087f7d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff81087ec0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff815114d8 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+     0 jbd2/sda1-8(118):->scsi_request_fn q=0xffff8800370de008
+    16 jbd2/sda1-8(118): ->scsi_request_fn q=0xffff8800370de008
+    31 jbd2/sda1-8(118):  ->scsi_prep_fn q=0xffff8800370de008 req=0xffff8800bb67fa20
+    40 jbd2/sda1-8(118):   ->scsi_get_command dev=0xffff880036fd2000 gfp_mask=0x20
+    47 jbd2/sda1-8(118):    ->__scsi_get_command shost=0xffff880138481000 gfp_mask=0x20
+    53 jbd2/sda1-8(118):     ->scsi_host_alloc_command shost=0xffff880138481000 gfp_mask=0x20
+    67 jbd2/sda1-8(118):     <-scsi_host_alloc_command return=0xffff8801384a41c0
+    72 jbd2/sda1-8(118):    <-__scsi_get_command return=0xffff8801384a41c0
+    78 jbd2/sda1-8(118):   <-scsi_get_command return=0xffff8801384a41c0
+    97 jbd2/sda1-8(118):   ->scsi_setup_fs_cmnd sdev=0xffff880036fd2000 req=0xffff8800bb67fa20
+   105 jbd2/sda1-8(118):    ->scsi_init_io cmd=0xffff8801384a41c0 gfp_mask=0x20
+   113 jbd2/sda1-8(118):     ->scsi_init_sgtable req=0xffff8800bb67fa20 sdb=0xffff8801384a4298 gfp_mask=0x20
+   121 jbd2/sda1-8(118):      ->scsi_alloc_sgtable sdb=0xffff8801384a4298 nents=0x1 gfp_mask=0x20
+   128 jbd2/sda1-8(118):       ->scsi_sg_alloc nents=0x1 gfp_mask=0x20
+   133 jbd2/sda1-8(118):       <-scsi_sg_alloc return=0xffff880139056000
+   138 jbd2/sda1-8(118):      <-scsi_alloc_sgtable return=0x0
+   143 jbd2/sda1-8(118):     <-scsi_init_sgtable return=0x0
+   148 jbd2/sda1-8(118):    <-scsi_init_io return=0x0
+   151 jbd2/sda1-8(118):   <-scsi_setup_fs_cmnd return=0x0
+   160 jbd2/sda1-8(118):  <-scsi_prep_fn return=0x0
+   170 jbd2/sda1-8(118):  ->scsi_init_cmd_errh cmd=0xffff8801384a41c0
+   175 jbd2/sda1-8(118):  <-scsi_init_cmd_errh 
+   181 jbd2/sda1-8(118):  ->scsi_dispatch_cmd cmd=0xffff8801384a41c0
+   188 jbd2/sda1-8(118):   ->scsi_log_send cmd=0xffff8801384a41c0
+   192 jbd2/sda1-8(118):   <-scsi_log_send 
+  1022 jbd2/sda1-8(118):   ->int_to_scsilun lun=0x0 scsilun=0xffff8801385c2aac
+  1049 jbd2/sda1-8(118):   <-int_to_scsilun 
+  1067 jbd2/sda1-8(118):   ->scsi_dma_map cmd=0xffff8801384a41c0
+  1073 jbd2/sda1-8(118):   <-scsi_dma_map return=0x1
+  1644 jbd2/sda1-8(118):  <-scsi_dispatch_cmd return=0x0
+  1651 jbd2/sda1-8(118): <-scsi_request_fn 
+  1655 jbd2/sda1-8(118):<-scsi_request_fn 
+---------------------------------------------------------
+
+user backtrace:
+<no user backtrace at module("scsi_mod").function("scsi_request_fn@/build/linux-ELRFVQ/linux-3.16.7-ckt11/drivers/scsi/scsi_lib.c:1496").call>
+
+kernel backtrace:
+ 0xffffffffa0022880 : scsi_request_fn+0x0/0x500 [scsi_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff8800370de008
+ 0xffffffff81281043 : blk_queue_bio+0x323/0x360 [kernel] (inexact)
+ 0xffffffff8127c8c0 : generic_make_request+0xb0/0x100 [kernel] (inexact)
+ 0xffffffff8127c981 : submit_bio+0x71/0x150 [kernel] (inexact)
+ 0xffffffff812780a8 : bio_alloc_bioset+0x198/0x290 [kernel] (inexact)
+ 0xffffffff811d7bfa : _submit_bh+0x12a/0x1f0 [kernel] (inexact)
+ 0xffffffffa01bbd8d : journal_submit_commit_record.isra.13+0x1ad/0x1d0 [jbd2] (inexact)
+ 0xffffffffa01bcfce : jbd2_journal_commit_transaction+0x121e/0x1950 [jbd2] (inexact)
+ 0xffffffff8101baf5 : sched_clock+0x5/0x10 [kernel] (inexact)
+ 0xffffffff810a2803 : pick_next_task_fair+0x3e3/0x820 [kernel] (inexact)
+ 0xffffffffa01c0bc2 : kjournald2+0xb2/0x240 [jbd2] (inexact)
+ 0xffffffff810a7a40 : autoremove_wake_function+0x0/0x30 [kernel] (inexact)
+ 0xffffffffa01c0b10 : kjournald2+0x0/0x240 [jbd2] (inexact)
+ 0xffffffff81087f7d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff81087ec0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff815114d8 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087ec0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 jbd2/sda1-8(118):->scsi_request_fn q=0xffff8800370de008
+    13 jbd2/sda1-8(118): ->scsi_request_fn q=0xffff8800370de008
+    18 jbd2/sda1-8(118): <-scsi_request_fn 
+    22 jbd2/sda1-8(118):<-scsi_request_fn 
+---------------------------------------------------------
+
+user backtrace:
+<no user backtrace at module("scsi_mod").function("scsi_request_fn@/build/linux-ELRFVQ/linux-3.16.7-ckt11/drivers/scsi/scsi_lib.c:1496").call>
+
+kernel backtrace:
+ 0xffffffffa0022880 : scsi_request_fn+0x0/0x500 [scsi_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff8800370de008
+     0 jbd2/sda1-8(118):->scsi_request_fn q=0xffff8800370de008
+   563 jbd2/sda1-8(118): ->scsi_request_fn q=0xffff8800370de008
+   568 jbd2/sda1-8(118): <-scsi_request_fn 
+   571 jbd2/sda1-8(118):<-scsi_request_fn 
+---------------------------------------------------------
+
+user backtrace:
+<no user backtrace at module("scsi_mod").function("scsi_request_fn@/build/linux-ELRFVQ/linux-3.16.7-ckt11/drivers/scsi/scsi_lib.c:1496").call>
+
+kernel backtrace:
+ 0xffffffffa0022880 : scsi_request_fn+0x0/0x500 [scsi_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff8800370de008
+ 0xffffffff812a0549 : cfq_kick_queue+0x29/0x40 [kernel] (inexact)
+ 0xffffffff81081662 : process_one_work+0x172/0x420 [kernel] (inexact)
+ 0xffffffff81081cf3 : worker_thread+0x113/0x4f0 [kernel] (inexact)
+ 0xffffffff8150d8c1 : __schedule+0x2b1/0x710 [kernel] (inexact)
+ 0xffffffff81081be0 : worker_thread+0x0/0x4f0 [kernel] (inexact)
+ 0xffffffff81087f7d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff81087ec0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff815114d8 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087ec0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 kworker/0:1H(91):->scsi_request_fn q=0xffff8800370de008
+     6 kworker/0:1H(91): ->scsi_request_fn q=0xffff8800370de008
+    10 kworker/0:1H(91): <-scsi_request_fn 
+    14 kworker/0:1H(91):<-scsi_request_fn 
+---------------------------------------------------------
+
+user backtrace:
+<no user backtrace at module("scsi_mod").function("scsi_request_fn@/build/linux-ELRFVQ/linux-3.16.7-ckt11/drivers/scsi/scsi_lib.c:1496").call>
+
+kernel backtrace:
+ 0xffffffffa0022880 : scsi_request_fn+0x0/0x500 [scsi_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffffffff81284472 : blk_execute_rq_nowait+0xa2/0x140 [kernel] (inexact)
+ 0xffffffff81284587 : blk_execute_rq+0x77/0x130 [kernel] (inexact)
+ 0xffffffff81276dd4 : bio_phys_segments+0x14/0x20 [kernel] (inexact)
+ 0xffffffff81284320 : blk_rq_map_kern+0xb0/0x140 [kernel] (inexact)
+ 0xffffffff8127f3e6 : blk_get_request+0x76/0xe0 [kernel] (inexact)
+ 0xffffffffa0020c82 : scsi_execute+0xd2/0x150 [scsi_mod] (inexact)
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel] (inexact)
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel] (inexact)
+ 0xffffffff8109bd26 : set_next_entity+0x56/0x70 [kernel] (inexact)
+ 0xffffffffa0073054 : cdrom_check_events+0x14/0x30 [cdrom] (inexact)
+ 0xffffffff8128df8d : disk_check_events+0x4d/0x140 [kernel] (inexact)
+ 0xffffffff81081662 : process_one_work+0x172/0x420 [kernel] (inexact)
+ 0xffffffff81081cf3 : worker_thread+0x113/0x4f0 [kernel] (inexact)
+ 0xffffffff8150d8c1 : __schedule+0x2b1/0x710 [kernel] (inexact)
+ 0xffffffff81081be0 : worker_thread+0x0/0x4f0 [kernel] (inexact)
+ 0xffffffff81087f7d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff81087ec0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff815114d8 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+     0 kworker/0:1(28):->scsi_request_fn q=0xffff8800370de7c8
+    20 kworker/0:1(28): ->scsi_request_fn q=0xffff8800370de7c8
+    28 kworker/0:1(28):  ->scsi_prep_fn q=0xffff8800370de7c8 req=0xffff8800bb67fa20
+    37 kworker/0:1(28):   ->scsi_get_command dev=0xffff8800370e0800 gfp_mask=0x20
+    44 kworker/0:1(28):    ->__scsi_get_command shost=0xffff8801384a2000 gfp_mask=0x20
+    50 kworker/0:1(28):     ->scsi_host_alloc_command shost=0xffff8801384a2000 gfp_mask=0x20
+    58 kworker/0:1(28):     <-scsi_host_alloc_command return=0xffff8801384a41c0
+    64 kworker/0:1(28):    <-__scsi_get_command return=0xffff8801384a41c0
+    69 kworker/0:1(28):   <-scsi_get_command return=0xffff8801384a41c0
+    77 kworker/0:1(28):   ->scsi_setup_blk_pc_cmnd sdev=0xffff8800370e0800 req=0xffff8800bb67fa20
+    84 kworker/0:1(28):    ->scsi_init_io cmd=0xffff8801384a41c0 gfp_mask=0x20
+    92 kworker/0:1(28):     ->scsi_init_sgtable req=0xffff8800bb67fa20 sdb=0xffff8801384a4298 gfp_mask=0x20
+    99 kworker/0:1(28):      ->scsi_alloc_sgtable sdb=0xffff8801384a4298 nents=0x2 gfp_mask=0x20
+   106 kworker/0:1(28):       ->scsi_sg_alloc nents=0x2 gfp_mask=0x20
+   111 kworker/0:1(28):       <-scsi_sg_alloc return=0xffff880139056000
+   116 kworker/0:1(28):      <-scsi_alloc_sgtable return=0x0
+   122 kworker/0:1(28):     <-scsi_init_sgtable return=0x0
+   126 kworker/0:1(28):    <-scsi_init_io return=0x0
+   130 kworker/0:1(28):   <-scsi_setup_blk_pc_cmnd return=0x0
+   134 kworker/0:1(28):  <-scsi_prep_fn return=0x0
+   142 kworker/0:1(28):  ->scsi_init_cmd_errh cmd=0xffff8801384a41c0
+   148 kworker/0:1(28):  <-scsi_init_cmd_errh 
+   153 kworker/0:1(28):  ->scsi_dispatch_cmd cmd=0xffff8801384a41c0
+   160 kworker/0:1(28):   ->scsi_log_send cmd=0xffff8801384a41c0
+   164 kworker/0:1(28):   <-scsi_log_send 
+   764 kworker/0:1(28):  <-scsi_dispatch_cmd return=0x0
+   770 kworker/0:1(28): <-scsi_request_fn 
+   774 kworker/0:1(28):<-scsi_request_fn 
+---------------------------------------------------------
+
+user backtrace:
+<no user backtrace at module("scsi_mod").function("scsi_request_fn@/build/linux-ELRFVQ/linux-3.16.7-ckt11/drivers/scsi/scsi_lib.c:1496").call>
+
+kernel backtrace:
+ 0xffffffffa0022880 : scsi_request_fn+0x0/0x500 [scsi_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff8800370de7c8
+     0 swapper/0(0):->scsi_request_fn q=0xffff8800370de7c8
+     7 swapper/0(0):<-scsi_request_fn 
+---------------------------------------------------------
+
+user backtrace:
+<no user backtrace at module("scsi_mod").function("scsi_request_fn@/build/linux-ELRFVQ/linux-3.16.7-ckt11/drivers/scsi/scsi_lib.c:1496").call>
+
+kernel backtrace:
+ 0xffffffffa0022880 : scsi_request_fn+0x0/0x500 [scsi_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffffffff81284472 : blk_execute_rq_nowait+0xa2/0x140 [kernel] (inexact)
+ 0xffffffff81284587 : blk_execute_rq+0x77/0x130 [kernel] (inexact)
+ 0xffffffff81276dd4 : bio_phys_segments+0x14/0x20 [kernel] (inexact)
+ 0xffffffff81284320 : blk_rq_map_kern+0xb0/0x140 [kernel] (inexact)
+ 0xffffffff8127f3e6 : blk_get_request+0x76/0xe0 [kernel] (inexact)
+ 0xffffffffa0020c82 : scsi_execute+0xd2/0x150 [scsi_mod] (inexact)
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel] (inexact)
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel] (inexact)
+ 0xffffffffa0073054 : cdrom_check_events+0x14/0x30 [cdrom] (inexact)
+ 0xffffffff8128df8d : disk_check_events+0x4d/0x140 [kernel] (inexact)
+ 0xffffffff81081662 : process_one_work+0x172/0x420 [kernel] (inexact)
+ 0xffffffff81081cf3 : worker_thread+0x113/0x4f0 [kernel] (inexact)
+ 0xffffffff8150d8c1 : __schedule+0x2b1/0x710 [kernel] (inexact)
+ 0xffffffff81081be0 : worker_thread+0x0/0x4f0 [kernel] (inexact)
+ 0xffffffff81087f7d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff81087ec0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff815114d8 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087ec0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 kworker/0:1(28):->scsi_request_fn q=0xffff8800370de7c8
+    21 kworker/0:1(28): ->scsi_request_fn q=0xffff8800370de7c8
+    30 kworker/0:1(28):  ->scsi_prep_fn q=0xffff8800370de7c8 req=0xffff8800bb67fa20
+    38 kworker/0:1(28):   ->scsi_get_command dev=0xffff8800370e0800 gfp_mask=0x20
+    46 kworker/0:1(28):    ->__scsi_get_command shost=0xffff8801384a2000 gfp_mask=0x20
+    52 kworker/0:1(28):     ->scsi_host_alloc_command shost=0xffff8801384a2000 gfp_mask=0x20
+    61 kworker/0:1(28):     <-scsi_host_alloc_command return=0xffff8801384a41c0
+    67 kworker/0:1(28):    <-__scsi_get_command return=0xffff8801384a41c0
+    73 kworker/0:1(28):   <-scsi_get_command return=0xffff8801384a41c0
+    81 kworker/0:1(28):   ->scsi_setup_blk_pc_cmnd sdev=0xffff8800370e0800 req=0xffff8800bb67fa20
+    88 kworker/0:1(28):    ->scsi_init_io cmd=0xffff8801384a41c0 gfp_mask=0x20
+    97 kworker/0:1(28):     ->scsi_init_sgtable req=0xffff8800bb67fa20 sdb=0xffff8801384a4298 gfp_mask=0x20
+   105 kworker/0:1(28):      ->scsi_alloc_sgtable sdb=0xffff8801384a4298 nents=0x2 gfp_mask=0x20
+   112 kworker/0:1(28):       ->scsi_sg_alloc nents=0x2 gfp_mask=0x20
+   117 kworker/0:1(28):       <-scsi_sg_alloc return=0xffff880139056000
+   123 kworker/0:1(28):      <-scsi_alloc_sgtable return=0x0
+   128 kworker/0:1(28):     <-scsi_init_sgtable return=0x0
+   132 kworker/0:1(28):    <-scsi_init_io return=0x0
+   137 kworker/0:1(28):   <-scsi_setup_blk_pc_cmnd return=0x0
+   141 kworker/0:1(28):  <-scsi_prep_fn return=0x0
+   150 kworker/0:1(28):  ->scsi_init_cmd_errh cmd=0xffff8801384a41c0
+   155 kworker/0:1(28):  <-scsi_init_cmd_errh 
+   161 kworker/0:1(28):  ->scsi_dispatch_cmd cmd=0xffff8801384a41c0
+   168 kworker/0:1(28):   ->scsi_log_send cmd=0xffff8801384a41c0
+   173 kworker/0:1(28):   <-scsi_log_send 
+   223 kworker/0:1(28):  <-scsi_dispatch_cmd return=0x0
+   228 kworker/0:1(28): <-scsi_request_fn 
+   232 kworker/0:1(28):<-scsi_request_fn 
+---------------------------------------------------------
+
+user backtrace:
+<no user backtrace at module("scsi_mod").function("scsi_request_fn@/build/linux-ELRFVQ/linux-3.16.7-ckt11/drivers/scsi/scsi_lib.c:1496").call>
+
+kernel backtrace:
+ 0xffffffffa0022880 : scsi_request_fn+0x0/0x500 [scsi_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff8800370de7c8
+     0 swapper/0(0):->scsi_request_fn q=0xffff8800370de7c8
+     7 swapper/0(0):<-scsi_request_fn 
+---------------------------------------------------------

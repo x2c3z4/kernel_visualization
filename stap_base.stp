@@ -1,0 +1,49 @@
+#! /bin/sh
+
+# Copyright 2015 vonnyfly(lifeng1519@gmail.com)
+
+# suppress some run-time errors here for cleaner output
+//bin/true && exec stap  --all-modules --suppress-handler-errors --skip-badvars $0 ${1+"$@"}
+
+
+/* configuration options; set these with stap -G */
+global g_extra = 1
+global black_lists
+global g_incalls
+function trace(entry_p, extra) {
+    if (g_extra == 0) extra = ""
+    if (tid() in g_incalls)
+      printf("%s%s%s %s\n",
+         thread_indent (entry_p),
+         (entry_p>0?"->":"<-"),
+         ppfunc (),
+         extra)
+}
+
+
+probe $2.call {
+  if (execname() in black_lists) next
+  trace(1, $$parms)
+}
+probe $2.return {
+  if (execname() in black_lists) next
+  trace(-1, $$return)
+}
+
+//probe kernel.function($1).call   {
+//probe module("scsi_mod").function($1).call   {
+probe $1.call   {
+  printf("\nuser backtrace:\n")
+  print_ubacktrace()
+  printf("\nkernel backtrace:\n")
+  print_backtrace()
+  black_lists["stapio"] = 1
+  black_lists["swapper/0"] = 1
+  g_incalls[tid()] = 1
+  trace(1, $$parms)
+}
+probe $1.return {
+  trace(-1, $$return)
+  delete g_incalls[tid()]
+  printf("---------------------------------------------------------\n")
+}
