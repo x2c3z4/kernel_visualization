@@ -28,6 +28,10 @@ Debian
 	bash stap_base.stp 'module("scsi_mod").function("scsi_request_fn")' 'module("scsi_mod").function("*")' | tee scsi_request_fn.log
 	```
 
+	```
+	python callee.py scsi_request_fn.log
+	```
+
 	![callgraph of scsi_request_fn](/examples/images/scsi_request_fn.cg.png)
 	![backtrace of scsi_request_fn](/examples/images/scsi_request_fn.bt.png)
 
@@ -37,7 +41,11 @@ Solaris
 1. Run using Dtrace
 
 	```
-	./dtrace_base.d sdioctl | tee sdioctl.log
+	./dtrace_base.d sdioctl | tee sdioctl.dtrace.log
+	```
+
+	```
+	python callee.py sdioctl.dtrace.log -d
 	```
 
 	![callgraph of sdioctl](/examples/images/sdioctl.cg.png)
@@ -67,15 +75,7 @@ Options:
                         extend to threshold_bt
 ```
 
-You can go to `example/log/` and run: 
-
-```
-python callee.py scsi_request_fn.log
-```
-
-```
-python callee.py sdioctl.dtrace.log -d
-```
+You can go to `example/log/` and play.
 
 Contact
 =======
