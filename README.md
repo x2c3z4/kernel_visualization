@@ -52,6 +52,14 @@ Solaris
 
 	![callgraph of sdioctl](/examples/images/sdioctl.bt.png)
 
+Details
+=======
+1. In callgraph, from left to right, it presents the throughout program flow which begins from the most left function. It's only **one program call path** that currently your kernel is running. So this tool is dynamic, not like Doxygen. Doxgen is static analysis. It couldn't give me the whole path.
+
+2. In the same list box of callgraph, it presents its parent call them **step by step**, one and one. If it enters and calls other functions, you will 
+see that it points to his children.
+
+3. There exists these paths that they have the same root parent, because we are **dynamic**. The same function could have different path in different context. So I have to add some random number in the output name.
 
 Usage
 ======

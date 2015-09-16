@@ -97,7 +97,15 @@ class Tree:
         self.core_content = ""
         self.id = -1
 
-    def travel_tree(self, node):
+    def travel_tree(self):
+        if len(self.root.children) == 1 and self.root.data == self.root.children[0].data:
+            self.root = self.root.children[0]
+            self.root.parent = None
+            self.root.is_root = True
+
+        self._travel_tree(self.root)
+
+    def _travel_tree(self, node):
         if node.first_child:
             if node.is_root:
                 new_root = "\t %s [label=\"<%s>%s\", color=red];\n" %(node.id, node.data, node.data)
@@ -114,7 +122,7 @@ class Tree:
             #print new_link
 
         for child in node.children:
-            self.travel_tree(child)
+            self._travel_tree(child)
 
 
 def draw_callgraph(funcs):
@@ -167,7 +175,7 @@ def draw_callgraph(funcs):
 
     #print "Begin travel:"
     tree.root = root
-    tree.travel_tree(root)
+    tree.travel_tree()
     footer = "\n\t label=\"callgraph of %s\";\n}\n" %(tree.root.data,)
     content = "%s%s%s" % (header, tree.core_content, footer)
     outfile = write_file(tree.root.data, ".cg.dot", content)
