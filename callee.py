@@ -26,6 +26,7 @@ bt_threshold = 3
 callgraph_threshold = 3
 keep_dot_files = False
 is_dtrace = False
+output_format = "png"
 
 def get_random_id():
     return ''.join(random.SystemRandom().choice(string.digits) for _ in range(3))
@@ -185,18 +186,22 @@ def draw_callgraph(funcs):
 def generate_pngs(dotfiles):
     dotfiles = deduplicate(dotfiles)
     for f in dotfiles:
-        cmd = 'filename=%s; dot $filename -Tpng >${filename%%.*}.png' % (f,)
+        cmd = 'filename=%s; dot $filename -T%s >${filename%%.*}.%s' % (f, output_format, output_format)
         commands.getstatusoutput(cmd)
         if not keep_dot_files:
             os.remove(f)
-        print "Generated %s%s" % (f[0:-4], ".png")
+        print "Generated %s.%s" % (f[0:-4], output_format)
 
 def main():
     global callgraph_threshold, bt_threshold, keep_dot_files, is_dtrace
-    parser = OptionParser(usage='%prog [options] log_file', description='Generate pngs '
-            'from Dtrace or Systemtap log')
+    global output_format
+    parser = OptionParser(usage='%prog [options] log_file', 
+            description='Generate pngs from Dtrace or Systemtap log')
     parser.add_option('-k', '--keep-dot', action = 'store_true',
             help = 'keep dot file, default delect it')
+    parser.add_option('-o', '--output-format', type = "string",
+            help = 'output file format, could be ["png", "jpg", "svg"], '
+            ' default is png')
     parser.add_option('-d', '--is_dtrace_log', action = 'store_true',
             help = 'default is systemtap log, -d stand for dtrace log')
     parser.add_option('-c', '--threshold_cg', type = "int",
@@ -212,6 +217,8 @@ def main():
         keep_dot_files = True
     if options.is_dtrace_log:
         is_dtrace = True
+    if options.output_format and options.output_format in ["png", "jpg", "svg"]:
+        output_format = options.output_format
     if options.threshold_cg and options.threshold_cg > 0:
         callgraph_threshold = options.threshold_cg
     if options.threshold_bt and options.threshold_bt > 0:

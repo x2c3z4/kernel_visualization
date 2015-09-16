@@ -38,7 +38,7 @@ Debian
 
 Solaris
 -------
-1. Run using Dtrace
+1. Run using Dtrace(use `-d` option that stands for dtrace log)
 
 	```
 	./dtrace_base.d sdioctl | tee sdioctl.dtrace.log
@@ -70,10 +70,12 @@ Usage: callee.py [options] log_file
 
 Generate pngs from Dtrace or Systemtap log
 
-
 Options:
   -h, --help            show this help message and exit
   -k, --keep-dot        keep dot file, default delect it
+  -o OUTPUT_FORMAT, --output-format=OUTPUT_FORMAT
+                        output file format, could be ["png", "jpg", "svg"],
+                        default is png
   -d, --is_dtrace_log   default is systemtap log, -d stand for dtrace log
   -c THRESHOLD_CG, --threshold_cg=THRESHOLD_CG
                         only generate call graph when the call link extend to
@@ -81,6 +83,7 @@ Options:
   -b THRESHOLD_BT, --threshold_bt=THRESHOLD_BT
                         only generate backtrace graph when the call link
                         extend to threshold_bt
+
 ```
 
 You can go to `example/log/` and play.
