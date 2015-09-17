@@ -33,8 +33,6 @@ probe $2.return {
 //probe kernel.function($1).call   {
 //probe module("scsi_mod").function($1).call   {
 probe $1.call   {
-  printf("\nuser backtrace:\n")
-  print_ubacktrace()
   printf("\nkernel backtrace:\n")
   print_backtrace()
   black_lists["stapio"] = 1

@@ -27,6 +27,7 @@ callgraph_threshold = 3
 keep_dot_files = False
 is_dtrace = False
 output_format = "png"
+is_simplify = False
 
 def get_random_id():
     return ''.join(random.SystemRandom().choice(string.digits) for _ in range(3))
@@ -72,14 +73,14 @@ def draw_backtrace(funcs):
 
 class Tree:
     class Node:
-        def __init__(self, data, id):
+        def __init__(self, data, name):
             self.data = data
             self.parent = None
             self.children = []
             self.head = self
             #self.id =get_random_id()
             #self.id = data
-            self.id = id
+            self.name = name
             self.is_head = False
             self.first_child = None
             self.is_root = False
@@ -98,6 +99,31 @@ class Tree:
         self.core_content = ""
         self.id = -1
 
+    def is_different(self, node1, node2):
+        if len(node1.children) != len(node2.children):
+            return True
+        for i in range(0, len(node1.children)):
+            if self.is_different(node1.children[i], node2.children[i]):
+                return True
+        return False
+
+    def _uniq_children(self, children):
+        uniq_keys = {}
+        uniq_children = []
+        for child in children:
+            if child.data not in uniq_keys:
+                uniq_keys[child.data] = child
+                uniq_children.append(child)
+            else: 
+                # same, if children are the same
+                if self.is_different(uniq_keys[child.data], child):
+                    uniq_children.append(child)
+                #pass
+
+
+        return uniq_children
+
+
     def travel_tree(self):
         if len(self.root.children) == 1 and self.root.data == self.root.children[0].data:
             self.root = self.root.children[0]
@@ -107,22 +133,27 @@ class Tree:
         self._travel_tree(self.root)
 
     def _travel_tree(self, node):
+        if is_simplify:
+            uniq_children = self._uniq_children(node.children)
+        else:
+            uniq_children = node.children
+
         if node.first_child:
             if node.is_root:
-                new_root = "\t %s [label=\"<%s>%s\", color=red];\n" %(node.id, node.data, node.data)
+                new_root = "\t %s [label=\"<%s>%s\", color=red];\n" %(node.name, node.data, node.data)
                 self.core_content += new_root
                 #print new_root
-            new_node = "\t %s [label=\"%s\"];\n" %(node.first_child.id, " | ".join(["<" + i.data + ">" + i.data for i in node.children]))
+            new_node = "\t %s [label=\"%s\"];\n" %(node.first_child.name, " | ".join(["<" + i.data + ">" + i.data for i in uniq_children]))
             self.core_content += new_node
             #print new_node
-            left = "\t %s:%s" % (node.head.id, node.data)
-            right = "%s:%s" % (node.first_child.id, node.first_child.data)
+            left = "\t %s:%s" % (node.head.name, node.data)
+            right = "%s:%s" % (node.first_child.name, node.first_child.data)
             style = "[dir=both, arrowtail=dot];\n"
             new_link = "%s -> %s%s" %(left, right, style)
             self.core_content += new_link
             #print new_link
 
-        for child in node.children:
+        for child in uniq_children:
             self._travel_tree(child)
 
 
@@ -194,7 +225,7 @@ def generate_pngs(dotfiles):
 
 def main():
     global callgraph_threshold, bt_threshold, keep_dot_files, is_dtrace
-    global output_format
+    global output_format, is_simplify
     parser = OptionParser(usage='%prog [options] log_file', 
             description='Generate pngs from Dtrace or Systemtap log')
     parser.add_option('-k', '--keep-dot', action = 'store_true',
@@ -210,11 +241,15 @@ def main():
     parser.add_option('-b', '--threshold_bt', type = "int",
             help = 'only generate backtrace graph when the call link'
             ' extend to threshold_bt')
+    parser.add_option('-s', '--is_simplify', action = 'store_true',
+            help = 'output simplified version, remove the same node, loop node')
 
     (options, args) = parser.parse_args()
 
     if options.keep_dot:
         keep_dot_files = True
+    if options.is_simplify:
+        is_simplify = True
     if options.is_dtrace_log:
         is_dtrace = True
     if options.output_format and options.output_format in ["png", "jpg", "svg"]:
@@ -236,7 +271,6 @@ def main():
     callgraph_list = []
     dotfiles = []
     for l in content:
-        #print l
         if '+' not in l:
             outfile = draw_backtrace(bt_list)
             if outfile:
@@ -253,8 +287,11 @@ def main():
             if is_dtrace:
                 func_name = l.split('+')[0].strip().split('`')[-1]
             else:
-                func_name = l.split(':')[1].split('+')[0].strip()
-            bt_list.append(func_name)
+                if ':' in l:
+                    func_name = l.split(':')[1].split('+')[0].strip()
+                    bt_list.append(func_name)
+                else:
+                    continue
 
         if '|' in l and is_dtrace:
             if 'entry' in l:
