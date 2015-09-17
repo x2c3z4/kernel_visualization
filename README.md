@@ -65,7 +65,7 @@ Usage
 ======
 
 ```
- $ callee.py -h
+ $ python callee.py -h
 Usage: callee.py [options] log_file
 
 Generate pngs from Dtrace or Systemtap log
@@ -83,7 +83,8 @@ Options:
   -b THRESHOLD_BT, --threshold_bt=THRESHOLD_BT
                         only generate backtrace graph when the call link
                         extend to threshold_bt
-
+  -s, --is_simplify     output simplified version, remove the same node, loop
+                        node
 ```
 
 You can go to `example/log/` and play.
