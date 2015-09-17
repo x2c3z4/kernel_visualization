@@ -78,12 +78,14 @@ class Tree:
             self.parent = None
             self.children = []
             self.head = self
-            #self.id =get_random_id()
-            #self.id = data
+            self.id = 0
             self.name = name
             self.is_head = False
             self.first_child = None
             self.is_root = False
+ 
+        def link(self):
+            return self.data + "_" + str(self.id)
 
     def __init__(self, root = None):
         self.root = root;
@@ -99,13 +101,28 @@ class Tree:
         self.core_content = ""
         self.id = -1
 
-    def is_different(self, node1, node2):
+    def _is_different(self, node1, node2):
         if len(node1.children) != len(node2.children):
             return True
         for i in range(0, len(node1.children)):
-            if self.is_different(node1.children[i], node2.children[i]):
+            if self._is_different(node1.children[i], node2.children[i]):
                 return True
         return False
+
+    def _split_node_children(self, children):
+        uniq_keys = {}
+        for child in children:
+            if child.data not in uniq_keys:
+                uniq_keys[child.data] = child
+            else:
+                # same
+                uniq_keys[child.data].id += 1
+                child.id = uniq_keys[child.data].id
+
+        for i in uniq_keys.values():
+            i.id = 0
+
+        return children
 
     def _uniq_children(self, children):
         uniq_keys = {}
@@ -114,12 +131,15 @@ class Tree:
             if child.data not in uniq_keys:
                 uniq_keys[child.data] = child
                 uniq_children.append(child)
-            else: 
+            else:
                 # same, if children are the same
-                if self.is_different(uniq_keys[child.data], child):
+                if self._is_different(uniq_keys[child.data], child):
+                    uniq_keys[child.data].id += 1
+                    child.id = uniq_keys[child.data].id
                     uniq_children.append(child)
-                #pass
 
+        for i in uniq_keys.values():
+            i.id = 0
 
         return uniq_children
 
@@ -136,18 +156,18 @@ class Tree:
         if is_simplify:
             uniq_children = self._uniq_children(node.children)
         else:
-            uniq_children = node.children
+            uniq_children = self._split_node_children(node.children)
 
         if node.first_child:
             if node.is_root:
                 new_root = "\t %s [label=\"<%s>%s\", color=red];\n" %(node.name, node.data, node.data)
                 self.core_content += new_root
                 #print new_root
-            new_node = "\t %s [label=\"%s\"];\n" %(node.first_child.name, " | ".join(["<" + i.data + ">" + i.data for i in uniq_children]))
+            new_node = "\t %s [label=\"%s\"];\n" %(node.first_child.name, " | ".join(["<" + i.link() + ">" + i.data for i in uniq_children]))
             self.core_content += new_node
             #print new_node
-            left = "\t %s:%s" % (node.head.name, node.data)
-            right = "%s:%s" % (node.first_child.name, node.first_child.data)
+            left = "\t %s:%s" % (node.head.name, node.link())
+            right = "%s:%s" % (node.first_child.name, node.first_child.link())
             style = "[dir=both, arrowtail=dot];\n"
             new_link = "%s -> %s%s" %(left, right, style)
             self.core_content += new_link
