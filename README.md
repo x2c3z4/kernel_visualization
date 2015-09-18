@@ -33,7 +33,7 @@ Debian
 	```
 
 	![callgraph of scsi_request_fn](/examples/images/scsi_request_fn.cg.png)
-	![backtrace of scsi_request_fn](/examples/images/scsi_request_fn.bt.png)
+	![callgraph of scsi_requscsi_execute_req_flagsest_fn](/examples/images/scsi_execute_req_flags.cg.png)
 
 
 Solaris
@@ -51,6 +51,11 @@ Solaris
 	![callgraph of sdioctl](/examples/images/sdioctl.cg.png)
 
 	![callgraph of sdioctl](/examples/images/sdioctl.bt.png)
+
+Other Graphs
+============
+![callgraph of sdopen(simplify version)](/examples/images/sdopen.simplify.cg.png)
+
 
 Details
 =======
