@@ -21,6 +21,7 @@ import random
 import os
 import hashlib
 from optparse import OptionParser
+import re
 
 bt_threshold = 3
 callgraph_threshold = 3
@@ -29,8 +30,10 @@ is_dtrace = False
 output_format = "png"
 is_simplify = False
 
+black_lists_stap = ("kretprobe_trampoline",)
+
 def get_random_id():
-    return ''.join(random.SystemRandom().choice(string.digits) for _ in range(3))
+    return ''.join(random.SystemRandom().choice(string.digits + string.ascii_lowercase) for _ in range(6))
 
 def write_file(basename, suffix, content):
     outfile = basename + suffix
@@ -54,7 +57,7 @@ def draw_backtrace(funcs):
     if len(funcs) < bt_threshold:
         return None
     header = """digraph backtrace{
-\tnode [shape="record"];
+\tnode [shape="record", width=4, height=.3, fixedsize=true];
 """
     footer = "\n\t label=\"backtrace of %s\"}\n" %(funcs[0],)
 
@@ -290,8 +293,12 @@ def main():
     bt_list = []
     callgraph_list = []
     dotfiles = []
+    hex_pat = re.compile(r'^0x([0-9a-f]+)$')
     for l in content:
         if '+' not in l:
+            if not is_dtrace: # stap, only address
+                if re.search(hex_pat, l.strip(' \n\t')):
+                    continue
             outfile = draw_backtrace(bt_list)
             if outfile:
                 dotfiles.append(outfile)
@@ -309,7 +316,8 @@ def main():
             else:
                 if ':' in l:
                     func_name = l.split(':')[1].split('+')[0].strip()
-                    bt_list.append(func_name)
+                    if func_name not in black_lists_stap:
+                        bt_list.append(func_name)
                 else:
                     continue
 
