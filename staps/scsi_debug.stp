@@ -1,0 +1,38 @@
+function trace(entry_p, extra) {
+      printf("%s%s%s %s\n",
+         thread_indent (entry_p),
+         (entry_p>0?"->":"<-"),
+         ppfunc (),
+         extra)
+}
+
+
+/*probe module("scsi_mod").function("*").call,
+      module("sg").function("*").call,
+      module("scsi_transport_spi").function("*").call,
+      module("libata").function("*").call,
+      module("mptspi").function("*").call,
+      module("vmw_pvscsi").function("*").call,
+      module("sd_mod").function("*").call,
+      module("sr_mod").function("*").call,
+      module("mptscsih").function("*").call*/
+probe module("scsi_debug").function("scsi_debug_queuecommand").call
+{
+  print_backtrace()
+  trace(1, $$parms)
+}
+
+/*probe module("scsi_mod").function("*").return,
+      module("sg").function("*").return,
+      module("scsi_transport_spi").function("*").return,
+      module("libata").function("*").return,
+      module("mptspi").function("*").return,
+      module("vmw_pvscsi").function("*").return,
+      module("sd_mod").function("*").return,
+      module("sr_mod").function("*").return,
+      module("mptscsih").function("*").return*/
+probe module("scsi_debug").function("scsi_debug_queuecommand").return
+{
+  trace(-1, $$return)
+}
+
