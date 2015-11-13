@@ -29,6 +29,7 @@ keep_dot_files = False
 is_dtrace = False
 output_format = "png"
 is_simplify = False
+callgraph_level = 0
 
 black_lists_stap = ("kretprobe_trampoline",)
 
@@ -153,9 +154,9 @@ class Tree:
             self.root.parent = None
             self.root.is_root = True
 
-        self._travel_tree(self.root)
+        self._travel_tree(self.root, 1)
 
-    def _travel_tree(self, node):
+    def _travel_tree(self, node, level):
         if is_simplify:
             uniq_children = self._uniq_children(node.children)
         else:
@@ -176,8 +177,10 @@ class Tree:
             self.core_content += new_link
             #print new_link
 
+        if level == callgraph_level:
+            return
         for child in uniq_children:
-            self._travel_tree(child)
+            self._travel_tree(child, level + 1)
 
 
 def draw_callgraph(funcs):
@@ -248,7 +251,7 @@ def generate_pngs(dotfiles):
 
 def main():
     global callgraph_threshold, bt_threshold, keep_dot_files, is_dtrace
-    global output_format, is_simplify
+    global output_format, is_simplify, callgraph_level
     parser = OptionParser(usage='%prog [options] log_file', 
             description='Generate pngs from Dtrace or Systemtap log')
     parser.add_option('-k', '--keep-dot', action = 'store_true',
@@ -266,6 +269,8 @@ def main():
             ' extend to threshold_bt')
     parser.add_option('-s', '--is_simplify', action = 'store_true',
             help = 'output simplified version, remove the same node, loop node')
+    parser.add_option('-l', '--level', type = 'int',
+            help = 'the depth of output call tree')
 
     (options, args) = parser.parse_args()
 
@@ -281,6 +286,8 @@ def main():
         callgraph_threshold = options.threshold_cg
     if options.threshold_bt and options.threshold_bt > 0:
         bt_threshold = options.threshold_bt
+    if options.level and options.level > 0:
+        callgraph_level = options.level
 
     if len(args) != 1:
         parser.error("incorrect number of arguments")
