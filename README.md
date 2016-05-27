@@ -56,6 +56,46 @@ Other Graphs
 ============
 ![callgraph of sdopen(simplify version)](/examples/images/sdopen.simplify.cg.png)
 
+Advances
+========
+The gen_stap.sh tool is used to generate systemtap scripts for advanced feature like probing more modules.
+You could add '-m' with modules name.
+For instance, add '-m target_core_mod.ko,iscsi_target_mod.ko,target_core_file.ko' for probing target core module, iscsi module and file-based backstore target module.
+
+You could do as you need.
+
+1. Usage
+----------
+```
+ $ ./gen_stap.sh -h
+
+Usage:
+ -e, --entry func, must options here
+ -m, --modules modules, put multi modules splitted with comma(,)
+ -f, --force_cache
+ -o, --out_stap
+ -v, --verbose, probe suffix ?
+```
+
+2. Create stap as your want
+-------
+```
+ $ ./gen_stap.sh -m target_core_mod.ko,iscsi_target_mod.ko,target_core_file.ko -e iscsi_sw_tcp_conn_create -o test.stp
+Entry func: module("iscsi_tcp").function("iscsi_sw_tcp_conn_create")
+Inject modules: target_core_mod.ko,iscsi_target_mod.ko,target_core_file.ko,iscsi_tcp
+Out_stap: test.stp
+Force cache: 0
+Probe check: 0
+```
+
+3. Run stap
+------------
+
+```
+ $ bash ./iscsi_sw_tcp_conn_create.stap -v 
+ or
+ $ bash ./iscsi_sw_tcp_conn_create.stap
+```
 
 Details
 =======
