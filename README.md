@@ -80,21 +80,23 @@ Usage:
 2. Create stap as your want
 -------
 ```
- $ ./gen_stap.sh -m target_core_mod.ko,iscsi_target_mod.ko,target_core_file.ko -e iscsi_sw_tcp_conn_create -o test.stp
-Entry func: module("iscsi_tcp").function("iscsi_sw_tcp_conn_create")
-Inject modules: target_core_mod.ko,iscsi_target_mod.ko,target_core_file.ko,iscsi_tcp
-Out_stap: test.stp
-Force cache: 0
-Probe check: 0
+$ ./gen_stap.sh -m iscsi_target_mod.ko,target_core_mod.ko,target_core_file.ko,target_core_pscsi.ko -e iscsit_response_queue
+
+[+] Entry func: module("iscsi_target_mod").function("iscsit_response_queue")
+[+] Inject modules: iscsi_target_mod.ko,target_core_mod.ko,target_core_file.ko,target_core_pscsi.ko,iscsi_target_mod
+[+] Out_stap: iscsit_response_queue.stap
+[+] Force cache: 0
+[+] Probe check: 0
+
 ```
 
 3. Run stap
 ------------
 
 ```
- $ bash ./iscsi_sw_tcp_conn_create.stap -v 
+ $ bash ./iscsit_response_queue.stap -v | tee iscsit_response_queue.log 
  or
- $ bash ./iscsi_sw_tcp_conn_create.stap
+ $ bash ./iscsit_response_queue.stap | tee iscsit_response_queue.log 
 ```
 
 Details

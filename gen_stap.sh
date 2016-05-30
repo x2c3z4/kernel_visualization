@@ -8,6 +8,7 @@ function usage() {
 	echo " -f, --force_cache"
   echo " -o, --out_stap"
 	echo " -v, --verbose, probe suffix ?"
+  echo " e.g. ./gen_stap.sh -m iscsi_target_mod.ko,target_core_mod.ko,target_core_file.ko,target_core_pscsi.ko -e fd_do_rw"
 }
 function make_caches() {
 	cache_dir=~/.kernel_visualization.cache

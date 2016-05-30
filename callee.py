@@ -32,8 +32,13 @@ is_simplify = False
 callgraph_level = 0
 
 black_lists_stap = ("kretprobe_trampoline",)
-
+lastest_id=0
 def get_random_id():
+    global lastest_id
+    lastest_id = lastest_id + 1
+    return str(lastest_id)
+
+def get_random_id_obsolete():
     return ''.join(random.SystemRandom().choice(string.digits + string.ascii_lowercase) for _ in range(6))
 
 def write_file(basename, suffix, content):
@@ -50,6 +55,7 @@ def deduplicate(files):
         hash = hashlib.sha256(open(f).read()).hexdigest()
         if hash in container:
             os.remove(f)
+            print "Remove duplicate %s" % (f[0:-4], )
         else:
             container[hash] =f
     return container.values()

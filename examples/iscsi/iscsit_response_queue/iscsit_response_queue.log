@@ -1,0 +1,648 @@
+
+kernel backtrace:
+ 0xffffffffa0611170 : iscsit_response_queue+0x0/0x11e0 [iscsi_target_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff880139fca050
+ 0xffffffff810a7e60 : autoremove_wake_function+0x0/0x30 [kernel] (inexact)
+ 0xffffffffa060f060 : iscsi_target_tx_thread+0x0/0x1d0 [iscsi_target_mod] (inexact)
+ 0xffffffff8108809d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff810912f3 : finish_task_switch+0x43/0xf0 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff81514958 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 iscsi_ttx(4826):->iscsit_response_queue conn=0xffff8800b7c86800 cmd=0xffff8800b74a7c80 state=0x11
+  1128 iscsi_ttx(4826): ->iscsit_build_nopin_rsp cmd=0xffff8800b74a7c80 conn=0xffff8800b7c86800 hdr=0xffff8800b74a7d24 nopout_response=0x1
+  1442 iscsi_ttx(4826):  ->iscsit_increment_maxcmdsn cmd=0xffff8800b74a7c80 sess=0xffff8800b74a7d24
+  1511 iscsi_ttx(4826):  <-iscsit_increment_maxcmdsn 
+  1525 iscsi_ttx(4826): <-iscsit_build_nopin_rsp 
+  1819 iscsi_ttx(4826): ->iscsit_send_tx_data cmd=0xffff8800b74a7c80 conn=0xffff8800b7c86800 use_misc=0x1
+  2049 iscsi_ttx(4826):  ->tx_data conn=0xffff8800b7c86800 iov=0x0 iov_count=0x1 data=0x1
+  2397 iscsi_ttx(4826):  <-tx_data return=0x30
+  2404 iscsi_ttx(4826): <-iscsit_send_tx_data return=0x0
+  2505 iscsi_ttx(4826):<-iscsit_response_queue return=0x0
+---------------------------------------------------------
+
+kernel backtrace:
+ 0xffffffffa0611170 : iscsit_response_queue+0x0/0x11e0 [iscsi_target_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff880139fca050
+ 0xffffffff810a7e60 : autoremove_wake_function+0x0/0x30 [kernel] (inexact)
+ 0xffffffffa060f060 : iscsi_target_tx_thread+0x0/0x1d0 [iscsi_target_mod] (inexact)
+ 0xffffffff8108809d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff810912f3 : finish_task_switch+0x43/0xf0 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff81514958 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 iscsi_ttx(4826):->iscsit_response_queue conn=0xffff8800b7c86800 cmd=0xffff8800b749e940 state=0x11
+    18 iscsi_ttx(4826): ->iscsit_build_nopin_rsp cmd=0xffff8800b749e940 conn=0xffff8800b7c86800 hdr=0xffff8800b749e9e4 nopout_response=0x1
+    29 iscsi_ttx(4826):  ->iscsit_increment_maxcmdsn cmd=0xffff8800b749e940 sess=0xffff8800b749e9e4
+    34 iscsi_ttx(4826):  <-iscsit_increment_maxcmdsn 
+    40 iscsi_ttx(4826): <-iscsit_build_nopin_rsp 
+    58 iscsi_ttx(4826): ->iscsit_send_tx_data cmd=0xffff8800b749e940 conn=0xffff8800b7c86800 use_misc=0x1
+    68 iscsi_ttx(4826):  ->tx_data conn=0xffff8800b7c86800 iov=0xffff8800b9c59950 iov_count=0x1 data=0xffffffffb7cc4000
+   283 iscsi_ttx(4826):  <-tx_data return=0x30
+   289 iscsi_ttx(4826): <-iscsit_send_tx_data return=0x0
+   295 iscsi_ttx(4826):<-iscsit_response_queue return=0x0
+---------------------------------------------------------
+
+kernel backtrace:
+ 0xffffffffa0611170 : iscsit_response_queue+0x0/0x11e0 [iscsi_target_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff8800b7c0a290
+ 0xffffffff810a7e60 : autoremove_wake_function+0x0/0x30 [kernel] (inexact)
+ 0xffffffffa060f060 : iscsi_target_tx_thread+0x0/0x1d0 [iscsi_target_mod] (inexact)
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff81514958 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 iscsi_ttx(4830):->iscsit_response_queue conn=0xffff8800b7c8c000 cmd=0xffff8800b7cab940 state=0x24
+   397 iscsi_ttx(4830): ->iscsit_build_text_rsp cmd=0xffff8800b7cab940 conn=0xffff8800b7c8c000 hdr=0xffff8800b7cab9e4 network_transport=0x0
+   672 iscsi_ttx(4830):  ->iscsit_build_sendtargets_response cmd=0xffff8800b7cab940 network_transport=0x0
+   802 iscsi_ttx(4830):  <-iscsit_build_sendtargets_response return=0x66
+   814 iscsi_ttx(4830):  ->iscsit_increment_maxcmdsn cmd=0xffff8800b7cab940 sess=0xffff8800b7cab9e4
+   843 iscsi_ttx(4830):  <-iscsit_increment_maxcmdsn 
+   854 iscsi_ttx(4830): <-iscsit_build_text_rsp return=0x68
+   865 iscsi_ttx(4830): ->iscsit_send_tx_data cmd=0xffff8800b7cab940 conn=0xffff8800b7c8c000 use_misc=0x1
+   874 iscsi_ttx(4830):  ->tx_data conn=0xffff8800b7c8c000 iov=0x0 iov_count=0x2 data=0xa
+  1115 iscsi_ttx(4830):  <-tx_data return=0x98
+  1120 iscsi_ttx(4830): <-iscsit_send_tx_data return=0x0
+  1126 iscsi_ttx(4830):<-iscsit_response_queue return=0x0
+---------------------------------------------------------
+
+kernel backtrace:
+ 0xffffffffa0611170 : iscsit_response_queue+0x0/0x11e0 [iscsi_target_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff8800b7c0a290
+ 0xffffffff810a7e60 : autoremove_wake_function+0x0/0x30 [kernel] (inexact)
+ 0xffffffffa060f060 : iscsi_target_tx_thread+0x0/0x1d0 [iscsi_target_mod] (inexact)
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff81514958 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 iscsi_ttx(4830):->iscsit_response_queue conn=0xffff8800b7c8c000 cmd=0xffff8800b7cab480 state=0xf
+  1213 iscsi_ttx(4830): ->iscsit_build_logout_rsp cmd=0xffff8800b7cab480 conn=0xffff8800b7c8c000 hdr=0xffff8800b7cab524
+  2673 iscsi_ttx(4830):  ->iscsit_increment_maxcmdsn cmd=0xffff8800b7cab480 sess=0xffff8800b7cab524
+  2888 iscsi_ttx(4830):  <-iscsit_increment_maxcmdsn 
+  2905 iscsi_ttx(4830): <-iscsit_build_logout_rsp return=0x0
+  3216 iscsi_ttx(4830): ->iscsit_send_tx_data cmd=0xffff8800b7cab480 conn=0xffff8800b7c8c000 use_misc=0x1
+  3463 iscsi_ttx(4830):  ->tx_data conn=0xffff8800b7c8c000 iov=0x369 iov_count=0x1 data=0xffffffff87dec000
+  4640 iscsi_ttx(4830):  <-tx_data return=0x30
+  4655 iscsi_ttx(4830): <-iscsit_send_tx_data return=0x0
+  4672 iscsi_ttx(4830): ->iscsit_logout_post_handler cmd=0xffff8800b7cab480 conn=0xffff8800b7c8c000
+  4689 iscsi_ttx(4830):  ->iscsit_dec_conn_usage_count conn=0xffff8800b7c8c000
+  4696 iscsi_ttx(4830):  <-iscsit_dec_conn_usage_count 
+  5071 iscsi_ttx(4830):  ->iscsit_stop_session sess=0xffff880035dc2c00 session_sleep=0x1 connection_sleep=0x1
+  5129 iscsi_ttx(4830):   ->iscsit_inc_conn_usage_count conn=0xffff8800b7c8c000
+  5198 iscsi_ttx(4830):   <-iscsit_inc_conn_usage_count 
+  5471 iscsi_ttx(4830):   ->iscsit_cause_connection_reinstatement conn=0xffff8800b7c8c000 sleep=0x1
+  5756 iscsi_ttx(4830):   <-iscsit_cause_connection_reinstatement 
+  5800 iscsi_ttx(4830):   ->iscsit_dec_conn_usage_count conn=0xffff8800b7c8c000
+  5831 iscsi_ttx(4830):   <-iscsit_dec_conn_usage_count 
+  6992 iscsi_ttx(4830):  <-iscsit_stop_session 
+  7028 iscsi_ttx(4830):  ->iscsit_dec_session_usage_count sess=0xffff880035dc2c00
+  7043 iscsi_ttx(4830):  <-iscsit_dec_session_usage_count 
+  7357 iscsi_ttx(4830):  ->lio_tpg_close_session se_sess=0xffff8800b7c84e00
+  7395 iscsi_ttx(4830):   ->iscsit_close_session sess=0xffff880035dc2c00
+  7402 iscsi_ttx(4830):    ->iscsit_stop_time2retain_timer sess=0xffff880035dc2c00
+  7416 iscsi_ttx(4830):    <-iscsit_stop_time2retain_timer return=0x0
+  7424 iscsi_ttx(4830):    ->iscsit_check_session_usage_count sess=0xffff880035dc2c00
+  7430 iscsi_ttx(4830):    <-iscsit_check_session_usage_count return=0x0
+  7467 iscsi_ttx(4830):    ->iscsit_free_all_ooo_cmdsns sess=0xffff880035dc2c00
+  7473 iscsi_ttx(4830):    <-iscsit_free_all_ooo_cmdsns 
+  7487 iscsi_ttx(4830):   <-iscsit_close_session return=0x0
+  7492 iscsi_ttx(4830):  <-lio_tpg_close_session 
+  7498 iscsi_ttx(4830): <-iscsit_logout_post_handler return=0x0
+  7626 iscsi_ttx(4830):<-iscsit_response_queue return=0xffffffffffffff98
+---------------------------------------------------------
+
+kernel backtrace:
+ 0xffffffffa0611170 : iscsit_response_queue+0x0/0x11e0 [iscsi_target_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff880139fca050
+ 0xffffffff810a7e60 : autoremove_wake_function+0x0/0x30 [kernel] (inexact)
+ 0xffffffffa060f060 : iscsi_target_tx_thread+0x0/0x1d0 [iscsi_target_mod] (inexact)
+ 0xffffffff8108809d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff810912f3 : finish_task_switch+0x43/0xf0 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff81514958 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 iscsi_ttx(4826):->iscsit_response_queue conn=0xffff8800b7c86800 cmd=0xffff8800b74a7c80 state=0x1d
+   451 iscsi_ttx(4826): ->iscsit_build_rsp_pdu cmd=0xffff8800b74a7c80 conn=0xffff8800b7c86800 inc_stat_sn=0x1 hdr=0xffff8800b74a7d24
+   500 iscsi_ttx(4826):  ->iscsit_increment_maxcmdsn cmd=0xffff8800b74a7c80 sess=0xffff8800b74a7d24
+   509 iscsi_ttx(4826):  <-iscsit_increment_maxcmdsn 
+   516 iscsi_ttx(4826): <-iscsit_build_rsp_pdu 
+   531 iscsi_ttx(4826): ->iscsit_send_tx_data cmd=0xffff8800b74a7c80 conn=0xffff8800b7c86800 use_misc=0x1
+   544 iscsi_ttx(4826):  ->tx_data conn=0xffff8800b7c86800 iov=0x1 iov_count=0x1 data=0xffffffffb7cc4000
+   956 iscsi_ttx(4826):  <-tx_data return=0x30
+   964 iscsi_ttx(4826): <-iscsit_send_tx_data return=0x0
+   971 iscsi_ttx(4826):<-iscsit_response_queue return=0x0
+---------------------------------------------------------
+
+kernel backtrace:
+ 0xffffffffa0611170 : iscsit_response_queue+0x0/0x11e0 [iscsi_target_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff880139fca050
+ 0xffffffff810a7e60 : autoremove_wake_function+0x0/0x30 [kernel] (inexact)
+ 0xffffffffa060f060 : iscsi_target_tx_thread+0x0/0x1d0 [iscsi_target_mod] (inexact)
+ 0xffffffff8108809d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff810912f3 : finish_task_switch+0x43/0xf0 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff81514958 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 iscsi_ttx(4826):->iscsit_response_queue conn=0xffff8800b7c86800 cmd=0xffff8800b749e940 state=0xc
+   457 iscsi_ttx(4826): ->iscsit_get_datain_values cmd=0xffff8800b749e940 datain=0xffff8800b7cc7e00
+   757 iscsi_ttx(4826): <-iscsit_get_datain_values return=0xffff8800b7cda400
+   772 iscsi_ttx(4826): ->iscsit_increment_maxcmdsn cmd=0xffff8800b749e940 sess=0xffff8800b749e940
+   807 iscsi_ttx(4826): <-iscsit_increment_maxcmdsn 
+  1363 iscsi_ttx(4826): ->iscsit_map_iovec cmd=0xffff8800b749e940 iov=0xffff8800b820d5d0 data_offset=0x0 data_length=0x48
+  1404 iscsi_ttx(4826): <-iscsit_map_iovec return=0x1
+  1721 iscsi_ttx(4826): ->iscsit_fe_sendpage_sg cmd=0xffff8800b749e940 conn=0xffff8800b7c86800
+  1770 iscsi_ttx(4826):  ->tx_data conn=0xffff8800b7c86800 iov=0x2 iov_count=0x1 data=0xffffffff95bb5000
+  2187 iscsi_ttx(4826):  <-tx_data return=0x30
+  2336 iscsi_ttx(4826): <-iscsit_fe_sendpage_sg return=0x0
+  2377 iscsi_ttx(4826): ->iscsit_free_datain_req cmd=0xffff8800b749e940 dr=0xffff8800b7cda400
+  3011 iscsi_ttx(4826): <-iscsit_free_datain_req 
+  3039 iscsi_ttx(4826):<-iscsit_response_queue return=0x0
+---------------------------------------------------------
+
+kernel backtrace:
+ 0xffffffffa0611170 : iscsit_response_queue+0x0/0x11e0 [iscsi_target_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff880139fca050
+ 0xffffffff810a7e60 : autoremove_wake_function+0x0/0x30 [kernel] (inexact)
+ 0xffffffffa060f060 : iscsi_target_tx_thread+0x0/0x1d0 [iscsi_target_mod] (inexact)
+ 0xffffffff8108809d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff810912f3 : finish_task_switch+0x43/0xf0 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff81514958 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 iscsi_ttx(4826):->iscsit_response_queue conn=0xffff8800b7c86800 cmd=0xffff8800b74a7c80 state=0xc
+    41 iscsi_ttx(4826): ->iscsit_get_datain_values cmd=0xffff8800b74a7c80 datain=0xffff8800b7cc7e00
+    53 iscsi_ttx(4826): <-iscsit_get_datain_values return=0xffff8800b7cda400
+    67 iscsi_ttx(4826): ->iscsit_increment_maxcmdsn cmd=0xffff8800b74a7c80 sess=0xffff8800b74a7c80
+    73 iscsi_ttx(4826): <-iscsit_increment_maxcmdsn 
+   106 iscsi_ttx(4826): ->iscsit_map_iovec cmd=0xffff8800b74a7c80 iov=0xffff8800b820d850 data_offset=0x0 data_length=0x24
+   115 iscsi_ttx(4826): <-iscsit_map_iovec return=0x1
+   134 iscsi_ttx(4826): ->iscsit_fe_sendpage_sg cmd=0xffff8800b74a7c80 conn=0xffff8800b7c86800
+   148 iscsi_ttx(4826):  ->tx_data conn=0xffff8800b7c86800 iov=0x2 iov_count=0x1 data=0xffffffffb7c89000
+   536 iscsi_ttx(4826):  <-tx_data return=0x30
+   638 iscsi_ttx(4826): <-iscsit_fe_sendpage_sg return=0x0
+   649 iscsi_ttx(4826): ->iscsit_free_datain_req cmd=0xffff8800b74a7c80 dr=0xffff8800b7cda400
+   656 iscsi_ttx(4826): <-iscsit_free_datain_req 
+   662 iscsi_ttx(4826):<-iscsit_response_queue return=0x0
+---------------------------------------------------------
+
+kernel backtrace:
+ 0xffffffffa0611170 : iscsit_response_queue+0x0/0x11e0 [iscsi_target_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff880139fca050
+ 0xffffffff810a7e60 : autoremove_wake_function+0x0/0x30 [kernel] (inexact)
+ 0xffffffffa060f060 : iscsi_target_tx_thread+0x0/0x1d0 [iscsi_target_mod] (inexact)
+ 0xffffffff8108809d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff810912f3 : finish_task_switch+0x43/0xf0 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff81514958 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 iscsi_ttx(4826):->iscsit_response_queue conn=0xffff8800b7c86800 cmd=0xffff8800b749e940 state=0xc
+   226 iscsi_ttx(4826): ->iscsit_get_datain_values cmd=0xffff8800b749e940 datain=0xffff8800b7cc7e00
+   226 iscsi_ttx(4826): <-iscsit_get_datain_values return=0xffff8800b7cda400
+   226 iscsi_ttx(4826): ->iscsit_increment_maxcmdsn cmd=0xffff8800b749e940 sess=0xffff8800b749e940
+   229 iscsi_ttx(4826): <-iscsit_increment_maxcmdsn 
+   239 iscsi_ttx(4826): ->iscsit_map_iovec cmd=0xffff8800b749e940 iov=0xffff8800b820d5d0 data_offset=0x0 data_length=0xf0
+   246 iscsi_ttx(4826): <-iscsit_map_iovec return=0x1
+   253 iscsi_ttx(4826): ->iscsit_fe_sendpage_sg cmd=0xffff8800b749e940 conn=0xffff8800b7c86800
+   262 iscsi_ttx(4826):  ->tx_data conn=0xffff8800b7c86800 iov=0x2 iov_count=0x1 data=0xffffffff95bb5000
+   703 iscsi_ttx(4826):  <-tx_data return=0x30
+   935 iscsi_ttx(4826): <-iscsit_fe_sendpage_sg return=0x0
+   944 iscsi_ttx(4826): ->iscsit_free_datain_req cmd=0xffff8800b749e940 dr=0xffff8800b7cda400
+   950 iscsi_ttx(4826): <-iscsit_free_datain_req 
+   955 iscsi_ttx(4826):<-iscsit_response_queue return=0x0
+---------------------------------------------------------
+
+kernel backtrace:
+ 0xffffffffa0611170 : iscsit_response_queue+0x0/0x11e0 [iscsi_target_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff880139fca050
+ 0xffffffff810a7e60 : autoremove_wake_function+0x0/0x30 [kernel] (inexact)
+ 0xffffffffa060f060 : iscsi_target_tx_thread+0x0/0x1d0 [iscsi_target_mod] (inexact)
+ 0xffffffff8108809d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff810912f3 : finish_task_switch+0x43/0xf0 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff81514958 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 iscsi_ttx(4826):->iscsit_response_queue conn=0xffff8800b7c86800 cmd=0xffff8800b74a7c80 state=0x1d
+    22 iscsi_ttx(4826): ->iscsit_build_rsp_pdu cmd=0xffff8800b74a7c80 conn=0xffff8800b7c86800 inc_stat_sn=0x1 hdr=0xffff8800b74a7d24
+    38 iscsi_ttx(4826):  ->iscsit_increment_maxcmdsn cmd=0xffff8800b74a7c80 sess=0xffff8800b74a7d24
+    44 iscsi_ttx(4826):  <-iscsit_increment_maxcmdsn 
+    50 iscsi_ttx(4826): <-iscsit_build_rsp_pdu 
+    62 iscsi_ttx(4826): ->iscsit_send_tx_data cmd=0xffff8800b74a7c80 conn=0xffff8800b7c86800 use_misc=0x1
+    73 iscsi_ttx(4826):  ->tx_data conn=0xffff8800b7c86800 iov=0x1 iov_count=0x1 data=0xffffffffb7cc4000
+   500 iscsi_ttx(4826):  <-tx_data return=0x30
+   507 iscsi_ttx(4826): <-iscsit_send_tx_data return=0x0
+   514 iscsi_ttx(4826):<-iscsit_response_queue return=0x0
+---------------------------------------------------------
+
+kernel backtrace:
+ 0xffffffffa0611170 : iscsit_response_queue+0x0/0x11e0 [iscsi_target_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff880139fca050
+ 0xffffffff810a7e60 : autoremove_wake_function+0x0/0x30 [kernel] (inexact)
+ 0xffffffffa060f060 : iscsi_target_tx_thread+0x0/0x1d0 [iscsi_target_mod] (inexact)
+ 0xffffffff8108809d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff810912f3 : finish_task_switch+0x43/0xf0 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff81514958 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 iscsi_ttx(4826):->iscsit_response_queue conn=0xffff8800b7c86800 cmd=0xffff8800b749e940 state=0xc
+   111 iscsi_ttx(4826): ->iscsit_get_datain_values cmd=0xffff8800b749e940 datain=0xffff8800b7cc7e00
+   121 iscsi_ttx(4826): <-iscsit_get_datain_values return=0xffff8800b7cda400
+   131 iscsi_ttx(4826): ->iscsit_increment_maxcmdsn cmd=0xffff8800b749e940 sess=0xffff8800b749e940
+   136 iscsi_ttx(4826): <-iscsit_increment_maxcmdsn 
+   152 iscsi_ttx(4826): ->iscsit_map_iovec cmd=0xffff8800b749e940 iov=0xffff8800b820d5d0 data_offset=0x0 data_length=0x48
+   179 iscsi_ttx(4826): <-iscsit_map_iovec return=0x1
+   192 iscsi_ttx(4826): ->iscsit_fe_sendpage_sg cmd=0xffff8800b749e940 conn=0xffff8800b7c86800
+   202 iscsi_ttx(4826):  ->tx_data conn=0xffff8800b7c86800 iov=0x2 iov_count=0x1 data=0xffffffff95bb5000
+   389 iscsi_ttx(4826):  <-tx_data return=0x30
+   492 iscsi_ttx(4826): <-iscsit_fe_sendpage_sg return=0x0
+   503 iscsi_ttx(4826): ->iscsit_free_datain_req cmd=0xffff8800b749e940 dr=0xffff8800b7cda400
+   510 iscsi_ttx(4826): <-iscsit_free_datain_req 
+   515 iscsi_ttx(4826):<-iscsit_response_queue return=0x0
+---------------------------------------------------------
+
+kernel backtrace:
+ 0xffffffffa0611170 : iscsit_response_queue+0x0/0x11e0 [iscsi_target_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff880139fca050
+ 0xffffffff810a7e60 : autoremove_wake_function+0x0/0x30 [kernel] (inexact)
+ 0xffffffffa060f060 : iscsi_target_tx_thread+0x0/0x1d0 [iscsi_target_mod] (inexact)
+ 0xffffffff8108809d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff810912f3 : finish_task_switch+0x43/0xf0 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff81514958 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 iscsi_ttx(4826):->iscsit_response_queue conn=0xffff8800b7c86800 cmd=0xffff8800b74a7c80 state=0xc
+    12 iscsi_ttx(4826): ->iscsit_get_datain_values cmd=0xffff8800b74a7c80 datain=0xffff8800b7cc7e00
+    19 iscsi_ttx(4826): <-iscsit_get_datain_values return=0xffff8800b7cda400
+    28 iscsi_ttx(4826): ->iscsit_increment_maxcmdsn cmd=0xffff8800b74a7c80 sess=0xffff8800b74a7c80
+    33 iscsi_ttx(4826): <-iscsit_increment_maxcmdsn 
+    44 iscsi_ttx(4826): ->iscsit_map_iovec cmd=0xffff8800b74a7c80 iov=0xffff8800b820d850 data_offset=0x0 data_length=0x24
+    74 iscsi_ttx(4826): <-iscsit_map_iovec return=0x1
+    83 iscsi_ttx(4826): ->iscsit_fe_sendpage_sg cmd=0xffff8800b74a7c80 conn=0xffff8800b7c86800
+    92 iscsi_ttx(4826):  ->tx_data conn=0xffff8800b7c86800 iov=0x2 iov_count=0x1 data=0xffffffffb7c89000
+   249 iscsi_ttx(4826):  <-tx_data return=0x30
+   340 iscsi_ttx(4826): <-iscsit_fe_sendpage_sg return=0x0
+   350 iscsi_ttx(4826): ->iscsit_free_datain_req cmd=0xffff8800b74a7c80 dr=0xffff8800b7cda400
+   356 iscsi_ttx(4826): <-iscsit_free_datain_req 
+   360 iscsi_ttx(4826):<-iscsit_response_queue return=0x0
+---------------------------------------------------------
+
+kernel backtrace:
+ 0xffffffffa0611170 : iscsit_response_queue+0x0/0x11e0 [iscsi_target_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff880139fca050
+ 0xffffffff810a7e60 : autoremove_wake_function+0x0/0x30 [kernel] (inexact)
+ 0xffffffffa060f060 : iscsi_target_tx_thread+0x0/0x1d0 [iscsi_target_mod] (inexact)
+ 0xffffffff8108809d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff810912f3 : finish_task_switch+0x43/0xf0 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff81514958 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 iscsi_ttx(4826):->iscsit_response_queue conn=0xffff8800b7c86800 cmd=0xffff8800b749e940 state=0xc
+    20 iscsi_ttx(4826): ->iscsit_get_datain_values cmd=0xffff8800b749e940 datain=0xffff8800b7cc7e00
+    27 iscsi_ttx(4826): <-iscsit_get_datain_values return=0xffff8800b7cda400
+    36 iscsi_ttx(4826): ->iscsit_increment_maxcmdsn cmd=0xffff8800b749e940 sess=0xffff8800b749e940
+    41 iscsi_ttx(4826): <-iscsit_increment_maxcmdsn 
+    51 iscsi_ttx(4826): ->iscsit_map_iovec cmd=0xffff8800b749e940 iov=0xffff8800b820d5d0 data_offset=0x0 data_length=0xf0
+    58 iscsi_ttx(4826): <-iscsit_map_iovec return=0x1
+    65 iscsi_ttx(4826): ->iscsit_fe_sendpage_sg cmd=0xffff8800b749e940 conn=0xffff8800b7c86800
+    74 iscsi_ttx(4826):  ->tx_data conn=0xffff8800b7c86800 iov=0x2 iov_count=0x1 data=0xffffffff95bb5000
+   894 iscsi_ttx(4826):  <-tx_data return=0x30
+  1115 iscsi_ttx(4826): <-iscsit_fe_sendpage_sg return=0x0
+  1124 iscsi_ttx(4826): ->iscsit_free_datain_req cmd=0xffff8800b749e940 dr=0xffff8800b7cda400
+  1130 iscsi_ttx(4826): <-iscsit_free_datain_req 
+  1135 iscsi_ttx(4826):<-iscsit_response_queue return=0x0
+---------------------------------------------------------
+
+kernel backtrace:
+ 0xffffffffa0611170 : iscsit_response_queue+0x0/0x11e0 [iscsi_target_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff880139fca050
+ 0xffffffff810a7e60 : autoremove_wake_function+0x0/0x30 [kernel] (inexact)
+ 0xffffffffa060f060 : iscsi_target_tx_thread+0x0/0x1d0 [iscsi_target_mod] (inexact)
+ 0xffffffff8108809d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff810912f3 : finish_task_switch+0x43/0xf0 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff81514958 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 iscsi_ttx(4826):->iscsit_response_queue conn=0xffff8800b7c86800 cmd=0xffff8800b74a7c80 state=0x1d
+     0 iscsi_ttx(4826): ->iscsit_build_rsp_pdu cmd=0xffff8800b74a7c80 conn=0xffff8800b7c86800 inc_stat_sn=0x1 hdr=0xffff8800b74a7d24
+     0 iscsi_ttx(4826):  ->iscsit_increment_maxcmdsn cmd=0xffff8800b74a7c80 sess=0xffff8800b74a7d24
+    86 iscsi_ttx(4826):  <-iscsit_increment_maxcmdsn 
+    86 iscsi_ttx(4826): <-iscsit_build_rsp_pdu 
+    86 iscsi_ttx(4826): ->iscsit_send_tx_data cmd=0xffff8800b74a7c80 conn=0xffff8800b7c86800 use_misc=0x1
+   140 iscsi_ttx(4826):  ->tx_data conn=0xffff8800b7c86800 iov=0x1 iov_count=0x1 data=0xffffffffb7cc4000
+   380 iscsi_ttx(4826):  <-tx_data return=0x30
+   385 iscsi_ttx(4826): <-iscsit_send_tx_data return=0x0
+   391 iscsi_ttx(4826):<-iscsit_response_queue return=0x0
+---------------------------------------------------------
+
+kernel backtrace:
+ 0xffffffffa0611170 : iscsit_response_queue+0x0/0x11e0 [iscsi_target_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff880139fca050
+ 0xffffffff810a7e60 : autoremove_wake_function+0x0/0x30 [kernel] (inexact)
+ 0xffffffffa060f060 : iscsi_target_tx_thread+0x0/0x1d0 [iscsi_target_mod] (inexact)
+ 0xffffffff8108809d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff810912f3 : finish_task_switch+0x43/0xf0 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff81514958 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 iscsi_ttx(4826):->iscsit_response_queue conn=0xffff8800b7c86800 cmd=0xffff8800b749e940 state=0xc
+   180 iscsi_ttx(4826): ->iscsit_get_datain_values cmd=0xffff8800b749e940 datain=0xffff8800b7cc7e00
+   197 iscsi_ttx(4826): <-iscsit_get_datain_values return=0xffff8800b7cda400
+   213 iscsi_ttx(4826): ->iscsit_increment_maxcmdsn cmd=0xffff8800b749e940 sess=0xffff8800b749e940
+   223 iscsi_ttx(4826): <-iscsit_increment_maxcmdsn 
+   243 iscsi_ttx(4826): ->iscsit_map_iovec cmd=0xffff8800b749e940 iov=0xffff8800b820d5d0 data_offset=0x0 data_length=0x48
+   253 iscsi_ttx(4826): <-iscsit_map_iovec return=0x1
+   278 iscsi_ttx(4826): ->iscsit_fe_sendpage_sg cmd=0xffff8800b749e940 conn=0xffff8800b7c86800
+   294 iscsi_ttx(4826):  ->tx_data conn=0xffff8800b7c86800 iov=0x2 iov_count=0x1 data=0xffffffff95bb5000
+   578 iscsi_ttx(4826):  <-tx_data return=0x30
+   686 iscsi_ttx(4826): <-iscsit_fe_sendpage_sg return=0x0
+   699 iscsi_ttx(4826): ->iscsit_free_datain_req cmd=0xffff8800b749e940 dr=0xffff8800b7cda400
+   707 iscsi_ttx(4826): <-iscsit_free_datain_req 
+   715 iscsi_ttx(4826):<-iscsit_response_queue return=0x0
+---------------------------------------------------------
+
+kernel backtrace:
+ 0xffffffffa0611170 : iscsit_response_queue+0x0/0x11e0 [iscsi_target_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff880139fca050
+ 0xffffffff810a7e60 : autoremove_wake_function+0x0/0x30 [kernel] (inexact)
+ 0xffffffffa060f060 : iscsi_target_tx_thread+0x0/0x1d0 [iscsi_target_mod] (inexact)
+ 0xffffffff8108809d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff810912f3 : finish_task_switch+0x43/0xf0 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff81514958 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 iscsi_ttx(4826):->iscsit_response_queue conn=0xffff8800b7c86800 cmd=0xffff8800b74a7c80 state=0xc
+    14 iscsi_ttx(4826): ->iscsit_get_datain_values cmd=0xffff8800b74a7c80 datain=0xffff8800b7cc7e00
+    21 iscsi_ttx(4826): <-iscsit_get_datain_values return=0xffff8800b7cda400
+    31 iscsi_ttx(4826): ->iscsit_increment_maxcmdsn cmd=0xffff8800b74a7c80 sess=0xffff8800b74a7c80
+    37 iscsi_ttx(4826): <-iscsit_increment_maxcmdsn 
+    50 iscsi_ttx(4826): ->iscsit_map_iovec cmd=0xffff8800b74a7c80 iov=0xffff8800b820d850 data_offset=0x0 data_length=0x24
+    56 iscsi_ttx(4826): <-iscsit_map_iovec return=0x1
+    65 iscsi_ttx(4826): ->iscsit_fe_sendpage_sg cmd=0xffff8800b74a7c80 conn=0xffff8800b7c86800
+    75 iscsi_ttx(4826):  ->tx_data conn=0xffff8800b7c86800 iov=0x2 iov_count=0x1 data=0xffffffffb7c89000
+   269 iscsi_ttx(4826):  <-tx_data return=0x30
+   364 iscsi_ttx(4826): <-iscsit_fe_sendpage_sg return=0x0
+   374 iscsi_ttx(4826): ->iscsit_free_datain_req cmd=0xffff8800b74a7c80 dr=0xffff8800b7cda400
+   381 iscsi_ttx(4826): <-iscsit_free_datain_req 
+   387 iscsi_ttx(4826):<-iscsit_response_queue return=0x0
+---------------------------------------------------------
+
+kernel backtrace:
+ 0xffffffffa0611170 : iscsit_response_queue+0x0/0x11e0 [iscsi_target_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff880139fca050
+ 0xffffffff810a7e60 : autoremove_wake_function+0x0/0x30 [kernel] (inexact)
+ 0xffffffffa060f060 : iscsi_target_tx_thread+0x0/0x1d0 [iscsi_target_mod] (inexact)
+ 0xffffffff8108809d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff810912f3 : finish_task_switch+0x43/0xf0 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff81514958 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 iscsi_ttx(4826):->iscsit_response_queue conn=0xffff8800b7c86800 cmd=0xffff8800b749e940 state=0xc
+    23 iscsi_ttx(4826): ->iscsit_get_datain_values cmd=0xffff8800b749e940 datain=0xffff8800b7cc7e00
+    34 iscsi_ttx(4826): <-iscsit_get_datain_values return=0xffff8800b7cda400
+    47 iscsi_ttx(4826): ->iscsit_increment_maxcmdsn cmd=0xffff8800b749e940 sess=0xffff8800b749e940
+    55 iscsi_ttx(4826): <-iscsit_increment_maxcmdsn 
+    72 iscsi_ttx(4826): ->iscsit_map_iovec cmd=0xffff8800b749e940 iov=0xffff8800b820d5d0 data_offset=0x0 data_length=0xf0
+    82 iscsi_ttx(4826): <-iscsit_map_iovec return=0x1
+    93 iscsi_ttx(4826): ->iscsit_fe_sendpage_sg cmd=0xffff8800b749e940 conn=0xffff8800b7c86800
+   107 iscsi_ttx(4826):  ->tx_data conn=0xffff8800b7c86800 iov=0x2 iov_count=0x1 data=0xffffffff95bb5000
+   469 iscsi_ttx(4826):  <-tx_data return=0x30
+   653 iscsi_ttx(4826): <-iscsit_fe_sendpage_sg return=0x0
+   665 iscsi_ttx(4826): ->iscsit_free_datain_req cmd=0xffff8800b749e940 dr=0xffff8800b7cda400
+   672 iscsi_ttx(4826): <-iscsit_free_datain_req 
+   851 iscsi_ttx(4826):<-iscsit_response_queue return=0x0
+---------------------------------------------------------
+
+kernel backtrace:
+ 0xffffffffa0611170 : iscsit_response_queue+0x0/0x11e0 [iscsi_target_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff880139fca050
+ 0xffffffff810a7e60 : autoremove_wake_function+0x0/0x30 [kernel] (inexact)
+ 0xffffffffa060f060 : iscsi_target_tx_thread+0x0/0x1d0 [iscsi_target_mod] (inexact)
+ 0xffffffff8108809d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff810912f3 : finish_task_switch+0x43/0xf0 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff81514958 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 iscsi_ttx(4826):->iscsit_response_queue conn=0xffff8800b7c86800 cmd=0xffff8800b74a7c80 state=0x11
+    18 iscsi_ttx(4826): ->iscsit_build_nopin_rsp cmd=0xffff8800b74a7c80 conn=0xffff8800b7c86800 hdr=0xffff8800b74a7d24 nopout_response=0x1
+    28 iscsi_ttx(4826):  ->iscsit_increment_maxcmdsn cmd=0xffff8800b74a7c80 sess=0xffff8800b74a7d24
+    33 iscsi_ttx(4826):  <-iscsit_increment_maxcmdsn 
+    39 iscsi_ttx(4826): <-iscsit_build_nopin_rsp 
+    50 iscsi_ttx(4826): ->iscsit_send_tx_data cmd=0xffff8800b74a7c80 conn=0xffff8800b7c86800 use_misc=0x1
+    59 iscsi_ttx(4826):  ->tx_data conn=0xffff8800b7c86800 iov=0x39 iov_count=0x1 data=0xffffffffb7cc4000
+   292 iscsi_ttx(4826):  <-tx_data return=0x30
+   298 iscsi_ttx(4826): <-iscsit_send_tx_data return=0x0
+   303 iscsi_ttx(4826):<-iscsit_response_queue return=0x0
+---------------------------------------------------------
+
+kernel backtrace:
+ 0xffffffffa0611170 : iscsit_response_queue+0x0/0x11e0 [iscsi_target_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff8800b7fb4250
+ 0xffffffff810a7e60 : autoremove_wake_function+0x0/0x30 [kernel] (inexact)
+ 0xffffffffa060f060 : iscsi_target_tx_thread+0x0/0x1d0 [iscsi_target_mod] (inexact)
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff81514958 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 iscsi_ttx(4832):->iscsit_response_queue conn=0xffff8800b8140800 cmd=0xffff880087e2b940 state=0x24
+    30 iscsi_ttx(4832): ->iscsit_build_text_rsp cmd=0xffff880087e2b940 conn=0xffff8800b8140800 hdr=0xffff880087e2b9e4 network_transport=0x0
+    39 iscsi_ttx(4832):  ->iscsit_build_sendtargets_response cmd=0xffff880087e2b940 network_transport=0x0
+   108 iscsi_ttx(4832):  <-iscsit_build_sendtargets_response return=0x66
+   119 iscsi_ttx(4832):  ->iscsit_increment_maxcmdsn cmd=0xffff880087e2b940 sess=0xffff880087e2b9e4
+   126 iscsi_ttx(4832):  <-iscsit_increment_maxcmdsn 
+   132 iscsi_ttx(4832): <-iscsit_build_text_rsp return=0x68
+   143 iscsi_ttx(4832): ->iscsit_send_tx_data cmd=0xffff880087e2b940 conn=0xffff8800b8140800 use_misc=0x1
+   151 iscsi_ttx(4832):  ->tx_data conn=0xffff8800b8140800 iov=0x0 iov_count=0x2 data=0xa
+   364 iscsi_ttx(4832):  <-tx_data return=0x98
+   377 iscsi_ttx(4832): <-iscsit_send_tx_data return=0x0
+   386 iscsi_ttx(4832):<-iscsit_response_queue return=0x0
+---------------------------------------------------------
+
+kernel backtrace:
+ 0xffffffffa0611170 : iscsit_response_queue+0x0/0x11e0 [iscsi_target_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff8800b7fb4250
+ 0xffffffff810a7e60 : autoremove_wake_function+0x0/0x30 [kernel] (inexact)
+ 0xffffffffa060f060 : iscsi_target_tx_thread+0x0/0x1d0 [iscsi_target_mod] (inexact)
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff81514958 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 iscsi_ttx(4832):->iscsit_response_queue conn=0xffff8800b8140800 cmd=0xffff880087e2b480 state=0xf
+    19 iscsi_ttx(4832): ->iscsit_build_logout_rsp cmd=0xffff880087e2b480 conn=0xffff8800b8140800 hdr=0xffff880087e2b524
+    31 iscsi_ttx(4832):  ->iscsit_increment_maxcmdsn cmd=0xffff880087e2b480 sess=0xffff880087e2b524
+    37 iscsi_ttx(4832):  <-iscsit_increment_maxcmdsn 
+    43 iscsi_ttx(4832): <-iscsit_build_logout_rsp return=0x0
+    53 iscsi_ttx(4832): ->iscsit_send_tx_data cmd=0xffff880087e2b480 conn=0xffff8800b8140800 use_misc=0x1
+    63 iscsi_ttx(4832):  ->tx_data conn=0xffff8800b8140800 iov=0x0 iov_count=0x1 data=0xffffffff87dfc000
+   349 iscsi_ttx(4832):  <-tx_data return=0x30
+   355 iscsi_ttx(4832): <-iscsit_send_tx_data return=0x0
+   369 iscsi_ttx(4832): ->iscsit_logout_post_handler cmd=0xffff880087e2b480 conn=0xffff8800b8140800
+   383 iscsi_ttx(4832):  ->iscsit_dec_conn_usage_count conn=0xffff8800b8140800
+   389 iscsi_ttx(4832):  <-iscsit_dec_conn_usage_count 
+   399 iscsi_ttx(4832):  ->iscsit_stop_session sess=0xffff8800b7c8ac00 session_sleep=0x1 connection_sleep=0x1
+   405 iscsi_ttx(4832):   ->iscsit_inc_conn_usage_count conn=0xffff8800b8140800
+   410 iscsi_ttx(4832):   <-iscsit_inc_conn_usage_count 
+   419 iscsi_ttx(4832):   ->iscsit_cause_connection_reinstatement conn=0xffff8800b8140800 sleep=0x1
+   603 iscsi_ttx(4832):   <-iscsit_cause_connection_reinstatement 
+   610 iscsi_ttx(4832):   ->iscsit_dec_conn_usage_count conn=0xffff8800b8140800
+   615 iscsi_ttx(4832):   <-iscsit_dec_conn_usage_count 
+   846 iscsi_ttx(4832):  <-iscsit_stop_session 
+   862 iscsi_ttx(4832):  ->iscsit_dec_session_usage_count sess=0xffff8800b7c8ac00
+   915 iscsi_ttx(4832):  <-iscsit_dec_session_usage_count 
+   930 iscsi_ttx(4832):  ->lio_tpg_close_session se_sess=0xffff8800b7c84e00
+   938 iscsi_ttx(4832):   ->iscsit_close_session sess=0xffff8800b7c8ac00
+   945 iscsi_ttx(4832):    ->iscsit_stop_time2retain_timer sess=0xffff8800b7c8ac00
+   950 iscsi_ttx(4832):    <-iscsit_stop_time2retain_timer return=0x0
+   957 iscsi_ttx(4832):    ->iscsit_check_session_usage_count sess=0xffff8800b7c8ac00
+   963 iscsi_ttx(4832):    <-iscsit_check_session_usage_count return=0x0
+   980 iscsi_ttx(4832):    ->iscsit_free_all_ooo_cmdsns sess=0xffff8800b7c8ac00
+   985 iscsi_ttx(4832):    <-iscsit_free_all_ooo_cmdsns 
+   991 iscsi_ttx(4832):   <-iscsit_close_session return=0x0
+   996 iscsi_ttx(4832):  <-lio_tpg_close_session 
+  1000 iscsi_ttx(4832): <-iscsit_logout_post_handler return=0x0
+  1006 iscsi_ttx(4832):<-iscsit_response_queue return=0xffffffffffffff98
+---------------------------------------------------------
+
+kernel backtrace:
+ 0xffffffffa0611170 : iscsit_response_queue+0x0/0x11e0 [iscsi_target_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff880139fca050
+ 0xffffffff810a7e60 : autoremove_wake_function+0x0/0x30 [kernel] (inexact)
+ 0xffffffffa060f060 : iscsi_target_tx_thread+0x0/0x1d0 [iscsi_target_mod] (inexact)
+ 0xffffffff8108809d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff810912f3 : finish_task_switch+0x43/0xf0 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff81514958 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 iscsi_ttx(4826):->iscsit_response_queue conn=0xffff8800b7c86800 cmd=0xffff8800b749e940 state=0x1d
+    30 iscsi_ttx(4826): ->iscsit_build_rsp_pdu cmd=0xffff8800b749e940 conn=0xffff8800b7c86800 inc_stat_sn=0x1 hdr=0xffff8800b749e9e4
+    42 iscsi_ttx(4826):  ->iscsit_increment_maxcmdsn cmd=0xffff8800b749e940 sess=0xffff8800b749e9e4
+    48 iscsi_ttx(4826):  <-iscsit_increment_maxcmdsn 
+    54 iscsi_ttx(4826): <-iscsit_build_rsp_pdu 
+    64 iscsi_ttx(4826): ->iscsit_send_tx_data cmd=0xffff8800b749e940 conn=0xffff8800b7c86800 use_misc=0x1
+    73 iscsi_ttx(4826):  ->tx_data conn=0xffff8800b7c86800 iov=0x1 iov_count=0x1 data=0xffffffffb7cc4000
+   188 iscsi_ttx(4826):  <-tx_data return=0x30
+   194 iscsi_ttx(4826): <-iscsit_send_tx_data return=0x0
+   199 iscsi_ttx(4826):<-iscsit_response_queue return=0x0
+---------------------------------------------------------
+
+kernel backtrace:
+ 0xffffffffa0611170 : iscsit_response_queue+0x0/0x11e0 [iscsi_target_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff880139fca050
+ 0xffffffff810a7e60 : autoremove_wake_function+0x0/0x30 [kernel] (inexact)
+ 0xffffffffa060f060 : iscsi_target_tx_thread+0x0/0x1d0 [iscsi_target_mod] (inexact)
+ 0xffffffff8108809d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff810912f3 : finish_task_switch+0x43/0xf0 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff81514958 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 iscsi_ttx(4826):->iscsit_response_queue conn=0xffff8800b7c86800 cmd=0xffff8800b74a7c80 state=0xc
+    36 iscsi_ttx(4826): ->iscsit_get_datain_values cmd=0xffff8800b74a7c80 datain=0xffff8800b7cc7e00
+    44 iscsi_ttx(4826): <-iscsit_get_datain_values return=0xffff8800b7cda040
+    51 iscsi_ttx(4826): ->iscsit_increment_maxcmdsn cmd=0xffff8800b74a7c80 sess=0xffff8800b74a7c80
+    56 iscsi_ttx(4826): <-iscsit_increment_maxcmdsn 
+    68 iscsi_ttx(4826): ->iscsit_map_iovec cmd=0xffff8800b74a7c80 iov=0xffff8801392e7850 data_offset=0x0 data_length=0x48
+    75 iscsi_ttx(4826): <-iscsit_map_iovec return=0x1
+    83 iscsi_ttx(4826): ->iscsit_fe_sendpage_sg cmd=0xffff8800b74a7c80 conn=0xffff8800b7c86800
+    92 iscsi_ttx(4826):  ->tx_data conn=0xffff8800b7c86800 iov=0x2 iov_count=0x1 data=0xffffffff87ded000
+   221 iscsi_ttx(4826):  <-tx_data return=0x30
+   311 iscsi_ttx(4826): <-iscsit_fe_sendpage_sg return=0x0
+   321 iscsi_ttx(4826): ->iscsit_free_datain_req cmd=0xffff8800b74a7c80 dr=0xffff8800b7cda040
+   327 iscsi_ttx(4826): <-iscsit_free_datain_req 
+   332 iscsi_ttx(4826):<-iscsit_response_queue return=0x0
+---------------------------------------------------------
+
+kernel backtrace:
+ 0xffffffffa0611170 : iscsit_response_queue+0x0/0x11e0 [iscsi_target_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff880139fca050
+ 0xffffffff810a7e60 : autoremove_wake_function+0x0/0x30 [kernel] (inexact)
+ 0xffffffffa060f060 : iscsi_target_tx_thread+0x0/0x1d0 [iscsi_target_mod] (inexact)
+ 0xffffffff8108809d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff810912f3 : finish_task_switch+0x43/0xf0 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff81514958 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 iscsi_ttx(4826):->iscsit_response_queue conn=0xffff8800b7c86800 cmd=0xffff8800b749e940 state=0xc
+    10 iscsi_ttx(4826): ->iscsit_get_datain_values cmd=0xffff8800b749e940 datain=0xffff8800b7cc7e00
+    16 iscsi_ttx(4826): <-iscsit_get_datain_values return=0xffff8800b7cda040
+    23 iscsi_ttx(4826): ->iscsit_increment_maxcmdsn cmd=0xffff8800b749e940 sess=0xffff8800b749e940
+    28 iscsi_ttx(4826): <-iscsit_increment_maxcmdsn 
+    36 iscsi_ttx(4826): ->iscsit_map_iovec cmd=0xffff8800b749e940 iov=0xffff8801392e73d0 data_offset=0x0 data_length=0x24
+    42 iscsi_ttx(4826): <-iscsit_map_iovec return=0x1
+    48 iscsi_ttx(4826): ->iscsit_fe_sendpage_sg cmd=0xffff8800b749e940 conn=0xffff8800b7c86800
+    56 iscsi_ttx(4826):  ->tx_data conn=0xffff8800b7c86800 iov=0x2 iov_count=0x1 data=0xffffffffb7cdf000
+   192 iscsi_ttx(4826):  <-tx_data return=0x30
+   279 iscsi_ttx(4826): <-iscsit_fe_sendpage_sg return=0x0
+   288 iscsi_ttx(4826): ->iscsit_free_datain_req cmd=0xffff8800b749e940 dr=0xffff8800b7cda040
+   294 iscsi_ttx(4826): <-iscsit_free_datain_req 
+   299 iscsi_ttx(4826):<-iscsit_response_queue return=0x0
+---------------------------------------------------------
+
+kernel backtrace:
+ 0xffffffffa0611170 : iscsit_response_queue+0x0/0x11e0 [iscsi_target_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff880139fca050
+ 0xffffffff810a7e60 : autoremove_wake_function+0x0/0x30 [kernel] (inexact)
+ 0xffffffffa060f060 : iscsi_target_tx_thread+0x0/0x1d0 [iscsi_target_mod] (inexact)
+ 0xffffffff8108809d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff810912f3 : finish_task_switch+0x43/0xf0 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff81514958 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 iscsi_ttx(4826):->iscsit_response_queue conn=0xffff8800b7c86800 cmd=0xffff8800b74a7c80 state=0xc
+   111 iscsi_ttx(4826): ->iscsit_get_datain_values cmd=0xffff8800b74a7c80 datain=0xffff8800b7cc7e00
+   122 iscsi_ttx(4826): <-iscsit_get_datain_values return=0xffff8800b7cda040
+   133 iscsi_ttx(4826): ->iscsit_increment_maxcmdsn cmd=0xffff8800b74a7c80 sess=0xffff8800b74a7c80
+   139 iscsi_ttx(4826): <-iscsit_increment_maxcmdsn 
+   153 iscsi_ttx(4826): ->iscsit_map_iovec cmd=0xffff8800b74a7c80 iov=0xffff8801392e7850 data_offset=0x0 data_length=0xf0
+   161 iscsi_ttx(4826): <-iscsit_map_iovec return=0x1
+   170 iscsi_ttx(4826): ->iscsit_fe_sendpage_sg cmd=0xffff8800b74a7c80 conn=0xffff8800b7c86800
+   181 iscsi_ttx(4826):  ->tx_data conn=0xffff8800b7c86800 iov=0x2 iov_count=0x1 data=0xffffffff87ded000
+   467 iscsi_ttx(4826):  <-tx_data return=0x30
+   571 iscsi_ttx(4826): <-iscsit_fe_sendpage_sg return=0x0
+   581 iscsi_ttx(4826): ->iscsit_free_datain_req cmd=0xffff8800b74a7c80 dr=0xffff8800b7cda040
+   587 iscsi_ttx(4826): <-iscsit_free_datain_req 
+   594 iscsi_ttx(4826):<-iscsit_response_queue return=0x0
+---------------------------------------------------------
+
+kernel backtrace:
+ 0xffffffffa0611170 : iscsit_response_queue+0x0/0x11e0 [iscsi_target_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel]
+ 0xffff880139fca050
+ 0xffffffff810a7e60 : autoremove_wake_function+0x0/0x30 [kernel] (inexact)
+ 0xffffffffa060f060 : iscsi_target_tx_thread+0x0/0x1d0 [iscsi_target_mod] (inexact)
+ 0xffffffff8108809d : kthread+0xbd/0xe0 [kernel] (inexact)
+ 0xffffffff810912f3 : finish_task_switch+0x43/0xf0 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+ 0xffffffff81514958 : ret_from_fork+0x58/0x90 [kernel] (inexact)
+ 0xffffffff81087fe0 : kthread+0x0/0xe0 [kernel] (inexact)
+     0 iscsi_ttx(4826):->iscsit_response_queue conn=0xffff8800b7c86800 cmd=0xffff8800b749e940 state=0x11
+    18 iscsi_ttx(4826): ->iscsit_build_nopin_rsp cmd=0xffff8800b749e940 conn=0xffff8800b7c86800 hdr=0xffff8800b749e9e4 nopout_response=0x1
+    28 iscsi_ttx(4826):  ->iscsit_increment_maxcmdsn cmd=0xffff8800b749e940 sess=0xffff8800b749e9e4
+    34 iscsi_ttx(4826):  <-iscsit_increment_maxcmdsn 
+    40 iscsi_ttx(4826): <-iscsit_build_nopin_rsp 
+    63 iscsi_ttx(4826): ->iscsit_send_tx_data cmd=0xffff8800b749e940 conn=0xffff8800b7c86800 use_misc=0x1
+    73 iscsi_ttx(4826):  ->tx_data conn=0xffff8800b7c86800 iov=0xffff8800b9c59950 iov_count=0x1 data=0xffffffffb7cc4000
+   291 iscsi_ttx(4826):  <-tx_data return=0x30
+   297 iscsi_ttx(4826): <-iscsit_send_tx_data return=0x0
+   303 iscsi_ttx(4826):<-iscsit_response_queue return=0x0
+---------------------------------------------------------
