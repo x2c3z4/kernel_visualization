@@ -42,9 +42,9 @@ def get_random_id_obsolete():
     return ''.join(random.SystemRandom().choice(string.digits + string.ascii_lowercase) for _ in range(6))
 
 def write_file(basename, suffix, content):
-    outfile = basename + suffix
-    if os.path.exists(outfile):
-        outfile = basename + "_" + get_random_id() + suffix
+    #outfile = basename + suffix
+    #if os.path.exists(outfile):
+    outfile = basename + "_" + get_random_id() + suffix
     with open(outfile, "w") as f:
         f.write(content)
     return outfile
@@ -54,7 +54,10 @@ def deduplicate(files):
     for f in files:
         hash = hashlib.sha256(open(f).read()).hexdigest()
         if hash in container:
-            os.remove(f)
+            try:
+                os.remove(f)
+            except OSError:
+                pass
             print "Remove duplicate %s" % (f[0:-4], )
         else:
             container[hash] =f
@@ -89,6 +92,7 @@ class Tree:
             self.children = []
             self.head = self
             self.id = 0
+            self.next_id = 0
             self.name = name
             self.is_head = False
             self.first_child = None
@@ -121,39 +125,27 @@ class Tree:
                 return False
         return True
 
-    def _split_node_children(self, children):
+    def _split_node_children(self, children, is_simplify=False):
         uniq_keys = {}
         for child in children:
             if child.data not in uniq_keys:
                 uniq_keys[child.data] = child
-            else:
-                # same
-                uniq_keys[child.data].id += 1
-                child.id = uniq_keys[child.data].id
-
-        for i in uniq_keys.values():
-            i.id = 0
-
-        return children
-
-    def _uniq_children(self, children):
-        uniq_keys = {}
-        uniq_children = []
-        for child in children:
-            if child.data not in uniq_keys:
-                uniq_keys[child.data] = child
-                uniq_children.append(child)
             else:
                 # same, if children are the same
-                if not self.same_subtree(uniq_keys[child.data], child):
-                    uniq_keys[child.data].id += 1
-                    child.id = uniq_keys[child.data].id
-                    uniq_children.append(child)
+                if is_simplify:
+                    if self.same_subtree(uniq_keys[child.data], child):
+                        if len(child.children) != 0:
+                            child.children = []
+                            child.first_child = uniq_keys[child.data].first_child
+                            child.is_root = False
+                            child.is_head = False
+                            #print "Same tree:", child.id,child.name,child.data
+                            #print "->", uniq_keys[child.data].id,uniq_keys[child.data].name,uniq_keys[child.data].data
 
-        for i in uniq_keys.values():
-            i.id = 0
+                uniq_keys[child.data].next_id += 1
+                child.id = uniq_keys[child.data].next_id
 
-        return uniq_children
+        return children
 
 
     def travel_tree(self):
@@ -166,19 +158,18 @@ class Tree:
         self._travel_tree(self.root, 1)
 
     def _travel_tree(self, node, level):
-        if is_simplify:
-            uniq_children = self._uniq_children(node.children)
-        else:
-            uniq_children = self._split_node_children(node.children)
-
+        uniq_children = self._split_node_children(node.children, is_simplify)
         if node.first_child:
             if node.is_root:
                 new_root = "\t %s [label=\"<%s>%s\", color=red];\n" %(node.name, node.data, node.data)
                 self.core_content += new_root
                 #print new_root
-            new_node = "\t %s [label=\"%s\"];\n" %(node.first_child.name, " | ".join(["<" + i.link() + ">" + i.data for i in uniq_children]))
-            self.core_content += new_node
-            #print new_node
+            # Hacker: uniq_children = None && node.first_child !=None, 
+            #    means, this node is simplified, and point to the old one.
+            if len(uniq_children) != 0:
+                new_node = "\t %s [label=\"%s\"];\n" %(node.first_child.name, " | ".join(["<" + i.link() + ">" + i.data for i in uniq_children]))
+                self.core_content += new_node
+                #print new_node
             left = "\t %s:%s" % (node.head.name, node.link())
             right = "%s:%s" % (node.first_child.name, node.first_child.link())
             style = "[dir=both, arrowtail=dot];\n"
