@@ -1,0 +1,26 @@
+
+kernel backtrace:
+ 0xffffffffa0576dd0 [target_core_mod]
+ 0xffffffff8104d605 : kretprobe_trampoline+0x0/0x4b [kernel] (inexact)
+ 0xffffffff811b82a0 : vfs_mkdir+0xb0/0x160 [kernel] (inexact)
+ 0xffffffff811b8f34 : sys_mkdir+0xa4/0xe0 [kernel] (inexact)
+ 0xffffffff81514a0d : system_call_fast_compare_end+0x10/0x15 [kernel] (inexact)
+     0 python(91575):->target_fabric_make_np group=0xffff88006d18f480 name=0xffff88006fd40140
+  1181 python(91575): ->lio_target_call_addnptotpg se_tpg=0xffff88006d18f020 group=0xffff88006d18f480 name=0xffff88006fd40140
+  1409 python(91575):  ->iscsit_get_tpg tpg=0xffff88006d18f000
+  1447 python(91575):  <-iscsit_get_tpg return=0x0
+  1863 python(91575):  ->iscsit_tpg_add_network_portal tpg=0xffff88006d18f000 sockaddr=0xffff88006d333cd0 ip_str=0xffff88006d333d57 tpg_np_parent=0x0 network_transport=0x0
+  2277 python(91575):   ->iscsit_add_np sockaddr=0xffff88006d333cd0 ip_str=0xffff88006d333d57 network_transport=0x0
+  2746 python(91575):    ->iscsi_target_setup_login_socket np=0xffff880137abb800 sockaddr=0xffff88006d333cd0
+  2971 python(91575):     ->iscsit_get_transport type=0x0
+  3053 python(91575):     <-iscsit_get_transport return=0xffffffffa0622020
+  3097 python(91575):     ->iscsit_setup_np np=0xffff880137abb800 sockaddr=0xffff88006d333cd0
+  3444 python(91575):     <-iscsit_setup_np return=0x0
+  3462 python(91575):    <-iscsi_target_setup_login_socket return=0x0
+  4739 python(91575):   <-iscsit_add_np return=0xffff880137abb800
+  4819 python(91575):  <-iscsit_tpg_add_network_portal return=0xffff88006fc03600
+  4851 python(91575):  ->iscsit_put_tpg tpg=0xffff88006d18f000
+  4857 python(91575):  <-iscsit_put_tpg
+  4888 python(91575): <-lio_target_call_addnptotpg return=0xffff88006fc03648
+  5027 python(91575):<-target_fabric_make_np return=0xffff88006fc03650
+---------------------------------------------------------

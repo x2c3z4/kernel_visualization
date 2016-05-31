@@ -1,33 +1,33 @@
 #!/bin/bash
 
 function usage() {
-	echo $1
-	echo "Usage:"
-	echo " -e, --entry func, must options here, you could use module.func style if this function name is ambiguity"
-	echo " -m, --modules modules, put multi modules splitted with comma(,)"
-	echo " -f, --force_cache"
+  echo $1
+  echo "Usage:"
+  echo " -e, --entry func, must options here, you could use module.func style if this function name is ambiguity"
+  echo " -m, --modules modules, put multi modules splitted with comma(,)"
+  echo " -f, --force_cache"
   echo " -o, --out_stap"
-	echo " -v, --verbose, probe suffix ?"
+  echo " -v, --verbose, probe suffix ?"
   echo " e.g. ./gen_stap.sh -m iscsi_target_mod.ko,target_core_mod.ko,target_core_file.ko,target_core_pscsi.ko -e fd_do_rw"
   echo "e.g. ./gen_stap.sh -m iscsi_target_mod.ko,target_core_mod.ko,target_core_file.ko,target_core_pscsi.ko -e iscsi_target_mod.rx_data"
 }
 function make_caches() {
-	cache_dir=~/.kernel_visualization.cache
-	modules_cache_file=$cache_dir/modules_list
-	kfunc_cache_file=$cache_dir/kfunc_list
-	mfunc_cache_file=$cache_dir/mfunc_list
+  cache_dir=~/.kernel_visualization.cache
+  modules_cache_file=$cache_dir/modules_list
+  kfunc_cache_file=$cache_dir/kfunc_list
+  mfunc_cache_file=$cache_dir/mfunc_list
 
-	if [[ ( $force_cache -eq 1 ) || ( ! -d $cache_dir ) ]];then
-		mkdir $cache_dir
-		echo "Caching modules list"
-		find /lib/modules/`uname -r`/ -type f -name "*.ko" > $modules_cache_file
+  if [[ ( $force_cache -eq 1 ) || ( ! -d $cache_dir ) ]];then
+    mkdir $cache_dir
+    echo "Caching modules list"
+    find /lib/modules/`uname -r`/ -type f -name "*.ko" > $modules_cache_file
 
-		echo "Caching kernel funciton list"
-		cat /boot/System.map-`uname -r` | grep -v ' U ' | awk '{print $3}' >$kfunc_cache_file
+    echo "Caching kernel funciton list"
+    cat /boot/System.map-`uname -r` | grep -v ' U ' | awk '{print $3}' >$kfunc_cache_file
 
-		echo "Caching modules funciton list"
-		cat $modules_cache_file | while read m;do name=`basename $m .ko`;nm --defined-only $m | awk -v name=$name '{print name, $3}';done >$mfunc_cache_file
-	fi
+    echo "Caching modules funciton list"
+    cat $modules_cache_file | while read m;do name=`basename $m .ko`;nm --defined-only $m | awk -v name=$name '{print name, $3}';done >$mfunc_cache_file
+  fi
 }
 
 verbose=0
@@ -35,33 +35,33 @@ force_cache=0
 cmd="$0 $@"
 while [[ $# > 1 ]]
 do
-	key="$1"
+  key="$1"
 
-	case $key in
-		-e|--entry)
-			entry="$2"
-			shift # past argument
-			;;
-		-m|--modules)
-			modules="$2"
-			shift # past argument
-			;;
-		-o|--out)
-			out_stap="$2"
-			shift # past argument
-			;;
-		-v|--verbose)
-			verbose=1
-			;;
-		-f|--force_cache)
-			force_cache=1
-			;;
-		*)
-			usage
-			exit
-			;;
-	esac
-	shift # past argument or value
+  case $key in
+    -e|--entry)
+      entry="$2"
+      shift # past argument
+      ;;
+    -m|--modules)
+      modules="$2"
+      shift # past argument
+      ;;
+    -o|--out)
+      out_stap="$2"
+      shift # past argument
+      ;;
+    -v|--verbose)
+      verbose=1
+      ;;
+    -f|--force_cache)
+      force_cache=1
+      ;;
+    *)
+      usage
+      exit
+      ;;
+  esac
+  shift # past argument or value
 done
 
 
@@ -82,16 +82,16 @@ IFS=. read cur_m cur_f <<<$entry
 [[ -z $cur_f ]] && cur_f=$entry && cur_m=""
 
 if [[ -n `cat $kfunc_cache_file | grep -w $cur_f` ]];then
-	found_probe=1;probe='kernel.function("'$cur_f'")'
+  found_probe=1;probe='kernel.function("'$cur_f'")'
 elif [[ -n `cat $mfunc_cache_file | grep -w $cur_f` ]];then
-	found_probe=1;
-	entry_module=`cat $mfunc_cache_file | grep -w $cur_f | awk '{print $1}'`
+  found_probe=1;
+  entry_module=`cat $mfunc_cache_file | grep -w $cur_f | awk '{print $1}'`
   if [[ `cat $mfunc_cache_file | grep -w $cur_f | wc -l` -gt 1 ]];then
     [[ -z $cur_m ]] && echo -e "[-] These modules have this function definition: \n$entry_module" && exit
-	  probe=`printf "module(\"%s\").function(\"%s\")" $cur_m $cur_f`
+    probe=`printf "module(\"%s\").function(\"%s\")" $cur_m $cur_f`
     entry_module=$cur_m
   else
-	  probe=`cat $mfunc_cache_file | grep -w $cur_f | awk '{printf "module(\"%s\").function(\"%s\")", $1, $2}'`
+    probe=`cat $mfunc_cache_file | grep -w $cur_f | awk '{printf "module(\"%s\").function(\"%s\")", $1, $2}'`
   fi
   [[ -z `echo  $modules | grep -w $entry_module` ]] && modules="$modules,$entry_module"
 fi
@@ -102,23 +102,23 @@ fi
 ###########################################################
 [[ -n $modules ]] && for i in ${modules//,/ }
 do
-	# find modules first
-	if [ -z "`cat $modules_cache_file | grep -w $i`" ];then continue;fi
-	i="module(\"$i\").function(\"*\")"
-	if [[ -n $calls ]];then # non empty
-		calls="$calls,\n  ""$i.call"
-		returns="$returns,\n  ""$i.return"
-	else
-		calls="probe $i.call"
-		returns="probe $i.return"
-	fi
-	[[ $verbose -eq 0 ]] && calls="$calls""?"
-	[[ $verbose -eq 0 ]] && returns="$returns""?"
+  # find modules first
+  if [ -z "`cat $modules_cache_file | grep -w $i`" ];then continue;fi
+  i=`basename $i .ko`
+  i="module(\"$i\").function(\"*\")"
+  if [[ -n $calls ]];then # non empty
+    calls="$calls,\n  ""$i.call"
+    returns="$returns,\n  ""$i.return"
+  else
+    calls="probe $i.call"
+    returns="probe $i.return"
+  fi
+  [[ $verbose -eq 0 ]] && calls="$calls""?" && returns="$returns""?"
 done
 
 if [ -z "$calls" ];then
-	calls="probe kernel.function(\"*\").call?"
-	returns="probe kernel.function(\"*\").return?"
+  calls="probe kernel.function(\"*\").call?"
+  returns="probe kernel.function(\"*\").return?"
 fi
 
 echo "[+] Entry func: $probe"
