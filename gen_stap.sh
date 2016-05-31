@@ -22,10 +22,10 @@ function make_caches() {
 		find /lib/modules/`uname -r`/ -type f -name "*.ko" > $modules_cache_file
 
 		echo "Caching kernel funciton list"
-		cat /boot/System.map-`uname -r` | grep ' t ' | awk '{print $3}' >$kfunc_cache_file
+		cat /boot/System.map-`uname -r` | grep -v ' U ' | awk '{print $3}' >$kfunc_cache_file
 
 		echo "Caching modules funciton list"
-		cat $modules_cache_file | while read m;do name=`basename $m .ko`;nm $m | grep ' t ' | sed "s| t | $name |g";done | awk '{print $2, $3}' >$mfunc_cache_file
+		cat $modules_cache_file | while read m;do name=`basename $m .ko`;nm --defined-only $m | sed "s| t | $name |g";done | awk '{print $2, $3}' >$mfunc_cache_file
 	fi
 }
 
