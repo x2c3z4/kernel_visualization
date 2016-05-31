@@ -111,13 +111,15 @@ class Tree:
         self.core_content = ""
         self.id = -1
 
-    def _is_different(self, node1, node2):
+    def same_subtree(self, node1, node2):
         if len(node1.children) != len(node2.children):
+            return False
+        if len(node1.children) == 0 and node1.data == node2.data:
             return True
         for i in range(0, len(node1.children)):
-            if self._is_different(node1.children[i], node2.children[i]):
-                return True
-        return False
+            if not self.same_subtree(node1.children[i], node2.children[i]):
+                return False
+        return True
 
     def _split_node_children(self, children):
         uniq_keys = {}
@@ -143,7 +145,7 @@ class Tree:
                 uniq_children.append(child)
             else:
                 # same, if children are the same
-                if self._is_different(uniq_keys[child.data], child):
+                if not self.same_subtree(uniq_keys[child.data], child):
                     uniq_keys[child.data].id += 1
                     child.id = uniq_keys[child.data].id
                     uniq_children.append(child)
@@ -155,6 +157,7 @@ class Tree:
 
 
     def travel_tree(self):
+        # skip the first same node
         if len(self.root.children) == 1 and self.root.data == self.root.children[0].data:
             self.root = self.root.children[0]
             self.root.parent = None
