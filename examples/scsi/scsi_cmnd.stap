@@ -1,0 +1,198 @@
+#! /bin/sh
+
+# Copyright 2015 vonnyfly(lifeng1519@gmail.com)
+
+# suppress some run-time errors here for cleaner output
+//bin/true && exec stap  --all-modules --suppress-handler-errors -g --skip-badvars $0 ${1+"$@"}
+
+%{
+#include <scsi/scsi_cmnd.h>
+char *scsi_ops[0xff] = {
+[0x000] = "TEST_UNIT_READY",
+[0x001] = "REZERO_UNIT_or_REWIND",
+[0x003] = "REQUEST_SENSE",
+[0x004] = "FORMAT_UNIT",
+[0x007] = "REASSIGN_BLOCKS",
+[0x008] = "READ(6)",
+[0x00a] = "WRITE(6)",
+[0x00b] = "SEEK(6)",
+[0x012] = "INQUIRY",
+[0x015] = "MODE_SELECT(6)",
+[0x016] = "RESERVE(6)",
+[0x017] = "RELEASE(6)",
+[0x018] = "COPY",
+[0x019] = "ERASE(6)",
+[0x01a] = "MODE_SENSE(6)",
+[0x01b] = "START_STOP_UNIT",
+[0x01c] = "RECIEVE_DIAGNOSTIC_RESULTS",
+[0x01d] = "SEND_DIAGNOSTIC",
+[0x01e] = "PREVENT_ALLOW_MEDIUM_REMOVAL",
+[0x025] = "READ_CAPACITY(10)",
+[0x028] = "READ(10)",
+[0x02a] = "WRITE(10)",
+[0x02b] = "SEEK(10)_or_LOCATE(10)",
+[0x02e] = "WRITE_AND_VERIFY(10)",
+[0x02f] = "VERIFY(10)",
+[0x030] = "SEARCH_DATA_HIGH",
+[0x031] = "SEARCH_DATA_EQUAL",
+[0x032] = "SEARCH_DATA_LOW",
+[0x033] = "SET_LIMITS(10)",
+[0x034] = "PRE-FETCH(10)",
+[0x035] = "SYNCHRONIZE_CACHE(10)",
+[0x036] = "LOCK_UNLOCK_CACHE(10)",
+[0x037] = "READ_DEFECT_DATA(10)",
+[0x039] = "COMPARE",
+[0x03a] = "COPY_AND_WRITE",
+[0x03b] = "WRITE_BUFFER",
+[0x03c] = "READ_BUFFER",
+[0x03e] = "READ_LONG",
+[0x03f] = "WRITE_LONG",
+[0x040] = "CHANGE_DEFINITION",
+[0x041] = "WRITE_SAME(10)",
+[0x04a] = "GET EVENT STATUS NOTIFICATION",
+[0x04c] = "LOG_SELECT",
+[0x04d] = "LOG_SENSE",
+[0x050] = "XDWRITE(10)",
+[0x051] = "XPWRITE(10)",
+[0x052] = "XDREAD(10)",
+[0x053] = "XDWRITEREAD(10)",
+[0x055] = "MODE_SELECT(10)",
+[0x056] = "RESERVE(10)",
+[0x057] = "RELEASE(10)",
+[0x05a] = "MODE_SENSE(10)",
+[0x05e] = "PERSISTENT_RESERVE_IN",
+[0x05f] = "PERSISTENT_RESERVE_OUT",
+[0x07f] = "Variable_Length_CDB",
+[0x07f] = "XDREAD(32)",
+[0x07f] = "XDWRITE(32)",
+[0x07f] = "XPWRITE(32)",
+[0x07f] = "XDWRITEREAD(32)",
+[0x07f] = "READ(32)",
+[0x07f] = "WRITE(32)",
+[0x07f] = "VERIFY(32)",
+[0x07f] = "WRITE_AND_VERIFY(32)",
+[0x080] = "XDWRITE_EXTENDED(16)",
+[0x081] = "REBUILD(16)",
+[0x082] = "REGENERATE(16)",
+[0x083] = "EXTENDED_COPY",
+[0x086] = "ACCESS_CONTROL_IN",
+[0x087] = "ACCESS_CONTROL_OUT",
+[0x088] = "READ(16)",
+[0x08a] = "WRITE(16)",
+[0x08c] = "READ_ATTRIBUTES",
+[0x08d] = "WRITE_ATTRIBUTES",
+[0x08e] = "WRITE_AND_VERIFY(16)",
+[0x08f] = "VERIFY(16)",
+[0x090] = "PRE-FETCH(16)",
+[0x091] = "SYNCHRONIZE_CACHE(16)",
+[0x092] = "LOCK_UNLOCK_CACHE(16)_or_LOCATE(16)",
+[0x093] = "WRITE_SAME(16)_or_ERASE(16)",
+[0x09e] = "SERVICE_IN_or_READ_CAPACITY(16)",
+[0x0a0] = "REPORT_LUNS",
+[0x0a3] = "MAINTENANCE_IN_or_REPORT_TARGET_PORT_GROUPS",
+[0x0a4] = "MAINTENANCE_OUT_or_SET_TARGET_PORT_GROUPS",
+[0x0a7] = "MOVE_MEDIUM",
+[0x0a8] = "READ(12)",
+[0x0aa] = "WRITE(12)",
+[0x0ae] = "WRITE_AND_VERIFY(12)",
+[0x0af] = "VERIFY(12)",
+[0x0b3] = "SET_LIMITS(12)",
+[0x0b4] = "READ_ELEMENT_STATUS",
+[0x0b7] = "READ_DEFECT_DATA(12)",
+[0x0ba] = "REDUNDANCY_GROUP_IN",
+[0x0bb] = "REDUNDANCY_GROUP_OUT",
+[0x0bc] = "SPARE_IN",
+[0x0bd] = "SPARE_OUT",
+[0x0be] = "VOLUME_SET_IN",
+[0x0bf] = "VOLUME_SET_OUT",
+[0x0d0] = "EXPLICIT_LUN_FAILOVER",
+[0x0f1] = "STOREDGE_CONTROLLER"
+};
+%}
+
+probe module("scsi_mod").function("scsi_done").call   {
+  dump_cdb($cmd);
+}
+/*
+probe module("scsi_mod").function("scsi_normalize_sense").call  {
+  dump_sense($sense_buffer, $sb_len);
+}
+*/
+probe module("scsi_mod").function("scsi_build_sense_buffer").call  {
+  dump_sense($key, $asc, $ascq);
+}
+function dump_cdb:string(scsi_cmnd_ptr:long) %{
+  char b[120];
+  int n, len, sb, k, group;
+  int lba, alen, control, cdblen;
+  struct scsi_cmnd *scp = (struct scsi_cmnd *)(intptr_t)STAP_ARG_scsi_cmnd_ptr;
+  u8 *cmd = scp->cmnd;
+  len = scp->cmd_len;
+  sb = (int)sizeof(b);
+  if (len > 32)
+    strcpy(b, "too long, over 32 bytes");
+  else {
+    for (k = 0, n = 0; k < len && n < sb; ++k)
+      n += scnprintf(b + n, sb - n, "%02x ",
+               (u32)cmd[k]);
+  }
+  STAP_PRINTF("cmd %s\n", b);
+/*
+ * Group Listing:
+ *  + Group 0: 6Byte CDBs: scsi_ops[0x000] thru scsi_ops[0x01f]
+ *  + Group 1: 10Byte CDBs: scsi_ops[0x020] thru scsi_ops[0x03f]
+ *  + Group 2: 10Byte CDBs: scsi_ops[0x040] thru scsi_ops[0x05f]
+ *  + Group 3: Variable Length CDBs: scsi_ops[0x060] thru scsi_ops[0x07f]
+ *  + Group 4: 16Byte CDBs: scsi_ops[0x080] thru scsi_ops[0x09f]
+ *  + Group 5: 12Byte CDBs: scsi_ops[0x0a0] thru scsi_ops[0x0bf]
+ *    Group 6: Vendor Specific CDBs: scsi_ops[0x0c0] thru scsi_ops[0x0df]
+ *    Group 7: Vendor Specific CDBs: scsi_ops[0x0e0] thru scsi_ops[0x0ff]
+*/
+  group = (cmd[0] & 0xe0) >> 5;
+  switch(group) {
+    case 0:
+      lba = ((u8)cmd[2]) << 8 | (u8)cmd[3];
+      alen =  (u8)cmd[4];
+      control = (u8)cmd[5];
+      cdblen = 6;
+      break;
+    case 1:
+    case 2:
+      lba = ((u8)cmd[2]) << 24 | ((u8)cmd[3]) << 16 | ((u8)cmd[4]) << 8 | ((u8)cmd[5]);
+      alen =  ((u8)cmd[7]) << 8 | ((u8)cmd[8]);
+      control = (u8)cmd[9];
+      cdblen = 10;
+      break;
+    case 3:
+      lba = 0;
+      alen =  0;
+      control = 0;
+      cdblen = 32;
+      break;
+    case 4:
+      lba = ((u8)cmd[2]) << 24 | ((u8)cmd[3]) << 16 | ((u8)cmd[4]) << 8 | ((u8)cmd[5]);
+      alen = ((u8)cmd[10]) << 24 | ((u8)cmd[11]) << 16 | ((u8)cmd[12]) << 8 | ((u8)cmd[13]);
+      control = (u8)cmd[15];
+      cdblen = 16;
+      break;
+    case 5:
+      lba = ((u8)cmd[2]) << 24 | ((u8)cmd[3]) << 16 | ((u8)cmd[4]) << 8 | ((u8)cmd[5]);
+      alen = ((u8)cmd[6]) << 24 | ((u8)cmd[7]) << 16 | ((u8)cmd[8]) << 8 | ((u8)cmd[9]);
+      control = (u8)cmd[11];
+      cdblen = 12;
+      break;
+    default:
+      lba = 0;
+      alen =  0;
+      control = 0;
+      cdblen = 0xff;
+      break;
+  }
+  STAP_PRINTF("%30s cdblen %2d, lba 0x%8x, allocate/transfer len 0x%8x, control 0x%x\n",
+      scsi_ops[(int)cmd[0]], cdblen, lba, alen, control);
+  /*snprintf(STAP_RETVALUE,MAXSTRINGLEN,"%s",b);*/
+%}
+
+function dump_sense(key: long, asc: long, ascq: long) %{
+  STAP_PRINTF("[sense_key,asc,ascq]: [0x%x,0x%x,0x%x]\n", STAP_ARG_key, STAP_ARG_asc, STAP_ARG_ascq);
+%}

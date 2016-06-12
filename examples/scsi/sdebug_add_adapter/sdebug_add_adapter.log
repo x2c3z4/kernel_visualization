@@ -1,0 +1,106 @@
+
+kernel backtrace:
+ 0xfa5fe050 [scsi_debug]
+ 0xc1044778 : kretprobe_trampoline+0x0/0x38 [kernel] (inexact)
+ 0xfa49e000 [scsi_debug] (inexact)
+ 0xc12500d8 : _atomic_dec_and_lock+0x38/0x60 [kernel] (inexact)
+ 0xfa49e000 [scsi_debug] (inexact)
+ 0xc1044778 : kretprobe_trampoline+0x0/0x38 [kernel] (inexact)
+ 0xfa49e000 [scsi_debug] (inexact)
+ 0xc111dccd : free_pages_prepare+0xed/0x170 [kernel] (inexact)
+ 0xfa5fb000 [scsi_debug] (inexact)
+ 0xc1149fb8 : __vunmap+0x88/0xf0 [kernel] (inexact)
+ 0xc1149fb8 : __vunmap+0x88/0xf0 [kernel] (inexact)
+ 0xc10c16a2 : load_module+0x1ce2/0x23c0 [kernel] (inexact)
+ 0xc10c1ee5 : SyS_finit_module+0x75/0xc0 [kernel] (inexact)
+ 0xc112fbeb : vm_mmap_pgoff+0x7b/0xa0 [kernel] (inexact)
+ 0xc147ec1f : sysenter_after_call+0x0/0x16 [kernel] (inexact)
+     0 modprobe(2184):->sdebug_add_adapter 
+    28 modprobe(2184): ->pseudo_lld_bus_match dev=0xf510ac0c dev_driver=0xfa6042c0
+    33 modprobe(2184): <-pseudo_lld_bus_match return=0x1
+    44 modprobe(2184): ->sdebug_driver_probe dev=0xf510ac0c
+    53 modprobe(2184):  ->scsi_host_alloc sht=0xfa604000 privsize=0x4
+   330 modprobe(2184):  <-scsi_host_alloc return=0xf6ed8400
+   343 modprobe(2184):  ->scsi_add_host_with_dma shost=0xf6ed8400 dev=0xf510ac0c dma_dev=0xf510ac0c
+   351 modprobe(2184):   ->scsi_debug_info shp=0xf6ed8400
+   358 modprobe(2184):   <-scsi_debug_info return=0xfa604540
+   367 modprobe(2184):   ->scsi_setup_command_freelist shost=0xf6ed8400
+   376 modprobe(2184):    ->scsi_host_alloc_command shost=0xf6ed8400 gfp_mask=0xd0
+   384 modprobe(2184):    <-scsi_host_alloc_command return=0xf6c98800
+   387 modprobe(2184):   <-scsi_setup_command_freelist return=0x0
+   411 modprobe(2184):   ->scsi_bus_uevent dev=0xf6ed84fc env=0xc0067000
+   418 modprobe(2184):   <-scsi_bus_uevent return=0x0
+   429 modprobe(2184):   ->scsi_bus_match dev=0xf6ed84fc gendrv=0xf7f06004
+   435 modprobe(2184):   <-scsi_bus_match return=0x0
+   439 modprobe(2184):   ->scsi_bus_match dev=0xf6ed84fc gendrv=0xf7f39064
+   442 modprobe(2184):   <-scsi_bus_match return=0x0
+   448 modprobe(2184):   ->scsi_host_set_state shost=0xf6ed8400 state=0x2
+   455 modprobe(2184):   <-scsi_host_set_state return=0x0
+   490 modprobe(2184):   ->scsi_sysfs_add_host shost=0xf6ed8400
+   499 modprobe(2184):    ->spi_target_match cont=0xf6da3734 dev=0xf6ed84fc
+   508 modprobe(2184):     ->scsi_is_target_device dev=0xf6ed84fc
+   514 modprobe(2184):     <-scsi_is_target_device return=0x0
+   518 modprobe(2184):    <-spi_target_match return=0x0
+   522 modprobe(2184):    ->spi_host_match cont=0xf6da3700 dev=0xf6ed84fc
+   529 modprobe(2184):     ->scsi_is_host_device dev=0xf6ed84fc
+   535 modprobe(2184):     <-scsi_is_host_device return=0x1
+   538 modprobe(2184):     ->scsi_is_host_device dev=0xf6ed84fc
+   541 modprobe(2184):     <-scsi_is_host_device return=0x1
+   544 modprobe(2184):    <-spi_host_match return=0x0
+   549 modprobe(2184):    ->ata_tport_match cont=0xf6d87c00 dev=0xf6ed84fc
+   555 modprobe(2184):    <-ata_tport_match return=0x0
+   559 modprobe(2184):    ->ata_tlink_match cont=0xf6d87db8 dev=0xf6ed84fc
+   565 modprobe(2184):    <-ata_tlink_match return=0x0
+   569 modprobe(2184):    ->ata_tdev_match cont=0xf6d87dec dev=0xf6ed84fc
+   588 modprobe(2184):    <-ata_tdev_match return=0x0
+   595 modprobe(2184):    ->spi_device_match cont=0xf7e620e8 dev=0xf6ed84fc
+   604 modprobe(2184):     ->scsi_is_sdev_device dev=0xf6ed84fc
+   610 modprobe(2184):     <-scsi_is_sdev_device return=0x0
+   614 modprobe(2184):    <-spi_device_match return=0x0
+   617 modprobe(2184):    ->spi_target_match cont=0xf6da3734 dev=0xf6ed84fc
+   621 modprobe(2184):     ->scsi_is_target_device dev=0xf6ed84fc
+   624 modprobe(2184):     <-scsi_is_target_device return=0x0
+   627 modprobe(2184):    <-spi_target_match return=0x0
+   631 modprobe(2184):    ->spi_host_match cont=0xf6da3700 dev=0xf6ed84fc
+   635 modprobe(2184):     ->scsi_is_host_device dev=0xf6ed84fc
+   638 modprobe(2184):     <-scsi_is_host_device return=0x1
+   641 modprobe(2184):     ->scsi_is_host_device dev=0xf6ed84fc
+   644 modprobe(2184):     <-scsi_is_host_device return=0x1
+   648 modprobe(2184):    <-spi_host_match return=0x0
+   651 modprobe(2184):    ->ata_tport_match cont=0xf6d87c00 dev=0xf6ed84fc
+   655 modprobe(2184):    <-ata_tport_match return=0x0
+   658 modprobe(2184):    ->ata_tlink_match cont=0xf6d87db8 dev=0xf6ed84fc
+   661 modprobe(2184):    <-ata_tlink_match return=0x0
+   664 modprobe(2184):    ->ata_tdev_match cont=0xf6d87dec dev=0xf6ed84fc
+   667 modprobe(2184):    <-ata_tdev_match return=0x0
+   671 modprobe(2184):    ->spi_device_match cont=0xf7e620e8 dev=0xf6ed84fc
+   674 modprobe(2184):     ->scsi_is_sdev_device dev=0xf6ed84fc
+   677 modprobe(2184):     <-scsi_is_sdev_device return=0x0
+   680 modprobe(2184):    <-spi_device_match return=0x0
+   684 modprobe(2184):    ->spi_target_match cont=0xf6da3734 dev=0xf6ed84fc
+   687 modprobe(2184):     ->scsi_is_target_device dev=0xf6ed84fc
+   690 modprobe(2184):     <-scsi_is_target_device return=0x0
+   693 modprobe(2184):    <-spi_target_match return=0x0
+   697 modprobe(2184):    ->spi_host_match cont=0xf6da3700 dev=0xf6ed84fc
+   701 modprobe(2184):     ->scsi_is_host_device dev=0xf6ed84fc
+   704 modprobe(2184):     <-scsi_is_host_device return=0x1
+   707 modprobe(2184):     ->scsi_is_host_device dev=0xf6ed84fc
+   710 modprobe(2184):     <-scsi_is_host_device return=0x1
+   713 modprobe(2184):    <-spi_host_match return=0x0
+   717 modprobe(2184):    ->ata_tport_match cont=0xf6d87c00 dev=0xf6ed84fc
+   720 modprobe(2184):    <-ata_tport_match return=0x0
+   723 modprobe(2184):    ->ata_tlink_match cont=0xf6d87db8 dev=0xf6ed84fc
+   726 modprobe(2184):    <-ata_tlink_match return=0x0
+   729 modprobe(2184):    ->ata_tdev_match cont=0xf6d87dec dev=0xf6ed84fc
+   732 modprobe(2184):    <-ata_tdev_match return=0x0
+   735 modprobe(2184):   <-scsi_sysfs_add_host return=0x0
+   738 modprobe(2184):  <-scsi_add_host_with_dma return=0x0
+   743 modprobe(2184):  ->scsi_scan_host shost=0xf6ed8400
+   751 modprobe(2184):   ->scsi_autopm_get_host shost=0xf6ed8400
+   768 modprobe(2184):   <-scsi_autopm_get_host return=0x0
+   773 modprobe(2184):   ->scsi_host_get shost=0xf6ed8400
+   779 modprobe(2184):   <-scsi_host_get return=0xf6ed8400
+   788 modprobe(2184):  <-scsi_scan_host 
+   792 modprobe(2184): <-sdebug_driver_probe return=0x0
+   799 modprobe(2184):<-sdebug_add_adapter return=0x0
+---------------------------------------------------------
