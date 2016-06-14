@@ -359,7 +359,7 @@ def main():
                 func_name = l.split('+')[0].strip().split('`')[-1]
             else:
                 if ':' in l:
-                    func_name = l.split(':')[1].split('+')[0].strip()
+                    func_name = l.split(':')[-1].split('+')[0].strip()
                     if func_name not in black_lists_stap:
                         bt_list.append(func_name)
                 else:

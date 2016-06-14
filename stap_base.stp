@@ -31,8 +31,6 @@ probe $2.return {
 }
 
 probe $1.call   {
-  printf("\nkernel backtrace:\n")
-  print_backtrace()
   black_lists["stapio"] = 1
   black_lists["swapper/0"] = 1
   g_incalls[tid()] = 1
@@ -41,5 +39,7 @@ probe $1.call   {
 probe $1.return {
   trace(-1, $$return)
   delete g_incalls[tid()]
+  printf("\nkernel backtrace:\n")
+  print_backtrace()
   printf("---------------------------------------------------------\n")
 }
