@@ -1,0 +1,804 @@
+     0 kworker/u8:1(18218):->scsi_probe_and_add_lun starget=0xf6d8e400 lun=0x0 bflagsp=0xd970bdc8 sdevp=0x0 rescan=0x0 hostdata=0x0
+     6 kworker/u8:1(18218): ->scsi_is_host_device dev=0xf687c4fc
+     9 kworker/u8:1(18218): <-scsi_is_host_device return=0x1
+    12 kworker/u8:1(18218): ->scsi_device_lookup_by_target starget=0xf6d8e400 lun=0x0
+    16 kworker/u8:1(18218):  ->scsi_is_host_device dev=0xf687c4fc
+    18 kworker/u8:1(18218):  <-scsi_is_host_device return=0x1
+    21 kworker/u8:1(18218): <-scsi_device_lookup_by_target return=0x0
+    24 kworker/u8:1(18218): ->scsi_alloc_sdev starget=0xf6d8e400 lun=0x0 hostdata=0x0
+    28 kworker/u8:1(18218):  ->scsi_is_host_device dev=0xf687c4fc
+    30 kworker/u8:1(18218):  <-scsi_is_host_device return=0x1
+    33 kworker/u8:1(18218):  ->scsi_alloc_queue sdev=0xf687c000
+    39 kworker/u8:1(18218):   ->__scsi_alloc_queue shost=0xf687c400 request_fn=0xf7e994b0
+    45 kworker/u8:1(18218):    ->blk_init_queue rfn=0xf7e994b0 lock=0x0
+    50 kworker/u8:1(18218):     ->blk_init_queue_node rfn=0xf7e994b0 lock=0x0 node_id=0xffffffffffffffff
+    56 kworker/u8:1(18218):      ->blk_alloc_queue_node gfp_mask=0xd0 node_id=0xffffffffffffffff
+    67 kworker/u8:1(18218):       ->blkcg_init_queue q=0xf68fc928
+    72 kworker/u8:1(18218):        ->blk_throtl_init q=0xf68fc928
+    78 kworker/u8:1(18218):         ->blkcg_activate_policy q=0xf68fc928 pol=0xc163e6c0
+    83 kworker/u8:1(18218):          ->blkcg_policy_enabled q=0xf68fc928 pol=0xc163e6c0
+    86 kworker/u8:1(18218):          <-blkcg_policy_enabled return=0x0
+    89 kworker/u8:1(18218):          ->blkg_alloc blkcg=0xc163e220 q=0xf68fc928 gfp_mask=0xd0
+    93 kworker/u8:1(18218):           ->blkcg_policy_enabled q=0xf68fc928 pol=0xc163e6c0
+    96 kworker/u8:1(18218):           <-blkcg_policy_enabled return=0x0
+    98 kworker/u8:1(18218):           ->blkcg_policy_enabled q=0xf68fc928 pol=0xc163f5e0
+   100 kworker/u8:1(18218):           <-blkcg_policy_enabled return=0x0
+   102 kworker/u8:1(18218):          <-blkg_alloc return=0xf3efcd80
+   105 kworker/u8:1(18218):          ->blk_queue_bypass_start q=0xf68fc928
+   107 kworker/u8:1(18218):          <-blk_queue_bypass_start 
+   111 kworker/u8:1(18218):          ->__blkg_lookup blkcg=0xc163e220 q=0xf68fc928 update_hint=0x0
+   114 kworker/u8:1(18218):          <-__blkg_lookup return=0x0
+   117 kworker/u8:1(18218):          ->blkg_create blkcg=0xc163e220 q=0xf68fc928 new_blkg=0xf3efcd80
+   121 kworker/u8:1(18218):          <-blkg_create return=0xf3efcd80
+   125 kworker/u8:1(18218):          ->throtl_pd_init blkg=0xf3efcd80
+   131 kworker/u8:1(18218):          <-throtl_pd_init 
+   133 kworker/u8:1(18218):          ->blk_queue_bypass_end q=0xf68fc928
+   136 kworker/u8:1(18218):          <-blk_queue_bypass_end 
+   138 kworker/u8:1(18218):         <-blkcg_activate_policy return=0x0
+   140 kworker/u8:1(18218):        <-blk_throtl_init return=0x0
+   142 kworker/u8:1(18218):       <-blkcg_init_queue return=0x0
+   145 kworker/u8:1(18218):      <-blk_alloc_queue_node return=0xf68fc928
+   148 kworker/u8:1(18218):      ->blk_init_allocated_queue q=0xf68fc928 rfn=0xf7e994b0 lock=0x0
+   153 kworker/u8:1(18218):       ->blk_init_rl rl=0xf68fc944 q=0xf68fc928 gfp_mask=0xd0
+   157 kworker/u8:1(18218):       <-blk_init_rl return=0x0
+   161 kworker/u8:1(18218):       ->blk_queue_make_request q=0xf68fc928 mfn=0xc122ae20
+   165 kworker/u8:1(18218):        ->blk_queue_congestion_threshold q=0xf68fc928
+   169 kworker/u8:1(18218):        <-blk_queue_congestion_threshold 
+   172 kworker/u8:1(18218):       <-blk_queue_make_request 
+   175 kworker/u8:1(18218):       ->elevator_init q=0xf68fc928 name=0x0
+   179 kworker/u8:1(18218):        ->elevator_get name=0xc1581edb try_loading=0x0
+   184 kworker/u8:1(18218):         ->elevator_find name=0xc1581edb
+   188 kworker/u8:1(18218):         <-elevator_find return=0xc163e880
+   191 kworker/u8:1(18218):        <-elevator_get return=0xc163e880
+   194 kworker/u8:1(18218):        ->cfq_init_queue q=0xf68fc928 e=0xc163e880
+   198 kworker/u8:1(18218):         ->elevator_alloc q=0xf68fc928 e=0xc163e880
+   203 kworker/u8:1(18218):         <-elevator_alloc return=0xf6d81c00
+   205 kworker/u8:1(18218):         ->blkcg_activate_policy q=0xf68fc928 pol=0xc163f5e0
+   208 kworker/u8:1(18218):          ->blkcg_policy_enabled q=0xf68fc928 pol=0xc163f5e0
+   220 kworker/u8:1(18218):          <-blkcg_policy_enabled return=0x0
+   223 kworker/u8:1(18218):          ->blkg_alloc blkcg=0xc163e220 q=0xf68fc928 gfp_mask=0xd0
+   225 kworker/u8:1(18218):           ->blkcg_policy_enabled q=0xf68fc928 pol=0xc163e6c0
+   227 kworker/u8:1(18218):           <-blkcg_policy_enabled return=0x1
+   230 kworker/u8:1(18218):           ->blkcg_policy_enabled q=0xf68fc928 pol=0xc163f5e0
+   232 kworker/u8:1(18218):           <-blkcg_policy_enabled return=0x0
+   233 kworker/u8:1(18218):          <-blkg_alloc return=0xf3efc900
+   236 kworker/u8:1(18218):          ->blk_queue_bypass_start q=0xf68fc928
+   238 kworker/u8:1(18218):          <-blk_queue_bypass_start 
+   240 kworker/u8:1(18218):          ->__blkg_lookup blkcg=0xc163e220 q=0xf68fc928 update_hint=0x0
+   243 kworker/u8:1(18218):          <-__blkg_lookup return=0xf3efcd80
+   245 kworker/u8:1(18218):          ->blkg_free blkg=0xf3efc900
+   248 kworker/u8:1(18218):           ->blk_exit_rl rl=0xf3efc91c
+   251 kworker/u8:1(18218):           <-blk_exit_rl 
+   253 kworker/u8:1(18218):          <-blkg_free 
+   256 kworker/u8:1(18218):          ->cfq_pd_init blkg=0xf3efcd80
+   260 kworker/u8:1(18218):          <-cfq_pd_init 
+   262 kworker/u8:1(18218):          ->blk_queue_bypass_end q=0xf68fc928
+   264 kworker/u8:1(18218):          <-blk_queue_bypass_end 
+   266 kworker/u8:1(18218):         <-blkcg_activate_policy return=0x0
+   270 kworker/u8:1(18218):         ->cfq_link_cfqq_cfqg cfqq=0xf6cc5148 cfqg=0xf69c4400
+   272 kworker/u8:1(18218):         <-cfq_link_cfqq_cfqg 
+   274 kworker/u8:1(18218):        <-cfq_init_queue return=0x0
+   277 kworker/u8:1(18218):       <-elevator_init return=0x0
+   279 kworker/u8:1(18218):      <-blk_init_allocated_queue return=0xf68fc928
+   281 kworker/u8:1(18218):     <-blk_init_queue_node return=0xf68fc928
+   283 kworker/u8:1(18218):    <-blk_init_queue return=0xf68fc928
+   286 kworker/u8:1(18218):    ->blk_queue_max_segments q=0xf68fc928 max_segments=0x100
+   290 kworker/u8:1(18218):    <-blk_queue_max_segments 
+   293 kworker/u8:1(18218):    ->blk_queue_max_hw_sectors q=0xf68fc928 max_hw_sectors=0xffff
+   298 kworker/u8:1(18218):     ->blk_limits_max_hw_sectors limits=0xf68fcc9c max_hw_sectors=0xffff
+   302 kworker/u8:1(18218):     <-blk_limits_max_hw_sectors 
+   304 kworker/u8:1(18218):    <-blk_queue_max_hw_sectors 
+   306 kworker/u8:1(18218):    ->scsi_calculate_bounce_limit shost=0xf687c400
+   311 kworker/u8:1(18218):    <-scsi_calculate_bounce_limit return=0xffffffff
+   314 kworker/u8:1(18218):    ->blk_queue_bounce_limit q=0xf68fc928 max_addr=0xffffffff
+   318 kworker/u8:1(18218):    <-blk_queue_bounce_limit 
+   321 kworker/u8:1(18218):    ->blk_queue_segment_boundary q=0xf68fc928 mask=0xffffffff
+   325 kworker/u8:1(18218):    <-blk_queue_segment_boundary 
+   328 kworker/u8:1(18218):    ->blk_queue_max_segment_size q=0xf68fc928 max_size=0x10000
+   332 kworker/u8:1(18218):    <-blk_queue_max_segment_size 
+   335 kworker/u8:1(18218):    ->blk_queue_dma_alignment q=0xf68fc928 mask=0x3
+   338 kworker/u8:1(18218):    <-blk_queue_dma_alignment 
+   341 kworker/u8:1(18218):   <-__scsi_alloc_queue return=0xf68fc928
+   344 kworker/u8:1(18218):   ->blk_queue_prep_rq q=0xf68fc928 pfn=0xf7e98e00
+   349 kworker/u8:1(18218):   <-blk_queue_prep_rq 
+   353 kworker/u8:1(18218):   ->blk_queue_unprep_rq q=0xf68fc928 ufn=0xf7e98860
+   358 kworker/u8:1(18218):   <-blk_queue_unprep_rq 
+   362 kworker/u8:1(18218):   ->blk_queue_rq_timed_out q=0xf68fc928 fn=0xf7e96c30
+   367 kworker/u8:1(18218):   <-blk_queue_rq_timed_out 
+   371 kworker/u8:1(18218):   ->blk_queue_lld_busy q=0xf68fc928 fn=0xf7e99110
+   376 kworker/u8:1(18218):   <-blk_queue_lld_busy 
+   378 kworker/u8:1(18218):  <-scsi_alloc_queue return=0xf68fc928
+   382 kworker/u8:1(18218):  ->blk_get_queue q=0xf68fc928
+   387 kworker/u8:1(18218):  <-blk_get_queue return=0x1
+   392 kworker/u8:1(18218):  ->scsi_adjust_queue_depth sdev=0xf687c000 tagged=0x0 tags=0x10
+   398 kworker/u8:1(18218):   ->scsi_adjust_queue_depth sdev=0xf687c000 tagged=0x0 tags=0x10
+   403 kworker/u8:1(18218):   <-scsi_adjust_queue_depth 
+   406 kworker/u8:1(18218):  <-scsi_adjust_queue_depth 
+   409 kworker/u8:1(18218):  ->scsi_sysfs_device_initialize sdev=0xf687c000
+   419 kworker/u8:1(18218):   ->ata_tport_match cont=0xf6ed4800 dev=0xf687c0d4
+   423 kworker/u8:1(18218):   <-ata_tport_match return=0x0
+   427 kworker/u8:1(18218):   ->ata_tlink_match cont=0xf6ed49b8 dev=0xf687c0d4
+   429 kworker/u8:1(18218):   <-ata_tlink_match return=0x0
+   432 kworker/u8:1(18218):   ->ata_tdev_match cont=0xf6ed49ec dev=0xf687c0d4
+   434 kworker/u8:1(18218):   <-ata_tdev_match return=0x0
+   437 kworker/u8:1(18218):   ->spi_target_match cont=0xf6dbe134 dev=0xf687c0d4
+   440 kworker/u8:1(18218):    ->scsi_is_target_device dev=0xf687c0d4
+   442 kworker/u8:1(18218):    <-scsi_is_target_device return=0x0
+   445 kworker/u8:1(18218):   <-spi_target_match return=0x0
+   447 kworker/u8:1(18218):   ->spi_host_match cont=0xf6dbe100 dev=0xf687c0d4
+   450 kworker/u8:1(18218):    ->scsi_is_host_device dev=0xf687c0d4
+   452 kworker/u8:1(18218):    <-scsi_is_host_device return=0x0
+   454 kworker/u8:1(18218):   <-spi_host_match return=0x0
+   457 kworker/u8:1(18218):  <-scsi_sysfs_device_initialize 
+   460 kworker/u8:1(18218):  ->scsi_debug_slave_alloc sdp=0xf687c000
+   467 kworker/u8:1(18218):  <-scsi_debug_slave_alloc return=0x0
+   469 kworker/u8:1(18218): <-scsi_alloc_sdev return=0xf687c000
+   474 kworker/u8:1(18218): ->scsi_execute_req_flags sdev=0xf687c000 cmd=0xd970bd6f data_direction=0x2 buffer=0xf6dc0a00 bufflen=0x24 sshdr=0xd970bd5e timeout=0x1405 retries=0x3 resid=0xd970bd58 flags=0x0
+   480 kworker/u8:1(18218):  ->scsi_execute sdev=0xf687c000 cmd=0xd970bd6f data_direction=0x2 buffer=0xf6dc0a00 bufflen=0x24 sense=0xf4ae70c0 timeout=0x1405 retries=0x3 flags=0x0 resid=0xd970bd58
+   484 kworker/u8:1(18218):   ->blk_get_request q=0xf68fc928 rw=0x0 gfp_mask=0x10
+   488 kworker/u8:1(18218):    ->get_request q=0xf68fc928 rw_flags=0x0 bio=0x0 gfp_mask=0x10
+   492 kworker/u8:1(18218):     ->elv_may_queue q=0xf68fc928 rw=0x0
+   495 kworker/u8:1(18218):      ->cfq_may_queue q=0xf68fc928 rw=0x0
+   499 kworker/u8:1(18218):       ->ioc_lookup_icq ioc=0xf38d47c0 q=0xf68fc928
+   502 kworker/u8:1(18218):       <-ioc_lookup_icq return=0x0
+   504 kworker/u8:1(18218):      <-cfq_may_queue return=0x0
+   506 kworker/u8:1(18218):     <-elv_may_queue return=0x0
+   509 kworker/u8:1(18218):     ->blk_rq_init q=0xf68fc928 rq=0xf687d2d0
+   512 kworker/u8:1(18218):     <-blk_rq_init 
+   514 kworker/u8:1(18218):    <-get_request return=0xf687d2d0
+   516 kworker/u8:1(18218):   <-blk_get_request return=0xf687d2d0
+   519 kworker/u8:1(18218):   ->blk_rq_set_block_pc rq=0xf687d2d0
+   521 kworker/u8:1(18218):   <-blk_rq_set_block_pc 
+   524 kworker/u8:1(18218):   ->blk_rq_map_kern q=0xf68fc928 rq=0xf687d2d0 kbuf=0xf6dc0a00 len=0x24 gfp_mask=0x10
+   530 kworker/u8:1(18218):    ->bio_map_kern q=0xf68fc928 data=0xf6dc0a00 len=0x24 gfp_mask=0x10
+   535 kworker/u8:1(18218):     ->bio_alloc_bioset gfp_mask=0x10 nr_iovecs=0x1 bs=0x0
+   538 kworker/u8:1(18218):     <-bio_alloc_bioset return=0xf3efc900
+   542 kworker/u8:1(18218):     ->__bio_add_page q=0xf68fc928 bio=0xf3efc900 page=0xf632f800 len=0x24 offset=0xa00 max_sectors=0xffff
+   546 kworker/u8:1(18218):     <-__bio_add_page return=0x24
+   548 kworker/u8:1(18218):    <-bio_map_kern return=0xf3efc900
+   552 kworker/u8:1(18218):    ->blk_rq_append_bio q=0xf68fc928 rq=0xf687d2d0 bio=0xf3efc900
+   556 kworker/u8:1(18218):     ->blk_rq_bio_prep q=0xf68fc928 rq=0xf687d2d0 bio=0xf3efc900
+   560 kworker/u8:1(18218):      ->bio_phys_segments q=0xf68fc928 bio=0xf3efc900
+   564 kworker/u8:1(18218):       ->blk_recount_segments q=0xf68fc928 bio=0xf3efc900
+   568 kworker/u8:1(18218):        ->__blk_recalc_rq_segments q=0xf68fc928 bio=0xf3efc900
+   571 kworker/u8:1(18218):        <-__blk_recalc_rq_segments return=0x1
+   573 kworker/u8:1(18218):       <-blk_recount_segments 
+   575 kworker/u8:1(18218):      <-bio_phys_segments return=0x1
+   577 kworker/u8:1(18218):     <-blk_rq_bio_prep 
+   579 kworker/u8:1(18218):    <-blk_rq_append_bio return=0x0
+   582 kworker/u8:1(18218):    ->blk_queue_bounce q=0xf68fc928 bio_orig=0xf687d310
+   585 kworker/u8:1(18218):    <-blk_queue_bounce 
+   587 kworker/u8:1(18218):   <-blk_rq_map_kern return=0x0
+   590 kworker/u8:1(18218):   ->blk_execute_rq q=0xf68fc928 bd_disk=0x0 rq=0xf687d2d0 at_head=0x1
+   594 kworker/u8:1(18218):    ->blk_execute_rq_nowait q=0xf68fc928 bd_disk=0x0 rq=0xf687d2d0 at_head=0x1 done=0xc122e1c0
+   598 kworker/u8:1(18218):     ->__elv_add_request q=0xf68fc928 rq=0xf687d2d0 where=0x1
+   601 kworker/u8:1(18218):     <-__elv_add_request 
+   603 kworker/u8:1(18218):     ->__blk_run_queue q=0xf68fc928
+   606 kworker/u8:1(18218):      ->scsi_request_fn q=0xf68fc928
+   609 kworker/u8:1(18218):       ->blk_peek_request q=0xf68fc928
+   612 kworker/u8:1(18218):        ->scsi_prep_fn q=0xf68fc928 req=0xf687d2d0
+   616 kworker/u8:1(18218):         ->scsi_get_command dev=0xf687c000 gfp_mask=0x20
+   619 kworker/u8:1(18218):          ->__scsi_get_command shost=0xf687c400 gfp_mask=0x20
+   622 kworker/u8:1(18218):           ->scsi_host_alloc_command shost=0xf687c400 gfp_mask=0x20
+   625 kworker/u8:1(18218):           <-scsi_host_alloc_command return=0xf6fe7000
+   628 kworker/u8:1(18218):          <-__scsi_get_command return=0xf6fe7000
+   630 kworker/u8:1(18218):         <-scsi_get_command return=0xf6fe7000
+   633 kworker/u8:1(18218):         ->scsi_setup_blk_pc_cmnd sdev=0xf687c000 req=0xf687d2d0
+   636 kworker/u8:1(18218):          ->scsi_init_io cmd=0xf6fe7000 gfp_mask=0x20
+   639 kworker/u8:1(18218):           ->scsi_init_sgtable req=0xf687d2d0 sdb=0xf6fe7080 gfp_mask=0x20
+   643 kworker/u8:1(18218):            ->scsi_alloc_sgtable sdb=0xf6fe7080 nents=0x1 gfp_mask=0x20
+   646 kworker/u8:1(18218):             ->scsi_sg_alloc nents=0x1 gfp_mask=0x20
+   649 kworker/u8:1(18218):             <-scsi_sg_alloc return=0xf6edb400
+   652 kworker/u8:1(18218):            <-scsi_alloc_sgtable return=0x0
+   655 kworker/u8:1(18218):            ->blk_rq_map_sg q=0xf68fc928 rq=0xf687d2d0 sglist=0xf6edb400
+   659 kworker/u8:1(18218):             ->__blk_bios_map_sg q=0xf68fc928 bio=0xf3efc900 sglist=0xf6edb400 sg=0xd970bb00
+   661 kworker/u8:1(18218):             <-__blk_bios_map_sg return=0x1
+   663 kworker/u8:1(18218):            <-blk_rq_map_sg return=0x1
+   666 kworker/u8:1(18218):           <-scsi_init_sgtable return=0x0
+   668 kworker/u8:1(18218):          <-scsi_init_io return=0x0
+   670 kworker/u8:1(18218):         <-scsi_setup_blk_pc_cmnd return=0x0
+   672 kworker/u8:1(18218):        <-scsi_prep_fn return=0x0
+   675 kworker/u8:1(18218):       <-blk_peek_request return=0xf687d2d0
+   678 kworker/u8:1(18218):       ->blk_start_request req=0xf687d2d0
+   680 kworker/u8:1(18218):        ->blk_dequeue_request rq=0xf687d2d0
+   683 kworker/u8:1(18218):        <-blk_dequeue_request 
+   685 kworker/u8:1(18218):        ->blk_add_timer req=0xf687d2d0
+   688 kworker/u8:1(18218):        <-blk_add_timer 
+   690 kworker/u8:1(18218):       <-blk_start_request 
+   693 kworker/u8:1(18218):       ->scsi_init_cmd_errh cmd=0xf6fe7000
+   696 kworker/u8:1(18218):       <-scsi_init_cmd_errh 
+   699 kworker/u8:1(18218):       ->scsi_dispatch_cmd cmd=0xf6fe7000
+   702 kworker/u8:1(18218):        ->scsi_log_send cmd=0xf6fe7000
+   704 kworker/u8:1(18218):        <-scsi_log_send 
+   707 kworker/u8:1(18218):        ->scsi_debug_queuecommand shost=0xf687c400 cmd=0xf6fe7000
+   712 kworker/u8:1(18218):         ->scsi_cmd_get_serial host=0xf687c400 cmd=0xf6fe7000
+   715 kworker/u8:1(18218):         <-scsi_cmd_get_serial 
+   718 kworker/u8:1(18218):         ->scsi_debug_queuecommand_lck SCpnt=0xf6fe7000 done=0xf7e91990
+   726 kworker/u8:1(18218):          ->devInfoReg sdev=0xf687c000
+   731 kworker/u8:1(18218):          <-devInfoReg return=0xf4b39c80
+   734 kworker/u8:1(18218):          ->fill_from_dev_buffer scp=0xf6fe7000 arr=0xf69c4000 arr_len=0x24
+   740 kworker/u8:1(18218):          <-fill_from_dev_buffer return=0x0
+   743 kworker/u8:1(18218):          ->schedule_resp cmnd=0xf6fe7000 devip=0xf4b39c80 done=0xf7e91990 scsi_result=0x0 delta_jiff=0x0
+   748 kworker/u8:1(18218):           ->scsi_done cmd=0xf6fe7000
+   751 kworker/u8:1(18218):            ->blk_complete_request req=0xf687d2d0
+   754 kworker/u8:1(18218):             ->__blk_complete_request req=0xf687d2d0
+   757 kworker/u8:1(18218):             <-__blk_complete_request 
+   759 kworker/u8:1(18218):            <-blk_complete_request 
+   762 kworker/u8:1(18218):           <-scsi_done 
+   764 kworker/u8:1(18218):          <-schedule_resp return=0x0
+   766 kworker/u8:1(18218):         <-scsi_debug_queuecommand_lck return=0x0
+   769 kworker/u8:1(18218):        <-scsi_debug_queuecommand return=0x0
+   771 kworker/u8:1(18218):       <-scsi_dispatch_cmd return=0x0
+   773 kworker/u8:1(18218):       ->blk_peek_request q=0xf68fc928
+   775 kworker/u8:1(18218):       <-blk_peek_request return=0x0
+   777 kworker/u8:1(18218):      <-scsi_request_fn 
+   779 kworker/u8:1(18218):     <-__blk_run_queue 
+   781 kworker/u8:1(18218):    <-blk_execute_rq_nowait 
+   862 kworker/u8:1(18218):   <-blk_execute_rq return=0x0
+   865 kworker/u8:1(18218):   ->blk_put_request req=0xf687d2d0
+   868 kworker/u8:1(18218):    ->__blk_put_request q=0xf68fc928 req=0xf687d2d0
+   872 kworker/u8:1(18218):     ->elv_completed_request q=0xf68fc928 rq=0xf687d2d0
+   874 kworker/u8:1(18218):     <-elv_completed_request 
+   877 kworker/u8:1(18218):     ->freed_request rl=0xf68fc944 flags=0x13850000
+   880 kworker/u8:1(18218):      ->__freed_request rl=0xf68fc944 sync=0x1
+   882 kworker/u8:1(18218):      <-__freed_request 
+   884 kworker/u8:1(18218):     <-freed_request 
+   886 kworker/u8:1(18218):    <-__blk_put_request 
+   888 kworker/u8:1(18218):   <-blk_put_request 
+   890 kworker/u8:1(18218):  <-scsi_execute return=0x0
+   894 kworker/u8:1(18218):  ->scsi_normalize_sense sense_buffer=0xf4ae70c0 sb_len=0x60 sshdr=0xd970bd5e
+   897 kworker/u8:1(18218):   ->scsi_normalize_sense sense_buffer=0xf4ae70c0 sb_len=0x60 sshdr=0xd970bd5e
+   900 kworker/u8:1(18218):   <-scsi_normalize_sense return=0x0
+   902 kworker/u8:1(18218):  <-scsi_normalize_sense return=0x0
+   904 kworker/u8:1(18218): <-scsi_execute_req_flags return=0x0
+   908 kworker/u8:1(18218): ->scsi_get_device_flags sdev=0xf687c000 vendor=0xf6dc0a08 model=0xf6dc0a10
+   913 kworker/u8:1(18218):  ->scsi_get_device_flags_keyed sdev=0xf687c000 vendor=0xf6dc0a08 model=0xf6dc0a10 key=0x0
+   924 kworker/u8:1(18218):  <-scsi_get_device_flags_keyed return=0x0
+   927 kworker/u8:1(18218): <-scsi_get_device_flags return=0x0
+   931 kworker/u8:1(18218): ->scsi_execute_req_flags sdev=0xf687c000 cmd=0xd970bd6f data_direction=0x2 buffer=0xf6dc0a00 bufflen=0x60 sshdr=0xd970bd5e timeout=0x1405 retries=0x3 resid=0xd970bd58 flags=0x0
+   936 kworker/u8:1(18218):  ->scsi_execute sdev=0xf687c000 cmd=0xd970bd6f data_direction=0x2 buffer=0xf6dc0a00 bufflen=0x60 sense=0xf4ae70c0 timeout=0x1405 retries=0x3 flags=0x0 resid=0xd970bd58
+   939 kworker/u8:1(18218):   ->blk_get_request q=0xf68fc928 rw=0x0 gfp_mask=0x10
+   942 kworker/u8:1(18218):    ->get_request q=0xf68fc928 rw_flags=0x0 bio=0x0 gfp_mask=0x10
+   945 kworker/u8:1(18218):     ->elv_may_queue q=0xf68fc928 rw=0x0
+   947 kworker/u8:1(18218):      ->cfq_may_queue q=0xf68fc928 rw=0x0
+   950 kworker/u8:1(18218):       ->ioc_lookup_icq ioc=0xf38d47c0 q=0xf68fc928
+   952 kworker/u8:1(18218):       <-ioc_lookup_icq return=0x0
+   954 kworker/u8:1(18218):      <-cfq_may_queue return=0x0
+   956 kworker/u8:1(18218):     <-elv_may_queue return=0x0
+   959 kworker/u8:1(18218):     ->blk_rq_init q=0xf68fc928 rq=0xf687d2d0
+   961 kworker/u8:1(18218):     <-blk_rq_init 
+   963 kworker/u8:1(18218):    <-get_request return=0xf687d2d0
+   965 kworker/u8:1(18218):   <-blk_get_request return=0xf687d2d0
+   967 kworker/u8:1(18218):   ->blk_rq_set_block_pc rq=0xf687d2d0
+   969 kworker/u8:1(18218):   <-blk_rq_set_block_pc 
+   972 kworker/u8:1(18218):   ->blk_rq_map_kern q=0xf68fc928 rq=0xf687d2d0 kbuf=0xf6dc0a00 len=0x60 gfp_mask=0x10
+   975 kworker/u8:1(18218):    ->bio_map_kern q=0xf68fc928 data=0xf6dc0a00 len=0x60 gfp_mask=0x10
+   978 kworker/u8:1(18218):     ->bio_alloc_bioset gfp_mask=0x10 nr_iovecs=0x1 bs=0x0
+   980 kworker/u8:1(18218):     <-bio_alloc_bioset return=0xf3efc900
+   984 kworker/u8:1(18218):     ->__bio_add_page q=0xf68fc928 bio=0xf3efc900 page=0xf632f800 len=0x60 offset=0xa00 max_sectors=0xffff
+   986 kworker/u8:1(18218):     <-__bio_add_page return=0x60
+   988 kworker/u8:1(18218):    <-bio_map_kern return=0xf3efc900
+   991 kworker/u8:1(18218):    ->blk_rq_append_bio q=0xf68fc928 rq=0xf687d2d0 bio=0xf3efc900
+   993 kworker/u8:1(18218):     ->blk_rq_bio_prep q=0xf68fc928 rq=0xf687d2d0 bio=0xf3efc900
+   996 kworker/u8:1(18218):      ->bio_phys_segments q=0xf68fc928 bio=0xf3efc900
+  1000 kworker/u8:1(18218):       ->blk_recount_segments q=0xf68fc928 bio=0xf3efc900
+  1003 kworker/u8:1(18218):        ->__blk_recalc_rq_segments q=0xf68fc928 bio=0xf3efc900
+  1005 kworker/u8:1(18218):        <-__blk_recalc_rq_segments return=0x1
+  1007 kworker/u8:1(18218):       <-blk_recount_segments 
+  1009 kworker/u8:1(18218):      <-bio_phys_segments return=0x1
+  1011 kworker/u8:1(18218):     <-blk_rq_bio_prep 
+  1013 kworker/u8:1(18218):    <-blk_rq_append_bio return=0x0
+  1016 kworker/u8:1(18218):    ->blk_queue_bounce q=0xf68fc928 bio_orig=0xf687d310
+  1018 kworker/u8:1(18218):    <-blk_queue_bounce 
+  1020 kworker/u8:1(18218):   <-blk_rq_map_kern return=0x0
+  1023 kworker/u8:1(18218):   ->blk_execute_rq q=0xf68fc928 bd_disk=0x0 rq=0xf687d2d0 at_head=0x1
+  1026 kworker/u8:1(18218):    ->blk_execute_rq_nowait q=0xf68fc928 bd_disk=0x0 rq=0xf687d2d0 at_head=0x1 done=0xc122e1c0
+  1029 kworker/u8:1(18218):     ->__elv_add_request q=0xf68fc928 rq=0xf687d2d0 where=0x1
+  1031 kworker/u8:1(18218):     <-__elv_add_request 
+  1033 kworker/u8:1(18218):     ->__blk_run_queue q=0xf68fc928
+  1036 kworker/u8:1(18218):      ->scsi_request_fn q=0xf68fc928
+  1038 kworker/u8:1(18218):       ->blk_peek_request q=0xf68fc928
+  1041 kworker/u8:1(18218):        ->scsi_prep_fn q=0xf68fc928 req=0xf687d2d0
+  1043 kworker/u8:1(18218):         ->scsi_get_command dev=0xf687c000 gfp_mask=0x20
+  1046 kworker/u8:1(18218):          ->__scsi_get_command shost=0xf687c400 gfp_mask=0x20
+  1049 kworker/u8:1(18218):           ->scsi_host_alloc_command shost=0xf687c400 gfp_mask=0x20
+  1051 kworker/u8:1(18218):           <-scsi_host_alloc_command return=0xf6fe7000
+  1054 kworker/u8:1(18218):          <-__scsi_get_command return=0xf6fe7000
+  1056 kworker/u8:1(18218):         <-scsi_get_command return=0xf6fe7000
+  1058 kworker/u8:1(18218):         ->scsi_setup_blk_pc_cmnd sdev=0xf687c000 req=0xf687d2d0
+  1063 kworker/u8:1(18218):          ->scsi_init_io cmd=0xf6fe7000 gfp_mask=0x20
+  1066 kworker/u8:1(18218):           ->scsi_init_sgtable req=0xf687d2d0 sdb=0xf6fe7080 gfp_mask=0x20
+  1069 kworker/u8:1(18218):            ->scsi_alloc_sgtable sdb=0xf6fe7080 nents=0x1 gfp_mask=0x20
+  1072 kworker/u8:1(18218):             ->scsi_sg_alloc nents=0x1 gfp_mask=0x20
+  1075 kworker/u8:1(18218):             <-scsi_sg_alloc return=0xf6edb400
+  1077 kworker/u8:1(18218):            <-scsi_alloc_sgtable return=0x0
+  1079 kworker/u8:1(18218):            ->blk_rq_map_sg q=0xf68fc928 rq=0xf687d2d0 sglist=0xf6edb400
+  1083 kworker/u8:1(18218):             ->__blk_bios_map_sg q=0xf68fc928 bio=0xf3efc900 sglist=0xf6edb400 sg=0xd970bb00
+  1085 kworker/u8:1(18218):             <-__blk_bios_map_sg return=0x1
+  1087 kworker/u8:1(18218):            <-blk_rq_map_sg return=0x1
+  1089 kworker/u8:1(18218):           <-scsi_init_sgtable return=0x0
+  1091 kworker/u8:1(18218):          <-scsi_init_io return=0x0
+  1093 kworker/u8:1(18218):         <-scsi_setup_blk_pc_cmnd return=0x0
+  1096 kworker/u8:1(18218):        <-scsi_prep_fn return=0x0
+  1098 kworker/u8:1(18218):       <-blk_peek_request return=0xf687d2d0
+  1100 kworker/u8:1(18218):       ->blk_start_request req=0xf687d2d0
+  1103 kworker/u8:1(18218):        ->blk_dequeue_request rq=0xf687d2d0
+  1105 kworker/u8:1(18218):        <-blk_dequeue_request 
+  1107 kworker/u8:1(18218):        ->blk_add_timer req=0xf687d2d0
+  1109 kworker/u8:1(18218):        <-blk_add_timer 
+  1111 kworker/u8:1(18218):       <-blk_start_request 
+  1159 kworker/u8:1(18218):       ->scsi_init_cmd_errh cmd=0xf6fe7000
+  1164 kworker/u8:1(18218):       <-scsi_init_cmd_errh 
+  1167 kworker/u8:1(18218):       ->scsi_dispatch_cmd cmd=0xf6fe7000
+  1170 kworker/u8:1(18218):        ->scsi_log_send cmd=0xf6fe7000
+  1173 kworker/u8:1(18218):        <-scsi_log_send 
+  1177 kworker/u8:1(18218):        ->scsi_debug_queuecommand shost=0xf687c400 cmd=0xf6fe7000
+  1181 kworker/u8:1(18218):         ->scsi_cmd_get_serial host=0xf687c400 cmd=0xf6fe7000
+  1184 kworker/u8:1(18218):         <-scsi_cmd_get_serial 
+  1188 kworker/u8:1(18218):         ->scsi_debug_queuecommand_lck SCpnt=0xf6fe7000 done=0xf7e91990
+  1197 kworker/u8:1(18218):          ->devInfoReg sdev=0xf687c000
+  1201 kworker/u8:1(18218):          <-devInfoReg return=0xf4b39c80
+  1205 kworker/u8:1(18218):          ->fill_from_dev_buffer scp=0xf6fe7000 arr=0xf69c4000 arr_len=0x60
+  1209 kworker/u8:1(18218):          <-fill_from_dev_buffer return=0x0
+  1212 kworker/u8:1(18218):          ->schedule_resp cmnd=0xf6fe7000 devip=0xf4b39c80 done=0xf7e91990 scsi_result=0x0 delta_jiff=0x0
+  1215 kworker/u8:1(18218):           ->scsi_done cmd=0xf6fe7000
+  1218 kworker/u8:1(18218):            ->blk_complete_request req=0xf687d2d0
+  1222 kworker/u8:1(18218):             ->__blk_complete_request req=0xf687d2d0
+  1225 kworker/u8:1(18218):             <-__blk_complete_request 
+  1227 kworker/u8:1(18218):            <-blk_complete_request 
+  1229 kworker/u8:1(18218):           <-scsi_done 
+  1231 kworker/u8:1(18218):          <-schedule_resp return=0x0
+  1233 kworker/u8:1(18218):         <-scsi_debug_queuecommand_lck return=0x0
+  1235 kworker/u8:1(18218):        <-scsi_debug_queuecommand return=0x0
+  1238 kworker/u8:1(18218):       <-scsi_dispatch_cmd return=0x0
+  1240 kworker/u8:1(18218):       ->blk_peek_request q=0xf68fc928
+  1243 kworker/u8:1(18218):       <-blk_peek_request return=0x0
+  1245 kworker/u8:1(18218):      <-scsi_request_fn 
+  1246 kworker/u8:1(18218):     <-__blk_run_queue 
+  1248 kworker/u8:1(18218):    <-blk_execute_rq_nowait 
+  1307 kworker/u8:1(18218):   <-blk_execute_rq return=0x0
+  1310 kworker/u8:1(18218):   ->blk_put_request req=0xf687d2d0
+  1313 kworker/u8:1(18218):    ->__blk_put_request q=0xf68fc928 req=0xf687d2d0
+  1316 kworker/u8:1(18218):     ->elv_completed_request q=0xf68fc928 rq=0xf687d2d0
+  1318 kworker/u8:1(18218):     <-elv_completed_request 
+  1321 kworker/u8:1(18218):     ->freed_request rl=0xf68fc944 flags=0x13850000
+  1323 kworker/u8:1(18218):      ->__freed_request rl=0xf68fc944 sync=0x1
+  1326 kworker/u8:1(18218):      <-__freed_request 
+  1327 kworker/u8:1(18218):     <-freed_request 
+  1329 kworker/u8:1(18218):    <-__blk_put_request 
+  1331 kworker/u8:1(18218):   <-blk_put_request 
+  1333 kworker/u8:1(18218):  <-scsi_execute return=0x0
+  1336 kworker/u8:1(18218):  ->scsi_normalize_sense sense_buffer=0xf4ae70c0 sb_len=0x60 sshdr=0xd970bd5e
+  1339 kworker/u8:1(18218):   ->scsi_normalize_sense sense_buffer=0xf4ae70c0 sb_len=0x60 sshdr=0xd970bd5e
+  1341 kworker/u8:1(18218):   <-scsi_normalize_sense return=0x0
+  1343 kworker/u8:1(18218):  <-scsi_normalize_sense return=0x0
+  1346 kworker/u8:1(18218): <-scsi_execute_req_flags return=0x0
+  1349 kworker/u8:1(18218): ->scsi_get_device_flags sdev=0xf687c000 vendor=0xf6dc0a08 model=0xf6dc0a10
+  1352 kworker/u8:1(18218):  ->scsi_get_device_flags_keyed sdev=0xf687c000 vendor=0xf6dc0a08 model=0xf6dc0a10 key=0x0
+  1360 kworker/u8:1(18218):  <-scsi_get_device_flags_keyed return=0x0
+  1362 kworker/u8:1(18218): <-scsi_get_device_flags return=0x0
+  1365 kworker/u8:1(18218): ->scsi_device_type type=0x0
+  1371 kworker/u8:1(18218): <-scsi_device_type return=0xf7ea7f68
+  1378 kworker/u8:1(18218): ->scsi_device_set_state sdev=0xf687c000 state=0x2
+  1380 kworker/u8:1(18218): <-scsi_device_set_state return=0x0
+  1383 kworker/u8:1(18218): ->ata_tport_match cont=0xf6ed4800 dev=0xf687c0d4
+  1386 kworker/u8:1(18218): <-ata_tport_match return=0x0
+  1388 kworker/u8:1(18218): ->ata_tlink_match cont=0xf6ed49b8 dev=0xf687c0d4
+  1391 kworker/u8:1(18218): <-ata_tlink_match return=0x0
+  1393 kworker/u8:1(18218): ->ata_tdev_match cont=0xf6ed49ec dev=0xf687c0d4
+  1395 kworker/u8:1(18218): <-ata_tdev_match return=0x0
+  1399 kworker/u8:1(18218): ->spi_device_match cont=0xf7e300e8 dev=0xf687c0d4
+  1402 kworker/u8:1(18218):  ->scsi_is_sdev_device dev=0xf687c0d4
+  1404 kworker/u8:1(18218):  <-scsi_is_sdev_device return=0x1
+  1407 kworker/u8:1(18218): <-spi_device_match return=0x0
+  1410 kworker/u8:1(18218): ->spi_target_match cont=0xf6dbe134 dev=0xf687c0d4
+  1412 kworker/u8:1(18218):  ->scsi_is_target_device dev=0xf687c0d4
+  1414 kworker/u8:1(18218):  <-scsi_is_target_device return=0x0
+  1417 kworker/u8:1(18218): <-spi_target_match return=0x0
+  1420 kworker/u8:1(18218): ->spi_host_match cont=0xf6dbe100 dev=0xf687c0d4
+  1422 kworker/u8:1(18218):  ->scsi_is_host_device dev=0xf687c0d4
+  1424 kworker/u8:1(18218):  <-scsi_is_host_device return=0x0
+  1427 kworker/u8:1(18218): <-spi_host_match return=0x0
+  1429 kworker/u8:1(18218): ->scsi_debug_slave_configure sdp=0xf687c000
+  1435 kworker/u8:1(18218):  ->devInfoReg sdev=0xf687c000
+  1437 kworker/u8:1(18218):  <-devInfoReg return=0xf4b39c80
+  1440 kworker/u8:1(18218):  ->scsi_adjust_queue_depth sdev=0xf687c000 tagged=0x0 tags=0x10
+  1443 kworker/u8:1(18218):   ->scsi_adjust_queue_depth sdev=0xf687c000 tagged=0x0 tags=0x10
+  1445 kworker/u8:1(18218):   <-scsi_adjust_queue_depth 
+  1447 kworker/u8:1(18218):  <-scsi_adjust_queue_depth 
+  1450 kworker/u8:1(18218):  ->blk_queue_max_segment_size q=0xf68fc928 max_size=0x40000
+  1453 kworker/u8:1(18218):  <-blk_queue_max_segment_size 
+  1455 kworker/u8:1(18218): <-scsi_debug_slave_configure return=0x0
+  1457 kworker/u8:1(18218): ->scsi_attach_vpd sdev=0xf687c000
+  1463 kworker/u8:1(18218):  ->scsi_vpd_inquiry sdev=0xf687c000 buffer=0xf6dc0000 page=0x0 len=0xff
+  1469 kworker/u8:1(18218):   ->scsi_execute_req_flags sdev=0xf687c000 cmd=0xd970bcb8 data_direction=0x2 buffer=0xf6dc0000 bufflen=0xff sshdr=0x0 timeout=0x1d4c retries=0x3 resid=0x0 flags=0x0
+  1473 kworker/u8:1(18218):    ->scsi_execute sdev=0xf687c000 cmd=0xd970bcb8 data_direction=0x2 buffer=0xf6dc0000 bufflen=0xff sense=0x0 timeout=0x1d4c retries=0x3 flags=0x0 resid=0x0
+  1476 kworker/u8:1(18218):     ->blk_get_request q=0xf68fc928 rw=0x0 gfp_mask=0x10
+  1479 kworker/u8:1(18218):      ->get_request q=0xf68fc928 rw_flags=0x0 bio=0x0 gfp_mask=0x10
+  1482 kworker/u8:1(18218):       ->elv_may_queue q=0xf68fc928 rw=0x0
+  1485 kworker/u8:1(18218):        ->cfq_may_queue q=0xf68fc928 rw=0x0
+  1489 kworker/u8:1(18218):         ->ioc_lookup_icq ioc=0xf38d47c0 q=0xf68fc928
+  1491 kworker/u8:1(18218):         <-ioc_lookup_icq return=0x0
+  1493 kworker/u8:1(18218):        <-cfq_may_queue return=0x0
+  1495 kworker/u8:1(18218):       <-elv_may_queue return=0x0
+  1497 kworker/u8:1(18218):       ->blk_rq_init q=0xf68fc928 rq=0xf687d2d0
+  1499 kworker/u8:1(18218):       <-blk_rq_init 
+  1501 kworker/u8:1(18218):      <-get_request return=0xf687d2d0
+  1503 kworker/u8:1(18218):     <-blk_get_request return=0xf687d2d0
+  1506 kworker/u8:1(18218):     ->blk_rq_set_block_pc rq=0xf687d2d0
+  1508 kworker/u8:1(18218):     <-blk_rq_set_block_pc 
+  1511 kworker/u8:1(18218):     ->blk_rq_map_kern q=0xf68fc928 rq=0xf687d2d0 kbuf=0xf6dc0000 len=0xff gfp_mask=0x10
+  1515 kworker/u8:1(18218):      ->bio_copy_kern q=0xf68fc928 data=0xf6dc0000 len=0xff gfp_mask=0x10 reading=0x1
+  1520 kworker/u8:1(18218):       ->bio_copy_user_iov q=0xf68fc928 map_data=0x0 iov=0xd970bc00 iov_count=0x1 write_to_vm=0x1 gfp_mask=0x10
+  1525 kworker/u8:1(18218):        ->bio_alloc_bioset gfp_mask=0x10 nr_iovecs=0x1 bs=0x0
+  1527 kworker/u8:1(18218):        <-bio_alloc_bioset return=0xf3efc900
+  1531 kworker/u8:1(18218):        ->__bio_add_page q=0xf68fc928 bio=0xf3efc900 page=0xf6151860 len=0xff offset=0x0 max_sectors=0xffff
+  1534 kworker/u8:1(18218):        <-__bio_add_page return=0xff
+  1536 kworker/u8:1(18218):       <-bio_copy_user_iov return=0xf3efc900
+  1538 kworker/u8:1(18218):      <-bio_copy_kern return=0xf3efc900
+  1540 kworker/u8:1(18218):      ->blk_rq_append_bio q=0xf68fc928 rq=0xf687d2d0 bio=0xf3efc900
+  1543 kworker/u8:1(18218):       ->blk_rq_bio_prep q=0xf68fc928 rq=0xf687d2d0 bio=0xf3efc900
+  1546 kworker/u8:1(18218):        ->bio_phys_segments q=0xf68fc928 bio=0xf3efc900
+  1550 kworker/u8:1(18218):         ->blk_recount_segments q=0xf68fc928 bio=0xf3efc900
+  1553 kworker/u8:1(18218):          ->__blk_recalc_rq_segments q=0xf68fc928 bio=0xf3efc900
+  1556 kworker/u8:1(18218):          <-__blk_recalc_rq_segments return=0x1
+  1558 kworker/u8:1(18218):         <-blk_recount_segments 
+  1559 kworker/u8:1(18218):        <-bio_phys_segments return=0x1
+  1561 kworker/u8:1(18218):       <-blk_rq_bio_prep 
+  1563 kworker/u8:1(18218):      <-blk_rq_append_bio return=0x0
+  1566 kworker/u8:1(18218):      ->blk_queue_bounce q=0xf68fc928 bio_orig=0xf687d310
+  1569 kworker/u8:1(18218):      <-blk_queue_bounce 
+  1570 kworker/u8:1(18218):     <-blk_rq_map_kern return=0x0
+  1573 kworker/u8:1(18218):     ->blk_execute_rq q=0xf68fc928 bd_disk=0x0 rq=0xf687d2d0 at_head=0x1
+  1577 kworker/u8:1(18218):      ->blk_execute_rq_nowait q=0xf68fc928 bd_disk=0x0 rq=0xf687d2d0 at_head=0x1 done=0xc122e1c0
+  1580 kworker/u8:1(18218):       ->__elv_add_request q=0xf68fc928 rq=0xf687d2d0 where=0x1
+  1582 kworker/u8:1(18218):       <-__elv_add_request 
+  1584 kworker/u8:1(18218):       ->__blk_run_queue q=0xf68fc928
+  1587 kworker/u8:1(18218):        ->scsi_request_fn q=0xf68fc928
+  1589 kworker/u8:1(18218):         ->blk_peek_request q=0xf68fc928
+  1592 kworker/u8:1(18218):          ->scsi_prep_fn q=0xf68fc928 req=0xf687d2d0
+  1595 kworker/u8:1(18218):           ->scsi_get_command dev=0xf687c000 gfp_mask=0x20
+  1598 kworker/u8:1(18218):            ->__scsi_get_command shost=0xf687c400 gfp_mask=0x20
+  1600 kworker/u8:1(18218):             ->scsi_host_alloc_command shost=0xf687c400 gfp_mask=0x20
+  1603 kworker/u8:1(18218):             <-scsi_host_alloc_command return=0xf6fe7000
+  1605 kworker/u8:1(18218):            <-__scsi_get_command return=0xf6fe7000
+  1607 kworker/u8:1(18218):           <-scsi_get_command return=0xf6fe7000
+  1610 kworker/u8:1(18218):           ->scsi_setup_blk_pc_cmnd sdev=0xf687c000 req=0xf687d2d0
+  1613 kworker/u8:1(18218):            ->scsi_init_io cmd=0xf6fe7000 gfp_mask=0x20
+  1616 kworker/u8:1(18218):             ->scsi_init_sgtable req=0xf687d2d0 sdb=0xf6fe7080 gfp_mask=0x20
+  1619 kworker/u8:1(18218):              ->scsi_alloc_sgtable sdb=0xf6fe7080 nents=0x1 gfp_mask=0x20
+  1621 kworker/u8:1(18218):               ->scsi_sg_alloc nents=0x1 gfp_mask=0x20
+  1624 kworker/u8:1(18218):               <-scsi_sg_alloc return=0xf6edb400
+  1626 kworker/u8:1(18218):              <-scsi_alloc_sgtable return=0x0
+  1629 kworker/u8:1(18218):              ->blk_rq_map_sg q=0xf68fc928 rq=0xf687d2d0 sglist=0xf6edb400
+  1632 kworker/u8:1(18218):               ->__blk_bios_map_sg q=0xf68fc928 bio=0xf3efc900 sglist=0xf6edb400 sg=0xd970ba98
+  1635 kworker/u8:1(18218):               <-__blk_bios_map_sg return=0x1
+  1637 kworker/u8:1(18218):              <-blk_rq_map_sg return=0x1
+  1639 kworker/u8:1(18218):             <-scsi_init_sgtable return=0x0
+  1641 kworker/u8:1(18218):            <-scsi_init_io return=0x0
+  1643 kworker/u8:1(18218):           <-scsi_setup_blk_pc_cmnd return=0x0
+  1645 kworker/u8:1(18218):          <-scsi_prep_fn return=0x0
+  1647 kworker/u8:1(18218):         <-blk_peek_request return=0xf687d2d0
+  1650 kworker/u8:1(18218):         ->blk_start_request req=0xf687d2d0
+  1653 kworker/u8:1(18218):          ->blk_dequeue_request rq=0xf687d2d0
+  1655 kworker/u8:1(18218):          <-blk_dequeue_request 
+  1657 kworker/u8:1(18218):          ->blk_add_timer req=0xf687d2d0
+  1660 kworker/u8:1(18218):          <-blk_add_timer 
+  1661 kworker/u8:1(18218):         <-blk_start_request 
+  1664 kworker/u8:1(18218):         ->scsi_init_cmd_errh cmd=0xf6fe7000
+  1666 kworker/u8:1(18218):         <-scsi_init_cmd_errh 
+  1668 kworker/u8:1(18218):         ->scsi_dispatch_cmd cmd=0xf6fe7000
+  1671 kworker/u8:1(18218):          ->scsi_log_send cmd=0xf6fe7000
+  1673 kworker/u8:1(18218):          <-scsi_log_send 
+  1676 kworker/u8:1(18218):          ->scsi_debug_queuecommand shost=0xf687c400 cmd=0xf6fe7000
+  1679 kworker/u8:1(18218):           ->scsi_cmd_get_serial host=0xf687c400 cmd=0xf6fe7000
+  1681 kworker/u8:1(18218):           <-scsi_cmd_get_serial 
+  1684 kworker/u8:1(18218):           ->scsi_debug_queuecommand_lck SCpnt=0xf6fe7000 done=0xf7e91990
+  1690 kworker/u8:1(18218):            ->fill_from_dev_buffer scp=0xf6fe7000 arr=0xf69c4000 arr_len=0xf
+  1693 kworker/u8:1(18218):            <-fill_from_dev_buffer return=0x0
+  1696 kworker/u8:1(18218):            ->schedule_resp cmnd=0xf6fe7000 devip=0xf4b39c80 done=0xf7e91990 scsi_result=0x0 delta_jiff=0x0
+  1699 kworker/u8:1(18218):             ->scsi_done cmd=0xf6fe7000
+  1701 kworker/u8:1(18218):              ->blk_complete_request req=0xf687d2d0
+  1704 kworker/u8:1(18218):               ->__blk_complete_request req=0xf687d2d0
+  1707 kworker/u8:1(18218):               <-__blk_complete_request 
+  1709 kworker/u8:1(18218):              <-blk_complete_request 
+  1711 kworker/u8:1(18218):             <-scsi_done 
+  1713 kworker/u8:1(18218):            <-schedule_resp return=0x0
+  1715 kworker/u8:1(18218):           <-scsi_debug_queuecommand_lck return=0x0
+  1717 kworker/u8:1(18218):          <-scsi_debug_queuecommand return=0x0
+  1719 kworker/u8:1(18218):         <-scsi_dispatch_cmd return=0x0
+  1722 kworker/u8:1(18218):         ->blk_peek_request q=0xf68fc928
+  1724 kworker/u8:1(18218):         <-blk_peek_request return=0x0
+  1726 kworker/u8:1(18218):        <-scsi_request_fn 
+  1727 kworker/u8:1(18218):       <-__blk_run_queue 
+  1729 kworker/u8:1(18218):      <-blk_execute_rq_nowait 
+  1787 kworker/u8:1(18218):     <-blk_execute_rq return=0x0
+  1789 kworker/u8:1(18218):     ->blk_put_request req=0xf687d2d0
+  1792 kworker/u8:1(18218):      ->__blk_put_request q=0xf68fc928 req=0xf687d2d0
+  1795 kworker/u8:1(18218):       ->elv_completed_request q=0xf68fc928 rq=0xf687d2d0
+  1797 kworker/u8:1(18218):       <-elv_completed_request 
+  1799 kworker/u8:1(18218):       ->freed_request rl=0xf68fc944 flags=0x17850000
+  1802 kworker/u8:1(18218):        ->__freed_request rl=0xf68fc944 sync=0x1
+  1804 kworker/u8:1(18218):        <-__freed_request 
+  1806 kworker/u8:1(18218):       <-freed_request 
+  1808 kworker/u8:1(18218):      <-__blk_put_request 
+  1810 kworker/u8:1(18218):     <-blk_put_request 
+  1812 kworker/u8:1(18218):    <-scsi_execute return=0x0
+  1814 kworker/u8:1(18218):   <-scsi_execute_req_flags return=0x0
+  1816 kworker/u8:1(18218):  <-scsi_vpd_inquiry return=0xf
+  1819 kworker/u8:1(18218):  ->scsi_vpd_inquiry sdev=0xf687c000 buffer=0xf6dc0000 page=0x80 len=0xff
+  1823 kworker/u8:1(18218):   ->scsi_execute_req_flags sdev=0xf687c000 cmd=0xd970bcb8 data_direction=0x2 buffer=0xf6dc0000 bufflen=0xff sshdr=0x0 timeout=0x1d4c retries=0x3 resid=0x0 flags=0x0
+  1827 kworker/u8:1(18218):    ->scsi_execute sdev=0xf687c000 cmd=0xd970bcb8 data_direction=0x2 buffer=0xf6dc0000 bufflen=0xff sense=0x0 timeout=0x1d4c retries=0x3 flags=0x0 resid=0x0
+  1830 kworker/u8:1(18218):     ->blk_get_request q=0xf68fc928 rw=0x0 gfp_mask=0x10
+  1833 kworker/u8:1(18218):      ->get_request q=0xf68fc928 rw_flags=0x0 bio=0x0 gfp_mask=0x10
+  1836 kworker/u8:1(18218):       ->elv_may_queue q=0xf68fc928 rw=0x0
+  1838 kworker/u8:1(18218):        ->cfq_may_queue q=0xf68fc928 rw=0x0
+  1841 kworker/u8:1(18218):         ->ioc_lookup_icq ioc=0xf38d47c0 q=0xf68fc928
+  1843 kworker/u8:1(18218):         <-ioc_lookup_icq return=0x0
+  1845 kworker/u8:1(18218):        <-cfq_may_queue return=0x0
+  1847 kworker/u8:1(18218):       <-elv_may_queue return=0x0
+  1849 kworker/u8:1(18218):       ->blk_rq_init q=0xf68fc928 rq=0xf687d2d0
+  1851 kworker/u8:1(18218):       <-blk_rq_init 
+  1853 kworker/u8:1(18218):      <-get_request return=0xf687d2d0
+  1855 kworker/u8:1(18218):     <-blk_get_request return=0xf687d2d0
+  1857 kworker/u8:1(18218):     ->blk_rq_set_block_pc rq=0xf687d2d0
+  1859 kworker/u8:1(18218):     <-blk_rq_set_block_pc 
+  1862 kworker/u8:1(18218):     ->blk_rq_map_kern q=0xf68fc928 rq=0xf687d2d0 kbuf=0xf6dc0000 len=0xff gfp_mask=0x10
+  1865 kworker/u8:1(18218):      ->bio_copy_kern q=0xf68fc928 data=0xf6dc0000 len=0xff gfp_mask=0x10 reading=0x1
+  1869 kworker/u8:1(18218):       ->bio_copy_user_iov q=0xf68fc928 map_data=0x0 iov=0xd970bc00 iov_count=0x1 write_to_vm=0x1 gfp_mask=0x10
+  1872 kworker/u8:1(18218):        ->bio_alloc_bioset gfp_mask=0x10 nr_iovecs=0x1 bs=0x0
+  1874 kworker/u8:1(18218):        <-bio_alloc_bioset return=0xf3efc900
+  1877 kworker/u8:1(18218):        ->__bio_add_page q=0xf68fc928 bio=0xf3efc900 page=0xf6151860 len=0xff offset=0x0 max_sectors=0xffff
+  1880 kworker/u8:1(18218):        <-__bio_add_page return=0xff
+  1882 kworker/u8:1(18218):       <-bio_copy_user_iov return=0xf3efc900
+  1884 kworker/u8:1(18218):      <-bio_copy_kern return=0xf3efc900
+  1886 kworker/u8:1(18218):      ->blk_rq_append_bio q=0xf68fc928 rq=0xf687d2d0 bio=0xf3efc900
+  1889 kworker/u8:1(18218):       ->blk_rq_bio_prep q=0xf68fc928 rq=0xf687d2d0 bio=0xf3efc900
+  1892 kworker/u8:1(18218):        ->bio_phys_segments q=0xf68fc928 bio=0xf3efc900
+  1896 kworker/u8:1(18218):         ->blk_recount_segments q=0xf68fc928 bio=0xf3efc900
+  1899 kworker/u8:1(18218):          ->__blk_recalc_rq_segments q=0xf68fc928 bio=0xf3efc900
+  1901 kworker/u8:1(18218):          <-__blk_recalc_rq_segments return=0x1
+  1903 kworker/u8:1(18218):         <-blk_recount_segments 
+  1905 kworker/u8:1(18218):        <-bio_phys_segments return=0x1
+  1907 kworker/u8:1(18218):       <-blk_rq_bio_prep 
+  1909 kworker/u8:1(18218):      <-blk_rq_append_bio return=0x0
+  1911 kworker/u8:1(18218):      ->blk_queue_bounce q=0xf68fc928 bio_orig=0xf687d310
+  1914 kworker/u8:1(18218):      <-blk_queue_bounce 
+  1915 kworker/u8:1(18218):     <-blk_rq_map_kern return=0x0
+  1918 kworker/u8:1(18218):     ->blk_execute_rq q=0xf68fc928 bd_disk=0x0 rq=0xf687d2d0 at_head=0x1
+  1921 kworker/u8:1(18218):      ->blk_execute_rq_nowait q=0xf68fc928 bd_disk=0x0 rq=0xf687d2d0 at_head=0x1 done=0xc122e1c0
+  1924 kworker/u8:1(18218):       ->__elv_add_request q=0xf68fc928 rq=0xf687d2d0 where=0x1
+  1926 kworker/u8:1(18218):       <-__elv_add_request 
+  1929 kworker/u8:1(18218):       ->__blk_run_queue q=0xf68fc928
+  1931 kworker/u8:1(18218):        ->scsi_request_fn q=0xf68fc928
+  1933 kworker/u8:1(18218):         ->blk_peek_request q=0xf68fc928
+  1936 kworker/u8:1(18218):          ->scsi_prep_fn q=0xf68fc928 req=0xf687d2d0
+  1939 kworker/u8:1(18218):           ->scsi_get_command dev=0xf687c000 gfp_mask=0x20
+  1941 kworker/u8:1(18218):            ->__scsi_get_command shost=0xf687c400 gfp_mask=0x20
+  1944 kworker/u8:1(18218):             ->scsi_host_alloc_command shost=0xf687c400 gfp_mask=0x20
+  1947 kworker/u8:1(18218):             <-scsi_host_alloc_command return=0xf6fe7000
+  1949 kworker/u8:1(18218):            <-__scsi_get_command return=0xf6fe7000
+  1951 kworker/u8:1(18218):           <-scsi_get_command return=0xf6fe7000
+  1953 kworker/u8:1(18218):           ->scsi_setup_blk_pc_cmnd sdev=0xf687c000 req=0xf687d2d0
+  1956 kworker/u8:1(18218):            ->scsi_init_io cmd=0xf6fe7000 gfp_mask=0x20
+  1959 kworker/u8:1(18218):             ->scsi_init_sgtable req=0xf687d2d0 sdb=0xf6fe7080 gfp_mask=0x20
+  1962 kworker/u8:1(18218):              ->scsi_alloc_sgtable sdb=0xf6fe7080 nents=0x1 gfp_mask=0x20
+  1964 kworker/u8:1(18218):               ->scsi_sg_alloc nents=0x1 gfp_mask=0x20
+  1967 kworker/u8:1(18218):               <-scsi_sg_alloc return=0xf6edb400
+  1969 kworker/u8:1(18218):              <-scsi_alloc_sgtable return=0x0
+  1972 kworker/u8:1(18218):              ->blk_rq_map_sg q=0xf68fc928 rq=0xf687d2d0 sglist=0xf6edb400
+  1975 kworker/u8:1(18218):               ->__blk_bios_map_sg q=0xf68fc928 bio=0xf3efc900 sglist=0xf6edb400 sg=0xd970ba98
+  1977 kworker/u8:1(18218):               <-__blk_bios_map_sg return=0x1
+  1979 kworker/u8:1(18218):              <-blk_rq_map_sg return=0x1
+  1981 kworker/u8:1(18218):             <-scsi_init_sgtable return=0x0
+  1984 kworker/u8:1(18218):            <-scsi_init_io return=0x0
+  1986 kworker/u8:1(18218):           <-scsi_setup_blk_pc_cmnd return=0x0
+  1988 kworker/u8:1(18218):          <-scsi_prep_fn return=0x0
+  1990 kworker/u8:1(18218):         <-blk_peek_request return=0xf687d2d0
+  1992 kworker/u8:1(18218):         ->blk_start_request req=0xf687d2d0
+  1995 kworker/u8:1(18218):          ->blk_dequeue_request rq=0xf687d2d0
+  1997 kworker/u8:1(18218):          <-blk_dequeue_request 
+  1999 kworker/u8:1(18218):          ->blk_add_timer req=0xf687d2d0
+  2001 kworker/u8:1(18218):          <-blk_add_timer 
+  2003 kworker/u8:1(18218):         <-blk_start_request 
+  2006 kworker/u8:1(18218):         ->scsi_init_cmd_errh cmd=0xf6fe7000
+  2008 kworker/u8:1(18218):         <-scsi_init_cmd_errh 
+  2010 kworker/u8:1(18218):         ->scsi_dispatch_cmd cmd=0xf6fe7000
+  2012 kworker/u8:1(18218):          ->scsi_log_send cmd=0xf6fe7000
+  2015 kworker/u8:1(18218):          <-scsi_log_send 
+  2017 kworker/u8:1(18218):          ->scsi_debug_queuecommand shost=0xf687c400 cmd=0xf6fe7000
+  2020 kworker/u8:1(18218):           ->scsi_cmd_get_serial host=0xf687c400 cmd=0xf6fe7000
+  2022 kworker/u8:1(18218):           <-scsi_cmd_get_serial 
+  2025 kworker/u8:1(18218):           ->scsi_debug_queuecommand_lck SCpnt=0xf6fe7000 done=0xf7e91990
+  2074 kworker/u8:1(18218):            ->fill_from_dev_buffer scp=0xf6fe7000 arr=0xf69c4000 arr_len=0x9
+  2078 kworker/u8:1(18218):            <-fill_from_dev_buffer return=0x0
+  2081 kworker/u8:1(18218):            ->schedule_resp cmnd=0xf6fe7000 devip=0xf4b39c80 done=0xf7e91990 scsi_result=0x0 delta_jiff=0x0
+  2084 kworker/u8:1(18218):             ->scsi_done cmd=0xf6fe7000
+  2088 kworker/u8:1(18218):              ->blk_complete_request req=0xf687d2d0
+  2091 kworker/u8:1(18218):               ->__blk_complete_request req=0xf687d2d0
+  2094 kworker/u8:1(18218):               <-__blk_complete_request 
+  2096 kworker/u8:1(18218):              <-blk_complete_request 
+  2098 kworker/u8:1(18218):             <-scsi_done 
+  2100 kworker/u8:1(18218):            <-schedule_resp return=0x0
+  2103 kworker/u8:1(18218):           <-scsi_debug_queuecommand_lck return=0x0
+  2105 kworker/u8:1(18218):          <-scsi_debug_queuecommand return=0x0
+  2107 kworker/u8:1(18218):         <-scsi_dispatch_cmd return=0x0
+  2110 kworker/u8:1(18218):         ->blk_peek_request q=0xf68fc928
+  2112 kworker/u8:1(18218):         <-blk_peek_request return=0x0
+  2114 kworker/u8:1(18218):        <-scsi_request_fn 
+  2116 kworker/u8:1(18218):       <-__blk_run_queue 
+  2118 kworker/u8:1(18218):      <-blk_execute_rq_nowait 
+  2175 kworker/u8:1(18218):     <-blk_execute_rq return=0x0
+  2178 kworker/u8:1(18218):     ->blk_put_request req=0xf687d2d0
+  2181 kworker/u8:1(18218):      ->__blk_put_request q=0xf68fc928 req=0xf687d2d0
+  2183 kworker/u8:1(18218):       ->elv_completed_request q=0xf68fc928 rq=0xf687d2d0
+  2186 kworker/u8:1(18218):       <-elv_completed_request 
+  2188 kworker/u8:1(18218):       ->freed_request rl=0xf68fc944 flags=0x17850000
+  2191 kworker/u8:1(18218):        ->__freed_request rl=0xf68fc944 sync=0x1
+  2193 kworker/u8:1(18218):        <-__freed_request 
+  2195 kworker/u8:1(18218):       <-freed_request 
+  2197 kworker/u8:1(18218):      <-__blk_put_request 
+  2199 kworker/u8:1(18218):     <-blk_put_request 
+  2201 kworker/u8:1(18218):    <-scsi_execute return=0x0
+  2203 kworker/u8:1(18218):   <-scsi_execute_req_flags return=0x0
+  2205 kworker/u8:1(18218):  <-scsi_vpd_inquiry return=0x9
+  2208 kworker/u8:1(18218):  ->scsi_vpd_inquiry sdev=0xf687c000 buffer=0xf6dc0400 page=0x83 len=0xff
+  2212 kworker/u8:1(18218):   ->scsi_execute_req_flags sdev=0xf687c000 cmd=0xd970bcb8 data_direction=0x2 buffer=0xf6dc0400 bufflen=0xff sshdr=0x0 timeout=0x1d4c retries=0x3 resid=0x0 flags=0x0
+  2216 kworker/u8:1(18218):    ->scsi_execute sdev=0xf687c000 cmd=0xd970bcb8 data_direction=0x2 buffer=0xf6dc0400 bufflen=0xff sense=0x0 timeout=0x1d4c retries=0x3 flags=0x0 resid=0x0
+  2219 kworker/u8:1(18218):     ->blk_get_request q=0xf68fc928 rw=0x0 gfp_mask=0x10
+  2222 kworker/u8:1(18218):      ->get_request q=0xf68fc928 rw_flags=0x0 bio=0x0 gfp_mask=0x10
+  2225 kworker/u8:1(18218):       ->elv_may_queue q=0xf68fc928 rw=0x0
+  2228 kworker/u8:1(18218):        ->cfq_may_queue q=0xf68fc928 rw=0x0
+  2231 kworker/u8:1(18218):         ->ioc_lookup_icq ioc=0xf38d47c0 q=0xf68fc928
+  2233 kworker/u8:1(18218):         <-ioc_lookup_icq return=0x0
+  2235 kworker/u8:1(18218):        <-cfq_may_queue return=0x0
+  2237 kworker/u8:1(18218):       <-elv_may_queue return=0x0
+  2240 kworker/u8:1(18218):       ->blk_rq_init q=0xf68fc928 rq=0xf687d2d0
+  2242 kworker/u8:1(18218):       <-blk_rq_init 
+  2243 kworker/u8:1(18218):      <-get_request return=0xf687d2d0
+  2245 kworker/u8:1(18218):     <-blk_get_request return=0xf687d2d0
+  2248 kworker/u8:1(18218):     ->blk_rq_set_block_pc rq=0xf687d2d0
+  2250 kworker/u8:1(18218):     <-blk_rq_set_block_pc 
+  2253 kworker/u8:1(18218):     ->blk_rq_map_kern q=0xf68fc928 rq=0xf687d2d0 kbuf=0xf6dc0400 len=0xff gfp_mask=0x10
+  2256 kworker/u8:1(18218):      ->bio_copy_kern q=0xf68fc928 data=0xf6dc0400 len=0xff gfp_mask=0x10 reading=0x1
+  2259 kworker/u8:1(18218):       ->bio_copy_user_iov q=0xf68fc928 map_data=0x0 iov=0xd970bc00 iov_count=0x1 write_to_vm=0x1 gfp_mask=0x10
+  2262 kworker/u8:1(18218):        ->bio_alloc_bioset gfp_mask=0x10 nr_iovecs=0x1 bs=0x0
+  2265 kworker/u8:1(18218):        <-bio_alloc_bioset return=0xf3efc900
+  2268 kworker/u8:1(18218):        ->__bio_add_page q=0xf68fc928 bio=0xf3efc900 page=0xf6151860 len=0xff offset=0x0 max_sectors=0xffff
+  2270 kworker/u8:1(18218):        <-__bio_add_page return=0xff
+  2273 kworker/u8:1(18218):       <-bio_copy_user_iov return=0xf3efc900
+  2274 kworker/u8:1(18218):      <-bio_copy_kern return=0xf3efc900
+  2277 kworker/u8:1(18218):      ->blk_rq_append_bio q=0xf68fc928 rq=0xf687d2d0 bio=0xf3efc900
+  2280 kworker/u8:1(18218):       ->blk_rq_bio_prep q=0xf68fc928 rq=0xf687d2d0 bio=0xf3efc900
+  2283 kworker/u8:1(18218):        ->bio_phys_segments q=0xf68fc928 bio=0xf3efc900
+  2288 kworker/u8:1(18218):         ->blk_recount_segments q=0xf68fc928 bio=0xf3efc900
+  2291 kworker/u8:1(18218):          ->__blk_recalc_rq_segments q=0xf68fc928 bio=0xf3efc900
+  2293 kworker/u8:1(18218):          <-__blk_recalc_rq_segments return=0x1
+  2295 kworker/u8:1(18218):         <-blk_recount_segments 
+  2297 kworker/u8:1(18218):        <-bio_phys_segments return=0x1
+  2299 kworker/u8:1(18218):       <-blk_rq_bio_prep 
+  2300 kworker/u8:1(18218):      <-blk_rq_append_bio return=0x0
+  2303 kworker/u8:1(18218):      ->blk_queue_bounce q=0xf68fc928 bio_orig=0xf687d310
+  2306 kworker/u8:1(18218):      <-blk_queue_bounce 
+  2307 kworker/u8:1(18218):     <-blk_rq_map_kern return=0x0
+  2310 kworker/u8:1(18218):     ->blk_execute_rq q=0xf68fc928 bd_disk=0x0 rq=0xf687d2d0 at_head=0x1
+  2314 kworker/u8:1(18218):      ->blk_execute_rq_nowait q=0xf68fc928 bd_disk=0x0 rq=0xf687d2d0 at_head=0x1 done=0xc122e1c0
+  2317 kworker/u8:1(18218):       ->__elv_add_request q=0xf68fc928 rq=0xf687d2d0 where=0x1
+  2319 kworker/u8:1(18218):       <-__elv_add_request 
+  2321 kworker/u8:1(18218):       ->__blk_run_queue q=0xf68fc928
+  2323 kworker/u8:1(18218):        ->scsi_request_fn q=0xf68fc928
+  2326 kworker/u8:1(18218):         ->blk_peek_request q=0xf68fc928
+  2328 kworker/u8:1(18218):          ->scsi_prep_fn q=0xf68fc928 req=0xf687d2d0
+  2331 kworker/u8:1(18218):           ->scsi_get_command dev=0xf687c000 gfp_mask=0x20
+  2334 kworker/u8:1(18218):            ->__scsi_get_command shost=0xf687c400 gfp_mask=0x20
+  2336 kworker/u8:1(18218):             ->scsi_host_alloc_command shost=0xf687c400 gfp_mask=0x20
+  2339 kworker/u8:1(18218):             <-scsi_host_alloc_command return=0xf6fe7000
+  2341 kworker/u8:1(18218):            <-__scsi_get_command return=0xf6fe7000
+  2343 kworker/u8:1(18218):           <-scsi_get_command return=0xf6fe7000
+  2346 kworker/u8:1(18218):           ->scsi_setup_blk_pc_cmnd sdev=0xf687c000 req=0xf687d2d0
+  2348 kworker/u8:1(18218):            ->scsi_init_io cmd=0xf6fe7000 gfp_mask=0x20
+  2351 kworker/u8:1(18218):             ->scsi_init_sgtable req=0xf687d2d0 sdb=0xf6fe7080 gfp_mask=0x20
+  2354 kworker/u8:1(18218):              ->scsi_alloc_sgtable sdb=0xf6fe7080 nents=0x1 gfp_mask=0x20
+  2357 kworker/u8:1(18218):               ->scsi_sg_alloc nents=0x1 gfp_mask=0x20
+  2360 kworker/u8:1(18218):               <-scsi_sg_alloc return=0xf6edb400
+  2362 kworker/u8:1(18218):              <-scsi_alloc_sgtable return=0x0
+  2364 kworker/u8:1(18218):              ->blk_rq_map_sg q=0xf68fc928 rq=0xf687d2d0 sglist=0xf6edb400
+  2368 kworker/u8:1(18218):               ->__blk_bios_map_sg q=0xf68fc928 bio=0xf3efc900 sglist=0xf6edb400 sg=0xd970ba98
+  2370 kworker/u8:1(18218):               <-__blk_bios_map_sg return=0x1
+  2372 kworker/u8:1(18218):              <-blk_rq_map_sg return=0x1
+  2374 kworker/u8:1(18218):             <-scsi_init_sgtable return=0x0
+  2376 kworker/u8:1(18218):            <-scsi_init_io return=0x0
+  2378 kworker/u8:1(18218):           <-scsi_setup_blk_pc_cmnd return=0x0
+  2380 kworker/u8:1(18218):          <-scsi_prep_fn return=0x0
+  2382 kworker/u8:1(18218):         <-blk_peek_request return=0xf687d2d0
+  2385 kworker/u8:1(18218):         ->blk_start_request req=0xf687d2d0
+  2387 kworker/u8:1(18218):          ->blk_dequeue_request rq=0xf687d2d0
+  2390 kworker/u8:1(18218):          <-blk_dequeue_request 
+  2392 kworker/u8:1(18218):          ->blk_add_timer req=0xf687d2d0
+  2394 kworker/u8:1(18218):          <-blk_add_timer 
+  2396 kworker/u8:1(18218):         <-blk_start_request 
+  2398 kworker/u8:1(18218):         ->scsi_init_cmd_errh cmd=0xf6fe7000
+  2400 kworker/u8:1(18218):         <-scsi_init_cmd_errh 
+  2403 kworker/u8:1(18218):         ->scsi_dispatch_cmd cmd=0xf6fe7000
+  2405 kworker/u8:1(18218):          ->scsi_log_send cmd=0xf6fe7000
+  2407 kworker/u8:1(18218):          <-scsi_log_send 
+  2410 kworker/u8:1(18218):          ->scsi_debug_queuecommand shost=0xf687c400 cmd=0xf6fe7000
+  2413 kworker/u8:1(18218):           ->scsi_cmd_get_serial host=0xf687c400 cmd=0xf6fe7000
+  2415 kworker/u8:1(18218):           <-scsi_cmd_get_serial 
+  2418 kworker/u8:1(18218):           ->scsi_debug_queuecommand_lck SCpnt=0xf6fe7000 done=0xf7e91990
+  2424 kworker/u8:1(18218):            ->fill_from_dev_buffer scp=0xf6fe7000 arr=0xf69c4000 arr_len=0x75
+  2427 kworker/u8:1(18218):            <-fill_from_dev_buffer return=0x0
+  2430 kworker/u8:1(18218):            ->schedule_resp cmnd=0xf6fe7000 devip=0xf4b39c80 done=0xf7e91990 scsi_result=0x0 delta_jiff=0x0
+  2433 kworker/u8:1(18218):             ->scsi_done cmd=0xf6fe7000
+  2435 kworker/u8:1(18218):              ->blk_complete_request req=0xf687d2d0
+  2438 kworker/u8:1(18218):               ->__blk_complete_request req=0xf687d2d0
+  2441 kworker/u8:1(18218):               <-__blk_complete_request 
+  2442 kworker/u8:1(18218):              <-blk_complete_request 
+  2444 kworker/u8:1(18218):             <-scsi_done 
+  2447 kworker/u8:1(18218):            <-schedule_resp return=0x0
+  2449 kworker/u8:1(18218):           <-scsi_debug_queuecommand_lck return=0x0
+  2451 kworker/u8:1(18218):          <-scsi_debug_queuecommand return=0x0
+  2453 kworker/u8:1(18218):         <-scsi_dispatch_cmd return=0x0
+  2455 kworker/u8:1(18218):         ->blk_peek_request q=0xf68fc928
+  2457 kworker/u8:1(18218):         <-blk_peek_request return=0x0
+  2459 kworker/u8:1(18218):        <-scsi_request_fn 
+  2461 kworker/u8:1(18218):       <-__blk_run_queue 
+  2463 kworker/u8:1(18218):      <-blk_execute_rq_nowait 
+  2516 kworker/u8:1(18218):     <-blk_execute_rq return=0x0
+  2518 kworker/u8:1(18218):     ->blk_put_request req=0xf687d2d0
+  2521 kworker/u8:1(18218):      ->__blk_put_request q=0xf68fc928 req=0xf687d2d0
+  2523 kworker/u8:1(18218):       ->elv_completed_request q=0xf68fc928 rq=0xf687d2d0
+  2525 kworker/u8:1(18218):       <-elv_completed_request 
+  2528 kworker/u8:1(18218):       ->freed_request rl=0xf68fc944 flags=0x17850000
+  2530 kworker/u8:1(18218):        ->__freed_request rl=0xf68fc944 sync=0x1
+  2532 kworker/u8:1(18218):        <-__freed_request 
+  2534 kworker/u8:1(18218):       <-freed_request 
+  2536 kworker/u8:1(18218):      <-__blk_put_request 
+  2538 kworker/u8:1(18218):     <-blk_put_request 
+  2540 kworker/u8:1(18218):    <-scsi_execute return=0x0
+  2542 kworker/u8:1(18218):   <-scsi_execute_req_flags return=0x0
+  2544 kworker/u8:1(18218):  <-scsi_vpd_inquiry return=0x75
+  2547 kworker/u8:1(18218): <-scsi_attach_vpd 
+  2549 kworker/u8:1(18218):<-scsi_probe_and_add_lun return=0x2
+
+kernel backtrace:
+Returning from:  0xf7e9b520 : scsi_probe_and_add_lun+0x0/0xb70 [scsi_mod]
+Returning to  :  0xf7e9c40b : __scsi_scan_target+0xdb/0x670 [scsi_mod]
+ 0xc1044778 : kretprobe_trampoline+0x0/0x38 [kernel]
+ 0xc1044778 : kretprobe_trampoline+0x0/0x38 [kernel]
+ 0xc1044778 : kretprobe_trampoline+0x0/0x38 [kernel]
+ 0xc1044778 : kretprobe_trampoline+0x0/0x38 [kernel]
+ 0xc1044778 : kretprobe_trampoline+0x0/0x38 [kernel]
+ 0xc106dc95 : process_one_work+0x115/0x380 [kernel]
+ 0xc106e44d : worker_thread+0xed/0x490 [kernel]
+ 0xc107368b : kthread+0x9b/0xb0 [kernel]
+ 0xc147eb41 : ret_from_kernel_thread+0x21/0x30 [kernel]
+ 0xc10735f0 : kthread+0x0/0xb0 [kernel]
+---------------------------------------------------------
+     0 kworker/u8:1(18218):->scsi_probe_and_add_lun starget=0xf6d8e400 lun=0x0 bflagsp=0x0 sdevp=0x0 rescan=0x0 hostdata=0x0
+     4 kworker/u8:1(18218): ->scsi_is_host_device dev=0xf687c4fc
+     6 kworker/u8:1(18218): <-scsi_is_host_device return=0x1
+     9 kworker/u8:1(18218): ->scsi_device_lookup_by_target starget=0xf6d8e400 lun=0x0
+    11 kworker/u8:1(18218):  ->scsi_is_host_device dev=0xf687c4fc
+    14 kworker/u8:1(18218):  <-scsi_is_host_device return=0x1
+    16 kworker/u8:1(18218):  ->scsi_device_get sdev=0xf687c000
+    18 kworker/u8:1(18218):  <-scsi_device_get return=0x0
+    21 kworker/u8:1(18218): <-scsi_device_lookup_by_target return=0xf687c000
+    23 kworker/u8:1(18218): ->scsi_device_put sdev=0xf687c000
+    26 kworker/u8:1(18218): <-scsi_device_put 
+    28 kworker/u8:1(18218):<-scsi_probe_and_add_lun return=0x2
+
+kernel backtrace:
+Returning from:  0xf7e9b520 : scsi_probe_and_add_lun+0x0/0xb70 [scsi_mod]
+Returning to  :  0xf7e9c858 : __scsi_scan_target+0x528/0x670 [scsi_mod]
+ 0xc1044778 : kretprobe_trampoline+0x0/0x38 [kernel]
+ 0xc1044778 : kretprobe_trampoline+0x0/0x38 [kernel]
+ 0xc1044778 : kretprobe_trampoline+0x0/0x38 [kernel]
+ 0xc1044778 : kretprobe_trampoline+0x0/0x38 [kernel]
+ 0xc1044778 : kretprobe_trampoline+0x0/0x38 [kernel]
+ 0xc106dc95 : process_one_work+0x115/0x380 [kernel]
+ 0xc106e44d : worker_thread+0xed/0x490 [kernel]
+ 0xc107368b : kthread+0x9b/0xb0 [kernel]
+ 0xc147eb41 : ret_from_kernel_thread+0x21/0x30 [kernel]
+ 0xc10735f0 : kthread+0x0/0xb0 [kernel]
+---------------------------------------------------------
