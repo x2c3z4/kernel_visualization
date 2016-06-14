@@ -7,6 +7,7 @@
 
 %{
 #include <scsi/scsi_cmnd.h>
+#include <scsi/scsi_dbg.h>
 char *scsi_ops[0xff] = {
 [0x000] = "TEST_UNIT_READY",
 [0x001] = "REZERO_UNIT_or_REWIND",
@@ -194,5 +195,10 @@ function dump_cdb:string(scsi_cmnd_ptr:long) %{
 %}
 
 function dump_sense(key: long, asc: long, ascq: long) %{
-  STAP_PRINTF("[sense_key,asc,ascq]: [0x%x,0x%x,0x%x]\n", STAP_ARG_key, STAP_ARG_asc, STAP_ARG_ascq);
+  u8 key = (u8)STAP_ARG_key;
+  u8 asc = (u8)STAP_ARG_asc;
+  u8 ascq = (u8)STAP_ARG_ascq;
+  const char *extd_sense_str = scsi_extd_sense_format(asc, ascq);
+  STAP_PRINTF("[0x%x, 0x%x, 0x%x] - %s\n", key, asc, ascq, extd_sense_str);
+  /*STAP_PRINTF("[sense_key,asc,ascq]: [0x%x,0x%x,0x%x] - %s\n", STAP_ARG_key, asc, ascq, extd_sense_str);*/
 %}

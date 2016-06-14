@@ -49,6 +49,37 @@ def write_file(basename, suffix, content):
         f.write(content)
     return outfile
 
+def filter_name(funcs):
+    newfuncs = []
+    for f in funcs:
+        if "%" in f or "-" in f[2:]:
+            print "Rename func %s  => " % (f,) ,
+            if f.startswith('->'):
+                f = '->' + f[2:].replace('-', '__').replace('%', '__')
+            if f.startswith('<-'):
+                f = '<-' + f[2:].replace('-', '__').replace('%', '__')
+            print f
+        newfuncs.append(f)
+    return newfuncs
+
+def which(program):
+    import os
+    def is_exe(fpath):
+        return os.path.isfile(fpath) and os.access(fpath, os.X_OK)
+
+    fpath, fname = os.path.split(program)
+    if fpath:
+        if is_exe(program):
+            return program
+    else:
+        for path in os.environ["PATH"].split(os.pathsep):
+            path = path.strip('"')
+            exe_file = os.path.join(path, program)
+            if is_exe(exe_file):
+                return exe_file
+
+    return None
+
 def deduplicate(files):
     container = {}
     for f in files:
@@ -64,6 +95,7 @@ def deduplicate(files):
     return container.values()
 
 def draw_backtrace(funcs):
+    funcs = filter_name(funcs)
     if len(funcs) < bt_threshold:
         return None
     header = """digraph backtrace{
@@ -184,6 +216,7 @@ class Tree:
 
 
 def draw_callgraph(funcs):
+    funcs = filter_name(funcs)
     if len(funcs) < 2 * callgraph_threshold:
         return None
     header = """digraph callee {
@@ -242,6 +275,10 @@ def draw_callgraph(funcs):
 
 def generate_pngs(dotfiles):
     dotfiles = deduplicate(dotfiles)
+
+    if which("dot") is None:
+      sys.exit("please install graphviz\n")
+
     for f in dotfiles:
         cmd = 'filename=%s; dot $filename -T%s >${filename%%.*}.%s' % (f, output_format, output_format)
         commands.getstatusoutput(cmd)
