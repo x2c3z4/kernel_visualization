@@ -162,6 +162,7 @@ if [ -z "$calls" ];then
   returns="probe kernel.function(\"*\").return?"
 fi
 
+echo "[+] Kernel release: $kernel_release"
 echo "[+] Entry func: $probe"
 echo "[+] Inject modules: $modules"
 echo "[+] Inject kernel funcs: $kfuncs"
