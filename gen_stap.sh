@@ -1,5 +1,7 @@
 #!/bin/bash
 
+kernel_release="$(uname -r)"
+
 function usage() {
   echo $1
   echo "Usage:"
@@ -8,13 +10,14 @@ function usage() {
   echo " -k, --kernel_funcs , put multi kernel funcs splitted with comma(,), e.g. *@block/*"
   echo " -f, --force_cache"
   echo " -o, --out_stap"
+  echo " -r, --release, use the specified kernel release, in case more than one is available on your machine"
   echo " -v, --verbose, probe suffix ?"
   echo " e.g. ./gen_stap.sh -m iscsi_target_mod.ko,target_core_mod.ko,target_core_file.ko,target_core_pscsi.ko -e fd_do_rw"
   echo "e.g. ./gen_stap.sh -m iscsi_target_mod.ko,target_core_mod.ko,target_core_file.ko,target_core_pscsi.ko -e iscsi_target_mod.rx_data"
   echo "e.g. ./gen_stap.sh -m sg,scsi_transport_spi,libata,mptspi,vmw_pvscsi,sd_mod,sr_mod,mptscsih,scsi_mod,scsi_debug -k \"*@block/*, *@kernel/*\" -e scsi_request_fn"
 }
 function make_caches() {
-  cache_dir=~/.kernel_visualization.cache
+  cache_dir=~/.kernel_visualization.cache/${kernel_release}
   modules_cache_file=$cache_dir/modules_list
   kfunc_cache_file=$cache_dir/kfunc_list
   mfunc_cache_file=$cache_dir/mfunc_list
@@ -22,10 +25,10 @@ function make_caches() {
   if [[ ( $force_cache -eq 1 ) || ( ! -d $cache_dir ) ]];then
     mkdir $cache_dir
     echo "Caching modules list"
-    find /lib/modules/`uname -r`/ -type f -name "*.ko" > $modules_cache_file
+    find /lib/modules/${kernel_release}/ -type f -name "*.ko" > $modules_cache_file
 
     echo "Caching kernel funciton list"
-    cat /boot/System.map-`uname -r` | grep -v ' U ' | awk '{print $3}' >$kfunc_cache_file
+    cat /boot/System.map-${kernel_release} | grep -v ' U ' | awk '{print $3}' >$kfunc_cache_file
 
     echo "Caching modules funciton list"
     cat $modules_cache_file | while read m;do name=`basename $m .ko`;nm --defined-only $m | awk -v name=$name '{print name, $3}';done >$mfunc_cache_file
@@ -56,6 +59,10 @@ do
       out_stap="$2"
       shift # past argument
       ;;
+    -r|--release)
+      kernel_release="$2"
+      shift # past argument
+      ;;
     -v|--verbose)
       verbose=1
       ;;
@@ -73,6 +80,18 @@ done
 
 [[ -z $entry ]] && usage && exit
 [[ -z $out_stap ]] && out_stap=$entry.stap
+
+if [[ ! -d "/lib/modules/${kernel_release}" ]]; then
+  echo "[-] Unable to find kernel modules for release ${kernel_release}"
+  usage
+  exit 1
+fi
+
+if [[ ! -f "/boot/System.map-${kernel_release}" ]]; then
+  echo "[-] Unable to find system map for ${kernel_release}"
+  usage
+  exit 1
+fi
 
 calls=""
 returns=""
