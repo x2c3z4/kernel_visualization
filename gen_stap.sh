@@ -23,7 +23,7 @@ function make_caches() {
   mfunc_cache_file=$cache_dir/mfunc_list
 
   if [[ ( $force_cache -eq 1 ) || ( ! -d $cache_dir ) ]];then
-    mkdir $cache_dir
+    mkdir -p $cache_dir
     echo "Caching modules list"
     find /lib/modules/${kernel_release}/ -type f -name "*.ko" > $modules_cache_file
 
